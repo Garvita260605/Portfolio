@@ -54,9 +54,9 @@
         .animate-hero { animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         /* Gradients */
-        .spotify-gradient { background: linear-gradient(135deg, #1DB954 0%, #191414 100%); }
-        .library-gradient { background: linear-gradient(135deg, #243B55 0%, #141E30 100%); }
-        .wellbeing-gradient { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .spotify-gradient { background: linear-gradient(135deg, #1db954 0%, #0d0d0d 100%); }
+        .library-gradient { background: linear-gradient(135deg, #4f46e5 0%, #1e1b4b 100%); }
+        .mental-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%); }
 
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -72,6 +72,31 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
             border-color: rgba(0,0,0,0.1);
+        }
+
+        /* Project Card Depth */
+        .project-card {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: scale(1.01) translateY(-10px);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3);
+        }
+        .insight-pill {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .expand-indicator {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        .project-card:hover .expand-indicator {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -128,11 +153,8 @@
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
                 <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
-                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover relative z-10" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80'">
-                    <div class="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-100 text-zinc-300 -z-0">
-                        <svg class="w-2/3 h-2/3 opacity-20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
+                    <div class="w-full h-full bg-zinc-100 flex items-center justify-center text-zinc-300">
+                         <i data-lucide="user" class="w-24 h-24 opacity-20"></i>
                     </div>
                 </div>
                 <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20">
@@ -171,67 +193,15 @@
     </section>
 
     <!-- Projects Grid -->
-    <section id="projects" class="py-32 px-6">
+    <section id="projects" class="py-32 px-6 overflow-hidden">
         <div class="max-w-6xl mx-auto">
             <div class="mb-20 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-4">Case Studies</h2>
-                <p class="text-zinc-500 text-xl max-w-lg font-medium">Applied technical frameworks for real-world impact.</p>
+                <p class="text-zinc-500 text-xl max-w-lg font-medium">Turning raw datasets into actionable narratives.</p>
             </div>
             
-            <!-- Project 1: Spotify -->
-            <div class="mb-12 group reveal">
-                <div class="spotify-gradient text-white rounded-[3.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center transition-transform duration-500 hover:scale-[1.01]">
-                    <div class="flex-1 relative z-10">
-                        <div class="flex items-center gap-3 mb-8">
-                            <i data-lucide="music" class="w-8 h-8"></i>
-                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Music Analytics</span>
-                        </div>
-                        <h3 class="text-4xl lg:text-6xl font-bold mb-6 tracking-tighter leading-none">Spotify Stream <br>Analysis 2024</h3>
-                        <p class="text-xl opacity-70 mb-10 max-w-xl leading-relaxed">Analyzing patterns behind track popularity using NLP (VADER) and hypothesis testing to compare explicit vs. non-explicit track performance.</p>
-                        <div class="flex gap-4">
-                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">Python</span>
-                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">NLP</span>
-                        </div>
-                    </div>
-                    <div class="flex-1 w-full lg:w-1/2 flex justify-center items-center relative z-10">
-                         <div class="p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl w-full max-w-md">
-                            <h5 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4"></i> Data Insights</h5>
-                            <div class="space-y-4">
-                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[85%] h-full"></div></div>
-                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[60%] h-full"></div></div>
-                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[92%] h-full"></div></div>
-                            </div>
-                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2: Library -->
-            <div class="mb-12 group reveal">
-                <div class="library-gradient text-white rounded-[3.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center transition-transform duration-500 hover:scale-[1.01]">
-                    <div class="flex-1 relative z-10">
-                        <div class="flex items-center gap-3 mb-8">
-                            <i data-lucide="database" class="w-8 h-8"></i>
-                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">System Design</span>
-                        </div>
-                        <h3 class="text-4xl lg:text-6xl font-bold mb-6 tracking-tighter leading-none">Digital Library <br>Management</h3>
-                        <p class="text-xl opacity-70 mb-10 max-w-xl leading-relaxed">Designed and implemented a secure SQL/PL-SQL system to automate library operations, fine computation, and OTP-based authentication.</p>
-                        <div class="flex gap-4">
-                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">SQL</span>
-                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">PL/SQL</span>
-                        </div>
-                    </div>
-                    <div class="flex-1 w-full lg:w-1/2 flex justify-center items-center relative z-10">
-                         <div class="p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl w-full max-w-md">
-                            <h5 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Admin Panel</h5>
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-xs opacity-60"><span>Storage Opt.</span><span>98%</span></div>
-                                <div class="flex justify-between text-xs opacity-60"><span>Response Time</span><span>0.2s</span></div>
-                                <div class="flex justify-between text-xs opacity-60"><span>User Security</span><span>High</span></div>
-                            </div>
-                         </div>
-                    </div>
-                </div>
+            <div id="projects-container" class="space-y-20">
+                <!-- Projects will be injected here via JS for better interactivity -->
             </div>
         </div>
     </section>
@@ -241,7 +211,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6">Technologies</h2>
-                <p class="text-zinc-500 text-lg">My specialized toolkit for building data-driven solutions.</p>
+                <p class="text-zinc-500 text-lg">A specialized toolkit for modern data engineering.</p>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
@@ -340,8 +310,207 @@
         </div>
     </div>
 
+    <!-- Project Modal (New) -->
+    <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-10 hidden">
+        <div class="absolute inset-0 bg-zinc-900/60 modal-backdrop" onclick="closeProjectModal()"></div>
+        <div class="relative bg-white w-full max-w-5xl h-[90vh] overflow-y-auto rounded-[3rem] shadow-2xl p-8 lg:p-16 transform scale-95 opacity-0 transition-all duration-500" id="project-modal-content">
+            <button onclick="closeProjectModal()" class="fixed top-8 right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all z-50">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="project-modal-body" class="flex flex-col gap-12">
+                <!-- Content Injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
+
+        // Project Data
+        const projectData = [
+            {
+                id: 0,
+                title: "Spotify Stream Dynamics",
+                subtitle: "Music Analytics 2024",
+                gradient: "spotify-gradient",
+                icon: "music",
+                accentColor: "#1DB954",
+                summary: "Correlating lyrics sentiment with global stream counts using NLP (VADER).",
+                description: "A deep dive into 2024's global listening habits. I used NLP (VADER) to correlate lyrics sentiment with stream counts, uncovering why explicit tracks often dominate global charts.",
+                tags: ["Python", "VADER NLP", "Statistical Modeling"],
+                metrics: [
+                    { label: "Stream delta for high-tempo", value: "+12%" },
+                    { label: "Classification precision", value: "89%" }
+                ],
+                detailedInsights: [
+                    "Performed multi-variate regression analysis on acousticness vs popularity.",
+                    "Discovered that 'high energy' tracks correlate 74% more with clean-to-explicit transitions in Top 50 charts.",
+                    "Implemented VADER sentiment intensity analyzers to categorize over 10,000 track lyrics.",
+                    "Visualized streaming density across 12 geographic zones using Seaborn."
+                ]
+            },
+            {
+                id: 1,
+                title: "Digital Asset Integrity",
+                subtitle: "Database Architecture",
+                gradient: "library-gradient",
+                icon: "database",
+                accentColor: "#6366f1",
+                summary: "Engineering a high-performance library system with SQL and PL/SQL.",
+                description: "Engineering a high-performance library system using SQL & PL/SQL. I optimized transactional workflows, automating fine calculations and implementing an OTP-based layer for secure book issuance.",
+                tags: ["Oracle SQL", "PL/SQL Triggers", "Security Logic"],
+                metrics: [
+                    { label: "Avg Query Latency", value: "0.12s" },
+                    { label: "Calculation Accuracy", value: "100%" }
+                ],
+                detailedInsights: [
+                    "Designed a robust Schema with normalized 3NF structures for optimal storage.",
+                    "Built PL/SQL procedures for dynamic fine calculation based on weekend-aware logic.",
+                    "Implemented custom triggers to prevent redundant asset allocation.",
+                    "Integrated a dummy SMTP layer logic for automated email alerts on overdue items."
+                ]
+            },
+            {
+                id: 2,
+                title: "Wellbeing Forecasting",
+                subtitle: "Predictive Modeling",
+                gradient: "mental-gradient",
+                icon: "brain-circuit",
+                accentColor: "#0ea5e9",
+                summary: "Using Random Forest Classification to predict student mental wellbeing.",
+                description: "Using Random Forest Classification to predict mental wellbeing outcomes in academic environments. The model identifies high-risk students by analyzing 15+ behavioral variables.",
+                tags: ["Scikit-Learn", "Ensemble Learning", "Pandas"],
+                metrics: [
+                    { label: "F1 Score", value: "92%" },
+                    { label: "Datapoints analyzed", value: "15k+" }
+                ],
+                detailedInsights: [
+                    "Identified 'Academic Pressure' as the most significant predictor (42% feature weight).",
+                    "Achieved 94% recall for high-stress classification across diverse student demographics.",
+                    "Applied SMOTE technique to handle class imbalance in survey datasets.",
+                    "Developed a Streamlit-ready prototype for counselor-facing risk dashboards."
+                ]
+            }
+        ];
+
+        // Render Projects
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            projectData.forEach((proj, idx) => {
+                const isEven = idx % 2 === 0;
+                const flexDir = isEven ? 'lg:flex-row' : 'lg:flex-row-reverse';
+                
+                const card = document.createElement('div');
+                card.className = "reveal group";
+                card.onclick = () => openProjectModal(idx);
+                card.innerHTML = `
+                    <div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-20 relative overflow-hidden flex flex-col ${flexDir} gap-16 items-center">
+                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                        <div class="flex-1 relative z-10">
+                            <div class="flex items-center gap-3 mb-8">
+                                <div class="p-3 bg-white/10 rounded-2xl insight-pill">
+                                    <i data-lucide="${proj.icon}" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">${proj.subtitle}</span>
+                            </div>
+                            <h3 class="text-4xl lg:text-7xl font-bold mb-8 tracking-tighter leading-[0.9]">${proj.title.split(' ')[0]} <br> ${proj.title.split(' ').slice(1).join(' ')}</h3>
+                            <p class="text-xl text-zinc-300 mb-10 max-w-xl leading-relaxed">${proj.summary}</p>
+                            <div class="flex flex-wrap gap-4">
+                                ${proj.tags.map(tag => `<span class="px-5 py-2 rounded-full insight-pill text-[10px] font-black uppercase tracking-widest">${tag}</span>`).join('')}
+                            </div>
+                            <div class="mt-10 flex items-center gap-2 text-white/50 font-bold uppercase tracking-widest text-[10px] expand-indicator">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i> Click to expand insights
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full lg:w-1/2 relative z-10">
+                            <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/10 shadow-3xl">
+                                <div class="space-y-6">
+                                    ${proj.metrics.map(m => `
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-3xl font-bold leading-none">${m.value}</p>
+                                                <p class="text-[10px] uppercase font-bold opacity-50 mt-1">${m.label}</p>
+                                            </div>
+                                            <i data-lucide="trending-up" class="w-6 h-6 opacity-30"></i>
+                                        </div>
+                                    `).join('<div class="h-px bg-white/10 w-full"></div>')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function openProjectModal(id) {
+            const proj = projectData[id];
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('project-modal-content');
+            const body = document.getElementById('project-modal-body');
+            
+            body.innerHTML = `
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-8">
+                             <div class="w-16 h-16 rounded-3xl flex items-center justify-center text-white" style="background-color: ${proj.accentColor}">
+                                <i data-lucide="${proj.icon}" class="w-8 h-8"></i>
+                             </div>
+                             <div>
+                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400">${proj.subtitle}</p>
+                                <h2 class="text-5xl font-black tracking-tighter">${proj.title}</h2>
+                             </div>
+                        </div>
+                        <p class="text-2xl text-zinc-500 leading-relaxed mb-12">${proj.description}</p>
+                        
+                        <div class="space-y-8">
+                            <h4 class="text-xs font-black uppercase tracking-widest text-zinc-400">Technical Highlights</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${proj.detailedInsights.map(insight => `
+                                    <div class="flex gap-4 p-6 bg-zinc-50 rounded-3xl border border-zinc-100">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-zinc-900 mt-1 flex-shrink-0"></i>
+                                        <p class="text-zinc-600 font-medium">${insight}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/3 space-y-10">
+                        <div class="p-10 rounded-[3rem] text-white" style="background-color: ${proj.accentColor}">
+                             <h5 class="text-xs font-black uppercase tracking-widest opacity-60 mb-8">Key Performance</h5>
+                             <div class="space-y-8">
+                                ${proj.metrics.map(m => `
+                                    <div>
+                                        <p class="text-5xl font-black mb-1">${m.value}</p>
+                                        <p class="text-xs font-bold uppercase tracking-widest opacity-60">${m.label}</p>
+                                    </div>
+                                `).join('')}
+                             </div>
+                        </div>
+                        <div class="p-10 border-2 border-dashed border-zinc-100 rounded-[3rem]">
+                             <h5 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-6">Core Stack</h5>
+                             <div class="flex flex-wrap gap-2">
+                                ${proj.tags.map(tag => `<span class="px-4 py-2 bg-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest">${tag}</span>`).join('')}
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => content.classList.remove('scale-95', 'opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeProjectModal() {
+            const content = document.getElementById('project-modal-content');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => document.getElementById('project-modal').classList.add('hidden'), 300);
+            document.body.style.overflow = 'auto';
+        }
 
         // Navbar Logic
         const nav = document.getElementById('navbar');
@@ -385,9 +554,8 @@
                 }
             });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Updated Certifications with Colored Logos
+        // Updated Certifications
         const certs = [
             { 
                 t: "Networking Basics", 
@@ -431,7 +599,6 @@
                 grid.appendChild(card);
             });
         }
-        renderCerts();
 
         function openModal(i) {
             const data = certs[i];
@@ -450,6 +617,13 @@
             setTimeout(() => document.getElementById('cert-modal').classList.add('hidden'), 300);
             document.body.style.overflow = 'auto';
         }
+
+        // Initialize Everything
+        window.onload = () => {
+            renderProjects();
+            renderCerts();
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
     </script>
 </body>
 </html>
