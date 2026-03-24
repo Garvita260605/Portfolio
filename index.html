@@ -63,6 +63,16 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+        
+        /* Interactive Card Transitions */
+        .tech-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+            border-color: rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="bg-white text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
@@ -118,17 +128,13 @@
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
                 <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
-                    <!-- The source matches your filename "profile.jpg" from your screenshot -->
-                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover relative z-10">
-                    
-                    <!-- Fallback if image fails to load -->
+                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover relative z-10" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80'">
                     <div class="absolute inset-0 w-full h-full flex items-center justify-center bg-zinc-100 text-zinc-300 -z-0">
                         <svg class="w-2/3 h-2/3 opacity-20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
                     </div>
                 </div>
-                <!-- Floating Skills Badge -->
                 <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20">
                     <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
                         <i data-lucide="brain"></i>
@@ -143,7 +149,7 @@
     </section>
 
     <!-- Academic Counters Strip -->
-    <section class="py-20 px-6 border-y border-zinc-100">
+    <section class="py-20 px-6 border-y border-zinc-100 bg-zinc-50/30">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="text-center reveal">
                 <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.4">0</span></div>
@@ -231,37 +237,43 @@
     </section>
 
     <!-- TECHNOLOGIES -->
-    <section id="skills" class="py-32 px-6 bg-zinc-950 text-white">
+    <section id="skills" class="py-32 px-6 bg-zinc-50 border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6">Technologies</h2>
-                <p class="text-zinc-500 text-lg">Visualizing the core toolkit used for every solution.</p>
+                <p class="text-zinc-500 text-lg">My specialized toolkit for building data-driven solutions.</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center reveal">
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-blue-500 transition-all group">
-                    <i data-lucide="terminal" class="w-10 h-10 mx-auto mb-4 text-blue-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">PYTHON</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
+                <!-- Python -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Python</p>
                 </div>
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-purple-500 transition-all group">
-                    <i data-lucide="database" class="w-10 h-10 mx-auto mb-4 text-purple-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">SQL / MYSQL</p>
+                <!-- MySQL -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">MySQL</p>
                 </div>
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-green-500 transition-all group">
-                    <i data-lucide="layout" class="w-10 h-10 mx-auto mb-4 text-green-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">POWER BI</p>
+                <!-- Power BI -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
                 </div>
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-orange-500 transition-all group">
-                    <i data-lucide="file-spreadsheet" class="w-10 h-10 mx-auto mb-4 text-orange-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">EXCEL</p>
+                <!-- Excel -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
                 </div>
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-yellow-500 transition-all group">
-                    <i data-lucide="cpu" class="w-10 h-10 mx-auto mb-4 text-yellow-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">ML</p>
+                <!-- ML / Scikit-Learn -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Machine Learning</p>
                 </div>
-                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-pink-500 transition-all group">
-                    <i data-lucide="code-2" class="w-10 h-10 mx-auto mb-4 text-pink-500 group-hover:scale-110 transition-transform"></i>
-                    <p class="text-xs font-bold tracking-widest">VSCODE</p>
+                <!-- VS Code -->
+                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-14 h-14 mx-auto mb-6">
+                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">VS Code</p>
                 </div>
             </div>
         </div>
@@ -278,7 +290,7 @@
     </section>
 
     <!-- Education Timeline -->
-    <section id="education" class="py-32 px-6 bg-zinc-50">
+    <section id="education" class="py-32 px-6 bg-zinc-50/50 border-t border-zinc-100">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-4xl font-bold tracking-tight mb-16 reveal">Education</h2>
             <div class="space-y-12">
@@ -320,7 +332,7 @@
         <div class="absolute inset-0 bg-white/70 modal-backdrop" onclick="closeModal()"></div>
         <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
             <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all"><i data-lucide="x"></i></button>
-            <div id="modal-icon-container" class="w-20 h-20 rounded-2xl flex items-center justify-center mb-10"></div>
+            <div id="modal-icon-container" class="w-24 h-24 rounded-3xl bg-zinc-50 flex items-center justify-center mb-10 p-4 shadow-inner"></div>
             <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 leading-tight"></h3>
             <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-10"></p>
             <p id="modal-desc" class="text-zinc-500 text-xl leading-relaxed mb-10 font-medium"></p>
@@ -375,28 +387,49 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Certs
+        // Updated Certifications with Colored Logos
         const certs = [
-            { t: "Networking Basics", p: "Coursera | Google", ds: "Foundational computer networking, including TCP/IP and protocols.", c: "bg-blue-50 text-blue-500", i: "globe" },
-            { t: "PL/SQL DS", p: "LPU My Class", ds: "Oracle database engineering and stored procedures.", c: "bg-purple-50 text-purple-500", i: "database" },
-            { t: "Analytics Skills", p: "LinkedIn Learning", ds: "Data visualization and descriptive statistics.", c: "bg-orange-50 text-orange-500", i: "line-chart" },
-            { t: "Python DS & ML", p: "Udemy Bootcamp", ds: "Machine learning with Scikit-Learn, Pandas, and NumPy.", c: "bg-green-50 text-green-500", i: "code" }
+            { 
+                t: "Networking Basics", 
+                p: "Coursera | Google", 
+                ds: "Comprehensive foundational networking course covering the TCP/IP model, network layers, and internet protocols.", 
+                logo: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_Logo.svg" 
+            },
+            { 
+                t: "PL/SQL Data Science", 
+                p: "LPU My Class", 
+                ds: "Oracle database engineering bootcamp focused on stored procedures, advanced queries, and data manipulation.", 
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" 
+            },
+            { 
+                t: "Analytics Skills", 
+                p: "LinkedIn Learning", 
+                ds: "Industry-standard training in data storytelling, cleaning techniques, and statistical reporting workflows.", 
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" 
+            },
+            { 
+                t: "Python DS & ML", 
+                p: "Udemy Bootcamp", 
+                ds: "Complete data science lifecycle training using Scikit-Learn, Pandas, NumPy, and Matplotlib for predictive modeling.", 
+                logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" 
+            }
         ];
 
         function renderCerts() {
             const grid = document.getElementById('certifications-grid');
             certs.forEach((cert, idx) => {
                 const card = document.createElement('div');
-                card.className = "p-8 bg-white border border-zinc-100 rounded-3xl hover:border-blue-500 transition-all cursor-pointer group";
+                card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group";
                 card.onclick = () => openModal(idx);
                 card.innerHTML = `
-                    <div class="w-12 h-12 ${cert.c} rounded-2xl flex items-center justify-center mb-6"><i data-lucide="${cert.i}"></i></div>
-                    <h5 class="font-bold text-lg mb-1 leading-tight">${cert.t}</h5>
-                    <p class="text-zinc-400 text-xs font-bold uppercase tracking-widest">${cert.p.split('|')[0]}</p>
+                    <div class="w-16 h-16 bg-zinc-50 rounded-2xl flex items-center justify-center mb-6 p-3 shadow-inner group-hover:scale-110 transition-transform">
+                        <img src="${cert.logo}" alt="${cert.t}" class="w-full h-full object-contain">
+                    </div>
+                    <h5 class="font-bold text-lg mb-1 leading-tight text-zinc-800">${cert.t}</h5>
+                    <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
                 `;
                 grid.appendChild(card);
             });
-            lucide.createIcons();
         }
         renderCerts();
 
@@ -406,9 +439,7 @@
             document.getElementById('modal-provider').innerText = data.p;
             document.getElementById('modal-desc').innerText = data.ds;
             const iconCont = document.getElementById('modal-icon-container');
-            iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-10 ${data.c}`;
-            iconCont.innerHTML = `<i data-lucide="${data.i}" style="width: 40px; height: 40px;"></i>`;
-            lucide.createIcons();
+            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain">`;
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
             document.body.style.overflow = 'hidden';
