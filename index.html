@@ -229,7 +229,7 @@
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
                 </div>
                 <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://www.vectorlogo.zone/logos/microsoft_excel/microsoft_excel-icon.svg" alt="Excel" class="w-14 h-14 mx-auto mb-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" class="w-14 h-14 mx-auto mb-6">
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
                 </div>
                 <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
@@ -585,28 +585,28 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Corrected Logo URLs
+        // Updated High-Resolution Logo URLs
         const certs = [
             { 
                 t: "Computer Networking", 
                 p: "Coursera | Google", 
                 date: "Sept 2025",
                 ds: "Foundational networking course covering the TCP/IP model, security, and cloud infrastructure.", 
-                logo: "https://www.vectorlogo.zone/logos/coursera/coursera-icon.svg" 
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" 
             },
             { 
                 t: "PL/SQL Data Science", 
                 p: "LPU My Class", 
                 date: "Aug 2025",
                 ds: "Engineering bootcamp focused on Oracle database triggers, advanced procedures, and ETL logic.", 
-                logo: "https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" 
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Oracle_Logo.svg/512px-Oracle_Logo.svg.png" 
             },
             { 
                 t: "Data Analytics", 
                 p: "LinkedIn Learning", 
                 date: "Jan 2025",
                 ds: "Industry certification in data cleaning, storytelling, and statistical reporting workflows.", 
-                logo: "https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" 
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" 
             },
             { 
                 t: "Python DS & ML", 
@@ -625,7 +625,7 @@
                 card.onclick = () => openModal(idx);
                 card.innerHTML = `
                     <div class="w-16 h-16 bg-zinc-50 rounded-2xl flex items-center justify-center mb-6 p-3 shadow-inner group-hover:scale-110 transition-transform">
-                        <img src="${cert.logo}" alt="${cert.t}" class="w-full h-full object-contain">
+                        <img src="${cert.logo}" alt="${cert.t}" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=Cert'">
                     </div>
                     <span class="text-[8px] font-black uppercase tracking-widest text-zinc-300 block mb-2">${cert.date}</span>
                     <h5 class="font-bold text-lg mb-1 leading-tight text-zinc-800">${cert.t}</h5>
