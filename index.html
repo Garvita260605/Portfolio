@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garvita Goswami | Data Science Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Apple-style Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Navigation */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        /* Hero Image Frame Shadow */
+        .hero-frame {
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15), 0 30px 60px -30px rgba(0,0,0,0.2);
+        }
+
+        /* High-End Modal Blur */
+        .modal-backdrop {
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+
+        /* Skill Bar Transition */
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-hero { animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* Gradients */
+        .spotify-gradient {
+            background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+        }
+        .library-gradient {
+            background: linear-gradient(135deg, #243B55 0%, #141E30 100%);
+        }
+        .wellbeing-gradient {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-16 border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+            <div class="text-lg font-bold tracking-tighter">Garvita Goswami</div>
+            <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
+                <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
+                <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
+                <a href="#certifications" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Certifications</a>
+                <a href="#education" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Education</a>
+            </div>
+            <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100 transition-colors hover:bg-zinc-200">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-white opacity-0 -translate-y-full pointer-events-none transition-all duration-500 flex flex-col pt-32 px-10 space-y-8 text-center">
+        <a href="#projects" onclick="toggleMenu()" class="text-4xl font-bold">Projects</a>
+        <a href="#skills" onclick="toggleMenu()" class="text-4xl font-bold">Skills</a>
+        <a href="#certifications" onclick="toggleMenu()" class="text-4xl font-bold">Certifications</a>
+        <a href="#education" onclick="toggleMenu()" class="text-4xl font-bold">Education</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 lg:pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <div class="flex-1 text-center lg:text-left">
+                <div class="inline-block px-4 py-1.5 bg-zinc-100 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
+                    B.Tech (Hons.) Computer Science & Engineering
+                </div>
+                <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[0.9] animate-hero" style="animation-delay: 100ms">
+                    Data Speaks. <br />
+                    <span class="text-zinc-300">I Listen.</span>
+                </h1>
+                <p class="text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed animate-hero" style="animation-delay: 200ms">
+                    Full-stack data enthusiast specializing in Python, Machine Learning, and SQL. Building robust analytical systems with a precision for details.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
+                    <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-10 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
+                    <div class="flex items-center gap-6 px-4">
+                        <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-all"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-400 hover:text-blue-600 transition-all"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
+                <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
+                    <div class="w-full h-full flex items-center justify-center text-zinc-200">
+                        <i data-lucide="user" style="width: 200px; height: 200px;"></i>
+                    </div>
+                </div>
+                <!-- Floating Skills Badge -->
+                <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400">Core Stack</p>
+                        <p class="text-sm font-bold">Python • SQL • ML</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Counters Strip -->
+    <section class="py-20 px-6 border-y border-zinc-100">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="text-center reveal">
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.1">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">B.Tech CGPA</div>
+            </div>
+            <div class="text-center reveal" style="transition-delay: 100ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="82">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Intermediate</div>
+            </div>
+            <div class="text-center reveal" style="transition-delay: 200ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="97">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
+            </div>
+            <div class="text-center reveal" style="transition-delay: 300ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="3">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 reveal">
+                <h2 class="text-5xl font-bold tracking-tighter mb-4">Case Studies</h2>
+                <p class="text-zinc-500 text-xl max-w-lg font-medium">Applied technical frameworks for real-world impact.</p>
+            </div>
+            
+            <!-- Project 1: Spotify Banner -->
+            <div class="mb-12 group reveal">
+                <div class="spotify-gradient text-white rounded-[3.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center transition-transform duration-500 hover:scale-[1.01]">
+                    <div class="flex-1 relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <i data-lucide="music" class="w-8 h-8"></i>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Music Analytics</span>
+                        </div>
+                        <h3 class="text-4xl lg:text-6xl font-bold mb-6 tracking-tighter leading-none">Spotify Stream <br>Analysis 2024</h3>
+                        <p class="text-xl opacity-70 mb-10 max-w-xl leading-relaxed">Analyzing patterns behind track popularity using NLP (VADER) and hypothesis testing to compare explicit vs. non-explicit track performance.</p>
+                        <div class="flex gap-4">
+                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">Python</span>
+                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">NLP</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full lg:w-1/2 flex justify-center items-center relative z-10">
+                         <div class="p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl w-full max-w-md">
+                            <h5 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4"></i> Data Insights</h5>
+                            <div class="space-y-4">
+                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[85%] h-full"></div></div>
+                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[60%] h-full"></div></div>
+                                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-[#1DB954] w-[92%] h-full"></div></div>
+                            </div>
+                         </div>
+                    </div>
+                    <i data-lucide="headphones" class="absolute -right-20 -bottom-20 w-96 h-96 opacity-10 rotate-12"></i>
+                </div>
+            </div>
+
+            <!-- Project 2: Library Banner -->
+            <div class="mb-12 group reveal">
+                <div class="library-gradient text-white rounded-[3.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center transition-transform duration-500 hover:scale-[1.01]">
+                    <div class="flex-1 relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <i data-lucide="database" class="w-8 h-8"></i>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">System Design</span>
+                        </div>
+                        <h3 class="text-4xl lg:text-6xl font-bold mb-6 tracking-tighter leading-none">Digital Library <br>Management</h3>
+                        <p class="text-xl opacity-70 mb-10 max-w-xl leading-relaxed">Designed and implemented a secure SQL/PL-SQL system to automate library operations, fine computation, and OTP-based authentication.</p>
+                        <div class="flex gap-4">
+                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">SQL</span>
+                            <span class="px-5 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest">PL/SQL</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full lg:w-1/2 flex justify-center items-center relative z-10">
+                         <div class="p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl w-full max-w-md">
+                            <h5 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Admin Panel</h5>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-xs opacity-60"><span>Storage Opt.</span><span>98%</span></div>
+                                <div class="flex justify-between text-xs opacity-60"><span>Response Time</span><span>0.2s</span></div>
+                                <div class="flex justify-between text-xs opacity-60"><span>User Security</span><span>High</span></div>
+                            </div>
+                         </div>
+                    </div>
+                    <i data-lucide="book-open" class="absolute -right-20 -bottom-20 w-96 h-96 opacity-10 -rotate-12"></i>
+                </div>
+            </div>
+
+            <!-- Project 3: Well-Being Banner -->
+            <div class="mb-12 group reveal">
+                <div class="wellbeing-gradient text-white rounded-[3.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center transition-transform duration-500 hover:scale-[1.01]">
+                    <div class="flex-1 relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <i data-lucide="heart" class="w-8 h-8"></i>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Behavioral Study</span>
+                        </div>
+                        <h3 class="text-4xl lg:text-6xl font-bold mb-6 tracking-tighter leading-none">Employee Mental <br>Well-Being</h3>
+                        <p class="text-xl opacity-80 mb-10 max-w-xl leading-relaxed">Performed EDA and statistical testing (ANOVA/T-Test) on survey data to identify key behavioral and workplace patterns influencing health.</p>
+                        <div class="flex gap-4">
+                            <span class="px-5 py-2 rounded-full bg-black/10 text-xs font-bold uppercase tracking-widest text-black/60">SciPy</span>
+                            <span class="px-5 py-2 rounded-full bg-black/10 text-xs font-bold uppercase tracking-widest text-black/60">Seaborn</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full lg:w-1/2 flex justify-center items-center relative z-10">
+                         <div class="p-8 bg-black/5 backdrop-blur-md rounded-3xl border border-black/10 shadow-xl w-full max-w-md text-black/80">
+                            <h5 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="pie-chart" class="w-4 h-4"></i> Statistical Summary</h5>
+                            <div class="flex items-end gap-2 h-20">
+                                <div class="bg-black/20 w-full h-[40%] rounded-t-lg"></div>
+                                <div class="bg-black/20 w-full h-[80%] rounded-t-lg"></div>
+                                <div class="bg-black/20 w-full h-[60%] rounded-t-lg"></div>
+                                <div class="bg-black/20 w-full h-[90%] rounded-t-lg"></div>
+                            </div>
+                         </div>
+                    </div>
+                    <i data-lucide="users" class="absolute -right-20 -bottom-20 w-96 h-96 opacity-10 rotate-45"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISUAL TOOLS LOGOS -->
+    <section id="skills" class="py-32 px-6 bg-zinc-950 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-5xl font-bold tracking-tighter mb-6">Technologies</h2>
+                <p class="text-zinc-500 text-lg">Visualizing the core toolkit used for every solution.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center reveal">
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-blue-500 transition-all group">
+                    <i data-lucide="terminal" class="w-10 h-10 mx-auto mb-4 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">PYTHON</p>
+                </div>
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-purple-500 transition-all group">
+                    <i data-lucide="database" class="w-10 h-10 mx-auto mb-4 text-purple-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">SQL / MYSQL</p>
+                </div>
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-green-500 transition-all group">
+                    <i data-lucide="layout" class="w-10 h-10 mx-auto mb-4 text-green-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">POWER BI</p>
+                </div>
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-orange-500 transition-all group">
+                    <i data-lucide="file-spreadsheet" class="w-10 h-10 mx-auto mb-4 text-orange-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">EXCEL</p>
+                </div>
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-yellow-500 transition-all group">
+                    <i data-lucide="microchip" class="w-10 h-10 mx-auto mb-4 text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">MACHINE LEARNING</p>
+                </div>
+                <div class="p-8 bg-zinc-900 rounded-[2.5rem] border border-zinc-800 hover:border-pink-500 transition-all group">
+                    <i data-lucide="monitor" class="w-10 h-10 mx-auto mb-4 text-pink-500 group-hover:scale-110 transition-transform"></i>
+                    <p class="text-xs font-bold tracking-widest">VSCODE</p>
+                </div>
+            </div>
+
+            <div class="mt-32 grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <h4 class="text-2xl font-bold mb-8">Data Libraries</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">NumPy</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Pandas</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Matplotlib</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Seaborn</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Scikit-learn</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">NLTK</span>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay: 150ms;">
+                    <h4 class="text-2xl font-bold mb-8">Data Expertise</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Data Mining</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Data Cleaning</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">Data Visualization</span>
+                        <span class="px-5 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-bold tracking-widest hover:border-zinc-600 transition-colors uppercase">EDA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Major Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-12 bg-zinc-50 border border-zinc-200 rounded-[3.5rem] relative overflow-hidden flex flex-col justify-between min-h-[400px] reveal group">
+                    <i data-lucide="award" class="absolute -right-8 -top-8 w-48 h-48 opacity-5 -rotate-12 transition-transform group-hover:scale-110"></i>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <i data-lucide="terminal" class="w-6 h-6 text-blue-600"></i>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Competitive Coding</span>
+                        </div>
+                        <h4 class="text-4xl font-bold mb-6 tracking-tight leading-none">Code-A-Haunt 2.0</h4>
+                        <p class="text-xl text-zinc-500 leading-relaxed max-w-sm">Participated in a state-level inter-university hackathon at LPU, demonstrating rapid prototyping and collaborative coding skills.</p>
+                    </div>
+                    <div class="relative z-10 mt-10">
+                        <span class="text-xs font-black uppercase tracking-widest py-2 px-4 bg-zinc-900 text-white rounded-full">Finalist @ LPU</span>
+                    </div>
+                </div>
+                <div class="p-12 bg-zinc-900 text-white rounded-[3.5rem] relative overflow-hidden flex flex-col justify-between min-h-[400px] reveal group" style="transition-delay: 150ms;">
+                    <i data-lucide="star" class="absolute -right-8 -top-8 w-48 h-48 opacity-10 -rotate-12 transition-transform group-hover:scale-110"></i>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <i data-lucide="music" class="w-6 h-6 text-yellow-500"></i>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Creative Arts</span>
+                        </div>
+                        <h4 class="text-4xl font-bold mb-6 tracking-tight leading-none">Winner @ Spectra</h4>
+                        <p class="text-xl opacity-60 leading-relaxed max-w-sm">Won the inter-school singing competition, showcasing stage confidence and vocal talent alongside technical rigor.</p>
+                    </div>
+                    <div class="relative z-10 mt-10">
+                        <span class="text-xs font-black uppercase tracking-widest py-2 px-4 bg-yellow-500 text-black rounded-full">1st Place | Singing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section id="education" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold tracking-tight mb-16 reveal">Education</h2>
+            <div class="space-y-12">
+                <div class="relative pl-8 border-l-2 border-zinc-200 reveal">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-900"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                        <h4 class="text-2xl font-bold leading-tight">Lovely Professional University</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">2023 – Present</span>
+                    </div>
+                    <p class="text-zinc-500 font-medium italic">Bachelor of Technology (Hons.) - CSE | Punjab, India</p>
+                    <p class="text-sm font-bold mt-2">CGPA: <span class="counter" data-target="7.1">0</span></p>
+                </div>
+                <div class="relative pl-8 border-l-2 border-zinc-200 reveal" style="transition-delay: 100ms;">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-300"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                        <h4 class="text-2xl font-bold leading-tight">Army Public School (APS)</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">2021 – 2023</span>
+                    </div>
+                    <p class="text-zinc-500 font-medium italic">Intermediate | Almora, Uttarakhand</p>
+                    <p class="text-sm font-bold mt-2">Percentage: <span class="counter" data-target="82">0</span>%</p>
+                </div>
+                <div class="relative pl-8 border-l-2 border-zinc-200 reveal" style="transition-delay: 200ms;">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-300"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                        <h4 class="text-2xl font-bold leading-tight">Army Public School (APS)</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">2020 – 2021</span>
+                    </div>
+                    <p class="text-zinc-500 font-medium italic">Matriculation | Almora, Uttarakhand</p>
+                    <p class="text-sm font-bold mt-2">Percentage: <span class="counter" data-target="97">0</span>%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-32 px-6 text-center border-t border-zinc-100 bg-white">
+        <h2 class="text-5xl font-bold tracking-tighter mb-10 reveal">Garvita Goswami</h2>
+        <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
+            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
+            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors flex items-center gap-3"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a>
+            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="github" class="w-4 h-4"></i> GitHub</a>
+        </div>
+        <div class="w-16 h-1 mx-auto bg-zinc-100 rounded-full mb-12 reveal"></div>
+        <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Science & Engineering • 2026</p>
+    </footer>
+
+    <!-- Cert Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
+        <div class="absolute inset-0 bg-white/70 modal-backdrop" onclick="closeModal()"></div>
+        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all"><i data-lucide="x"></i></button>
+            <div id="modal-icon-container" class="w-20 h-20 rounded-2xl flex items-center justify-center mb-10"></div>
+            <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 leading-tight"></h3>
+            <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-10"></p>
+            <p id="modal-desc" class="text-zinc-500 text-xl leading-relaxed mb-10 font-medium"></p>
+            <button class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black text-lg shadow-xl shadow-zinc-100 hover:bg-black transition-all active:scale-95">Verify Certification</button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                nav.classList.add('nav-glass', 'h-14', 'border-zinc-100');
+                nav.classList.remove('h-20', 'border-transparent');
+            } else {
+                nav.classList.remove('nav-glass', 'h-14', 'border-zinc-100');
+                nav.classList.add('h-20', 'border-transparent');
+            }
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('opacity-0')) {
+                menu.classList.remove('opacity-0', '-translate-y-full', 'pointer-events-none');
+                menu.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                menu.classList.add('opacity-0', '-translate-y-full', 'pointer-events-none');
+                menu.classList.remove('opacity-100', 'translate-y-0');
+            }
+        }
+
+        function animateCounter(el) {
+            const targetStr = el.getAttribute('data-target');
+            const isFloat = targetStr.includes('.');
+            const target = parseFloat(targetStr);
+            const duration = 2000; 
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = 1 - Math.pow(2, -10 * progress);
+                const current = easedProgress * target;
+                el.innerText = isFloat ? current.toFixed(1) : Math.floor(current);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.counter').forEach(animateCounter);
+                    entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const certs = [
+            { t: "Bits and Bytes of Networking", p: "Coursera | Google", ds: "Comprehensive certification covering the foundational layer of computer networking, including TCP/IP models and network protocols.", c: "bg-blue-50 text-blue-500", i: "globe" },
+            { t: "PL/SQL and Data Science", p: "LPU My Class", ds: "Specialized bootcamp focusing on Oracle database engineering, stored procedures, and data-driven decision making.", c: "bg-purple-50 text-purple-500", i: "database" },
+            { t: "Career Skills in Data Analytics", p: "LinkedIn Learning", ds: "Professional track covering data visualization, cleaning, and descriptive statistics for industry-level reporting.", c: "bg-orange-50 text-orange-500", i: "line-chart" },
+            { t: "Python for DS & ML", p: "Udemy Bootcamp", ds: "End-to-end training in the Python ecosystem including Scikit-Learn, Pandas, and NumPy for machine learning applications.", c: "bg-green-50 text-green-500", i: "code" }
+        ];
+
+        function openModal(i) {
+            const data = certs[i];
+            document.getElementById('modal-title').innerText = data.t;
+            document.getElementById('modal-provider').innerText = data.p;
+            document.getElementById('modal-desc').innerText = data.ds;
+            const iconCont = document.getElementById('modal-icon-container');
+            iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-10 ${data.c}`;
+            iconCont.innerHTML = `<i data-lucide="${data.i}" style="width: 40px; height: 40px;"></i>`;
+            lucide.createIcons();
+            document.getElementById('cert-modal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-content').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => document.getElementById('cert-modal').classList.add('hidden'), 300);
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
