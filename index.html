@@ -57,6 +57,7 @@
         .spotify-gradient { background: linear-gradient(135deg, #1db954 0%, #0d0d0d 100%); }
         .library-gradient { background: linear-gradient(135deg, #4f46e5 0%, #1e1b4b 100%); }
         .mental-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%); }
+        .recommender-gradient { background: linear-gradient(135deg, #1db954 0%, #191414 100%); }
 
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -98,6 +99,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .logo-box {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="bg-white text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
@@ -109,7 +127,7 @@
             <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
                 <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
                 <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
-                <a href="#certifications" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Certifications</a>
+                <a href="#certifications" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Certificates</a>
                 <a href="#education" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Education</a>
             </div>
             <div class="flex items-center gap-4">
@@ -125,7 +143,7 @@
     <div id="mobile-menu" class="fixed inset-0 z-50 bg-white opacity-0 -translate-y-full pointer-events-none transition-all duration-500 flex flex-col pt-32 px-10 space-y-8 text-center">
         <a href="#projects" onclick="toggleMenu()" class="text-4xl font-bold">Projects</a>
         <a href="#skills" onclick="toggleMenu()" class="text-4xl font-bold">Skills</a>
-        <a href="#certifications" onclick="toggleMenu()" class="text-4xl font-bold">Certifications</a>
+        <a href="#certifications" onclick="toggleMenu()" class="text-4xl font-bold">Certificates</a>
         <a href="#education" onclick="toggleMenu()" class="text-4xl font-bold">Education</a>
     </div>
 
@@ -185,8 +203,8 @@
                 <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
             </div>
             <div class="text-center reveal" style="transition-delay: 300ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="3">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="4">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Projects</div>
             </div>
         </div>
     </section>
@@ -213,29 +231,54 @@
                 <p class="text-zinc-500 text-lg">Comprehensive technical expertise and specialized data libraries.</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal mb-16">
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-14 h-14 mx-auto mb-6">
+            <!-- Optimized grid to prevent overlapping -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 reveal mb-16 px-4">
+                <!-- Python -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-blue-50">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" 
+                             onerror="handleIconError(this, 'bg-blue-500', 'code-2')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Python</p>
                 </div>
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/540px-Postgresql_elephant.svg.png" alt="SQL" class="w-14 h-14 mx-auto mb-6" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg'">
+                <!-- SQL -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-zinc-100">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/540px-Postgresql_elephant.svg.png" alt="SQL" 
+                             onerror="handleIconError(this, 'bg-zinc-800', 'database')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">SQL</p>
                 </div>
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="w-14 h-14 mx-auto mb-6">
+                <!-- Power BI -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-yellow-50">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" 
+                             onerror="handleIconError(this, 'bg-yellow-500', 'bar-chart-3')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
                 </div>
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" class="w-14 h-14 mx-auto mb-6">
+                <!-- Excel -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-green-50">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" 
+                             onerror="handleIconError(this, 'bg-green-600', 'file-spreadsheet')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
                 </div>
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML" class="w-14 h-14 mx-auto mb-6">
+                <!-- Scikit-Learn -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-orange-50">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML" 
+                             onerror="handleIconError(this, 'bg-orange-500', 'brain-circuit')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Scikit-Learn</p>
                 </div>
-                <div class="p-8 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" class="w-14 h-14 mx-auto mb-6">
+                <!-- Pandas -->
+                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-indigo-50">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" 
+                             onerror="handleIconError(this, 'bg-indigo-900', 'table')">
+                    </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Pandas</p>
                 </div>
             </div>
@@ -282,10 +325,10 @@
         </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
+    <!-- CERTIFICATES -->
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certifications</h2>
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certificates</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid">
                 <!-- Certs injected via JS -->
             </div>
@@ -395,7 +438,21 @@
     </div>
 
     <script>
-        lucide.createIcons();
+        // Define handleIconError before using it
+        window.handleIconError = (el, color, icon) => {
+            const container = el.parentElement;
+            container.innerHTML = `<div class="w-full h-full ${color} flex items-center justify-center text-white"><i data-lucide="${icon}"></i></div>`;
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        };
+
+        // Safe lucide call
+        const safeCreateIcons = () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        };
 
         // Project Data
         const projectData = [
@@ -461,6 +518,27 @@
                     "Identified high-impact factors like 'Work Pressure' and 'Company Support' on overall wellness.",
                     "Created heatmaps and distribution plots to communicate sensitive data stories effectively."
                 ]
+            },
+            {
+                id: 3,
+                title: "Spotify Recommendation Engine",
+                subtitle: "Spotify-Themed ML",
+                gradient: "recommender-gradient",
+                icon: "music",
+                accentColor: "#1DB954",
+                summary: "A high-performance recommendation engine built on the Spotify 2024 ecosystem.",
+                description: "Developed a content-based filtering system leveraging cosine similarity across high-dimensional audio feature space. Hosted as an interactive dashboard for song discovery.",
+                tags: ["Machine Learning", "Cosine Similarity", "Streamlit", "Audio Vectors"],
+                metrics: [
+                    { label: "Project Link", value: "Github" },
+                    { label: "Accuracy", value: "Content-Based" }
+                ],
+                detailedInsights: [
+                    "Engineered a vectorized feature space for thousands of Spotify tracks from 2024.",
+                    "Implemented neighbors-based filtering using acoustic parameters (Tempo, Energy, Danceability).",
+                    "Designed a clean UI allowing users to input any track and find instant matches.",
+                    "Visit Live: https://garvita260605.github.io/Song-recommendation-System-spotify-2024/"
+                ]
             }
         ];
 
@@ -512,7 +590,7 @@
                 `;
                 container.appendChild(card);
             });
-            lucide.createIcons();
+            safeCreateIcons();
         }
 
         function openProjectModal(id) {
@@ -573,7 +651,7 @@
             modal.classList.remove('hidden');
             setTimeout(() => content.classList.remove('scale-95', 'opacity-0'), 10);
             document.body.style.overflow = 'hidden';
-            lucide.createIcons();
+            safeCreateIcons();
         }
 
         function closeProjectModal() {
@@ -583,13 +661,15 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Updated High-Resolution Stable Logo URLs
+        // Correctly structured Certificates data
         const certs = [
             { 
                 t: "Computer Networking", 
                 p: "Coursera | Google", 
                 date: "Sept 2025",
                 ds: "Foundational networking course covering the TCP/IP model, security, and cloud infrastructure.", 
+                icon: "network",
+                color: "bg-blue-500",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" 
             },
             { 
@@ -597,6 +677,8 @@
                 p: "LPU My Class", 
                 date: "Aug 2025",
                 ds: "Engineering bootcamp focused on Oracle database triggers, advanced procedures, and ETL logic.", 
+                icon: "database",
+                color: "bg-red-500",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Oracle_All_Search_Icons_Final_PLSQL.svg/512px-Oracle_All_Search_Icons_Final_PLSQL.svg.png" 
             },
             { 
@@ -604,6 +686,8 @@
                 p: "LinkedIn Learning", 
                 date: "Jan 2025",
                 ds: "Industry certification in data cleaning, storytelling, and statistical reporting workflows.", 
+                icon: "bar-chart",
+                color: "bg-blue-700",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" 
             },
             { 
@@ -611,6 +695,8 @@
                 p: "Udemy Bootcamp", 
                 date: "Completed",
                 ds: "Complete data science lifecycle training using Scikit-Learn and ensemble learning models.", 
+                icon: "code",
+                color: "bg-purple-600",
                 logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" 
             }
         ];
@@ -622,8 +708,9 @@
                 card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group";
                 card.onclick = () => openModal(idx);
                 card.innerHTML = `
-                    <div class="w-16 h-16 bg-zinc-50 rounded-2xl flex items-center justify-center mb-6 p-3 shadow-inner group-hover:scale-110 transition-transform">
-                        <img src="${cert.logo}" alt="${cert.t}" class="w-full h-full object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Question_mark_icon.svg/120px-Question_mark_icon.svg.png'">
+                    <div class="logo-box relative bg-zinc-50">
+                        <img src="${cert.logo}" alt="${cert.t}" 
+                             onerror="handleIconError(this, '${cert.color}', '${cert.icon}')">
                     </div>
                     <span class="text-[8px] font-black uppercase tracking-widest text-zinc-300 block mb-2">${cert.date}</span>
                     <h5 class="font-bold text-lg mb-1 leading-tight text-zinc-800">${cert.t}</h5>
@@ -631,6 +718,7 @@
                 `;
                 grid.appendChild(card);
             });
+            safeCreateIcons();
         }
 
         function openModal(i) {
@@ -639,10 +727,13 @@
             document.getElementById('modal-provider').innerText = data.p;
             document.getElementById('modal-desc').innerText = data.ds;
             const iconCont = document.getElementById('modal-icon-container');
-            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/150?text=Cert'">`;
+            iconCont.className = `w-24 h-24 rounded-3xl flex items-center justify-center mb-10 p-0 shadow-inner overflow-hidden`;
+            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain" onerror="handleIconError(this, '${data.color}', '${data.icon}')">`;
+            
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
             document.body.style.overflow = 'hidden';
+            safeCreateIcons();
         }
 
         function closeModal() {
@@ -688,6 +779,7 @@
         }, { threshold: 0.1 });
 
         window.onload = () => {
+            safeCreateIcons();
             renderProjects();
             renderCerts();
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
