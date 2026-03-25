@@ -15,9 +15,47 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
+            background-color: #fff;
         }
 
-        /* Apple-style Reveal Animation */
+        /* --- BACKGROUND ELEMENTS --- */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            background: #ffffff;
+        }
+
+        .data-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.4;
+        }
+
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { background: #3b82f6; top: -10%; left: -10%; animation-duration: 25s; }
+        .blob-2 { background: #8b5cf6; bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
+        .blob-3 { background: #10b981; top: 40%; left: 30%; animation-duration: 22s; animation-delay: -2s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+
+        /* --- REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -68,6 +106,8 @@
         /* Interactive Card Transitions */
         .tech-card {
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
         .tech-card:hover {
             transform: translateY(-5px);
@@ -118,7 +158,15 @@
         }
     </style>
 </head>
-<body class="bg-white text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+<body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+
+    <!-- Background Layer -->
+    <div class="bg-canvas">
+        <div class="data-grid"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
@@ -151,7 +199,7 @@
     <section class="pt-32 lg:pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             <div class="flex-1 text-center lg:text-left">
-                <div class="inline-block px-4 py-1.5 bg-zinc-100 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
+                <div class="inline-block px-4 py-1.5 bg-zinc-100/50 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
                     B.Tech (Hons.) Computer Science & Engineering
                 </div>
                 <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[0.9] animate-hero" style="animation-delay: 100ms">
@@ -163,8 +211,7 @@
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
                     <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
-                    <!-- Added CV Download Option -->
-                    <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900 hover:text-white transition-all">Download CV</a>
+                    <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900/10 hover:text-black transition-all">Download CV</a>
                     
                     <div class="flex items-center gap-6 px-4">
                         <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-all"><i data-lucide="github"></i></a>
@@ -177,7 +224,7 @@
                 <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
                     <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800'">
                 </div>
-                <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20">
+                <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20">
                     <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
                         <i data-lucide="brain"></i>
                     </div>
@@ -191,7 +238,7 @@
     </section>
 
     <!-- Academic Counters Strip -->
-    <section class="py-20 px-6 border-y border-zinc-100 bg-zinc-50/30">
+    <section class="py-20 px-6 border-y border-zinc-100 bg-white/30 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="text-center reveal">
                 <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.4">0</span></div>
@@ -206,8 +253,9 @@
                 <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
             </div>
             <div class="text-center reveal" style="transition-delay: 300ms;">
+                <!-- Updated counter to 4 projects as requested -->
                 <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="4">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Projects</div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
             </div>
         </div>
     </section>
@@ -227,16 +275,14 @@
     </section>
 
     <!-- TECHNOLOGIES -->
-    <section id="skills" class="py-32 px-6 bg-zinc-50 border-y border-zinc-100">
+    <section id="skills" class="py-32 px-6 bg-zinc-50/50 backdrop-blur-md border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6">Skills & Toolkit</h2>
                 <p class="text-zinc-500 text-lg">Comprehensive technical expertise and specialized data libraries.</p>
             </div>
             
-            <!-- Optimized grid to prevent overlapping -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 reveal mb-16 px-4">
-                <!-- Python -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-blue-50">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" 
@@ -244,7 +290,6 @@
                     </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Python</p>
                 </div>
-                <!-- SQL -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-zinc-100">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/540px-Postgresql_elephant.svg.png" alt="SQL" 
@@ -252,7 +297,6 @@
                     </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">SQL</p>
                 </div>
-                <!-- Power BI -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-yellow-50">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" 
@@ -260,7 +304,6 @@
                     </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
                 </div>
-                <!-- Excel -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-green-50">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" 
@@ -268,7 +311,6 @@
                     </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
                 </div>
-                <!-- Scikit-Learn -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-orange-50">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML" 
@@ -276,7 +318,6 @@
                     </div>
                     <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Scikit-Learn</p>
                 </div>
-                <!-- Pandas -->
                 <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
                     <div class="logo-box bg-indigo-50">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" 
@@ -286,9 +327,8 @@
                 </div>
             </div>
 
-            <!-- Detailed Skills Sub-sections -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 reveal">
-                <div class="p-10 bg-white rounded-[3rem] border border-zinc-100">
+                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
                     <h4 class="text-xs font-black uppercase tracking-widest text-blue-600 mb-6 flex items-center gap-2">
                         <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Data Analysis
                     </h4>
@@ -300,7 +340,7 @@
                         <li>NLTK (NLP Processing)</li>
                     </ul>
                 </div>
-                <div class="p-10 bg-white rounded-[3rem] border border-zinc-100">
+                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
                     <h4 class="text-xs font-black uppercase tracking-widest text-purple-600 mb-6 flex items-center gap-2">
                         <i data-lucide="layers" class="w-4 h-4"></i> Engineering
                     </h4>
@@ -312,7 +352,7 @@
                         <li>System Design Principles</li>
                     </ul>
                 </div>
-                <div class="p-10 bg-white rounded-[3rem] border border-zinc-100">
+                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
                     <h4 class="text-xs font-black uppercase tracking-widest text-green-600 mb-6 flex items-center gap-2">
                         <i data-lucide="users" class="w-4 h-4"></i> Soft Skills
                     </h4>
@@ -328,7 +368,7 @@
         </div>
     </section>
 
-    <!-- CERTIFICATES -->
+    <!-- CERTIFICATIONS -->
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certificates</h2>
@@ -340,7 +380,7 @@
 
     <!-- Extra-Curricular -->
     <section class="py-32 px-6 bg-zinc-950 text-white overflow-hidden relative">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
             <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#3b82f6,transparent_70%)]"></div>
         </div>
         <div class="max-w-6xl mx-auto relative z-10">
@@ -403,7 +443,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-32 px-6 text-center border-t border-zinc-100 bg-white">
+    <footer class="py-32 px-6 text-center border-t border-zinc-100 bg-white/50 backdrop-blur-md">
         <h2 class="text-5xl font-bold tracking-tighter mb-10 reveal">Garvita Goswami</h2>
         <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
             <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
@@ -413,19 +453,6 @@
         </div>
         <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Science Portfolio • 2026</p>
     </footer>
-
-    <!-- Cert Modal -->
-    <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
-        <div class="absolute inset-0 bg-white/70 modal-backdrop" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
-            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all"><i data-lucide="x"></i></button>
-            <div id="modal-icon-container" class="w-24 h-24 rounded-3xl bg-zinc-50 flex items-center justify-center mb-10 p-4 shadow-inner"></div>
-            <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 leading-tight"></h3>
-            <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-10"></p>
-            <p id="modal-desc" class="text-zinc-500 text-xl leading-relaxed mb-10 font-medium"></p>
-            <button onclick="closeModal()" class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black text-lg shadow-xl shadow-zinc-100 hover:bg-black transition-all">Close</button>
-        </div>
-    </div>
 
     <!-- Project Modal -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-10 hidden">
@@ -437,6 +464,19 @@
             <div id="project-modal-body" class="flex flex-col gap-12">
                 <!-- Content Injected via JS -->
             </div>
+        </div>
+    </div>
+
+    <!-- Cert Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
+        <div class="absolute inset-0 bg-white/70 modal-backdrop" onclick="closeModal()"></div>
+        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all"><i data-lucide="x"></i></button>
+            <div id="modal-icon-container" class="w-24 h-24 rounded-3xl bg-zinc-50 flex items-center justify-center mb-10 p-4 shadow-inner overflow-hidden"></div>
+            <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 leading-tight"></h3>
+            <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-10"></p>
+            <p id="modal-desc" class="text-zinc-500 text-xl leading-relaxed mb-10 font-medium"></p>
+            <button onclick="closeModal()" class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black text-lg shadow-xl shadow-zinc-100 hover:bg-black transition-all">Close</button>
         </div>
     </div>
 
@@ -457,7 +497,7 @@
             }
         };
 
-        // Project Data
+        // Project Data with 4 entries
         const projectData = [
             {
                 id: 0,
@@ -467,21 +507,42 @@
                 icon: "music",
                 accentColor: "#1DB954",
                 summary: "Uncovering popularity patterns behind most-streamed tracks using NLP sentiment analysis.",
-                description: "Analyzed Spotify's 2024 global charts to study how explicit content and lyric sentiment influence listener preferences using NLP (VADER) and statistical hypothesis testing.",
+                description: "Analyzed Spotify's 2024 global charts to study how lyric sentiment and explicit content influence stream velocity using VADER NLP and statistical hypothesis testing.",
                 tags: ["Python", "Pandas", "NLP", "Hypothesis Testing", "Seaborn"],
                 metrics: [
                     { label: "Data Volume", value: "2024 Charts" },
                     { label: "Analysis Level", value: "Multi-variate" }
                 ],
                 detailedInsights: [
-                    "Performed data cleaning and visualization to identify top genre trends.",
-                    "Applied NLP (VADER) for sentiment scoring of track lyrics.",
-                    "Conducted hypothesis testing comparing explicit vs non-explicit stream velocity.",
-                    "Highlighted key consumption trends shaping modern music platform engagement."
+                    "Identified sentiment correlations between top global hits and mood profiles.",
+                    "Applied VADER NLP for lyric intensity scoring.",
+                    "Validated audience engagement patterns across geographic genres.",
+                    "Created actionable data stories through descriptive statistics."
                 ]
             },
             {
                 id: 1,
+                title: "Spotify Recommendation Engine",
+                subtitle: "Spotify-Themed ML",
+                gradient: "recommender-gradient",
+                icon: "music",
+                accentColor: "#1DB954",
+                summary: "A high-performance recommendation system built on high-dimensional audio vectors.",
+                description: "Developed a content-based filtering system leveraging cosine similarity. Hosted as an interactive dashboard allowing real-time song discovery.",
+                tags: ["Machine Learning", "Cosine Similarity", "Streamlit", "Audio Vectors"],
+                metrics: [
+                    { label: "Model Type", value: "Neighbors" },
+                    { label: "Accuracy", value: "Content-Based" }
+                ],
+                detailedInsights: [
+                    "Engineered a vectorized space for thousands of Spotify tracks.",
+                    "Implemented Neighbors-based filtering using audio feature sets.",
+                    "Designed a clean UI for instant user-input track matches.",
+                    "Visit Live: https://garvita260605.github.io/Song-recommendation-System-spotify-2024/"
+                ]
+            },
+            {
+                id: 2,
                 title: "Digital Asset Integrity",
                 subtitle: "Aug-Oct 2025",
                 gradient: "library-gradient",
@@ -495,59 +556,38 @@
                     { label: "Security Level", value: "OTP-Ready" }
                 ],
                 detailedInsights: [
-                    "Developed triggers for real-time fine computation and due-date management.",
-                    "Created an optimized ER model for high-speed record storage and retrieval.",
-                    "Implemented role-based access control using database-level validation logic.",
-                    "Reduced manual library admin effort significantly through workflow automation."
+                    "Developed triggers for real-time fine computation.",
+                    "Created an optimized ER model for high-speed record retrieval.",
+                    "Implemented role-based access control for secure transactions.",
+                    "Automated due-date management via database validation."
                 ]
             },
             {
-                id: 2,
+                id: 3,
                 title: "Mental Well-Being Analysis",
                 subtitle: "Jan-May 2025",
                 gradient: "mental-gradient",
                 icon: "brain-circuit",
                 accentColor: "#0ea5e9",
                 summary: "Data-driven study on workplace mental health using statistical modeling.",
-                description: "Performed deep Exploratory Data Analysis on employee surveys to identify how gender, pressure, and remote flexibility influence mental well-being.",
+                description: "Performed deep Exploratory Data Analysis on employee surveys to identify how workplace pressure and remote flexibility influence mental wellness.",
                 tags: ["SciPy", "Scikit-Learn", "EDA", "Statistical Testing"],
                 metrics: [
                     { label: "Variable Count", value: "15+ Factors" },
                     { label: "Testing Methods", value: "ANOVA/Chi-Sq" }
                 ],
                 detailedInsights: [
-                    "Preprocessed complex survey data: handling missing values and encoding features.",
-                    "Applied Chi-Square and T-Tests to validate behavioral workplace patterns.",
-                    "Identified high-impact factors like 'Work Pressure' and 'Company Support' on overall wellness.",
-                    "Created heatmaps and distribution plots to communicate sensitive data stories effectively."
-                ]
-            },
-            {
-                id: 3,
-                title: "Spotify Recommendation Engine",
-                subtitle: "Spotify-Themed ML",
-                gradient: "recommender-gradient",
-                icon: "music",
-                accentColor: "#1DB954",
-                summary: "A high-performance recommendation engine built on the Spotify 2024 ecosystem.",
-                description: "Developed a content-based filtering system leveraging cosine similarity across high-dimensional audio feature space. Hosted as an interactive dashboard for song discovery.",
-                tags: ["Machine Learning", "Cosine Similarity", "Streamlit", "Audio Vectors"],
-                metrics: [
-                    { label: "Project Link", value: "Github" },
-                    { label: "Accuracy", value: "Content-Based" }
-                ],
-                detailedInsights: [
-                    "Engineered a vectorized feature space for thousands of Spotify tracks from 2024.",
-                    "Implemented neighbors-based filtering using acoustic parameters (Tempo, Energy, Danceability).",
-                    "Designed a clean UI allowing users to input any track and find instant matches.",
-                    "Visit Live: https://garvita260605.github.io/Song-recommendation-System-spotify-2024/"
+                    "Preprocessed complex survey data handling missing values.",
+                    "Applied Chi-Square and T-Tests for pattern validation.",
+                    "Identified Work Pressure as a primary predictor for mental wellness scores.",
+                    "Visualized insights through heatmaps and distribution plots."
                 ]
             }
         ];
 
-        // Render Projects
         function renderProjects() {
             const container = document.getElementById('projects-container');
+            container.innerHTML = '';
             projectData.forEach((proj, idx) => {
                 const isEven = idx % 2 === 0;
                 const flexDir = isEven ? 'lg:flex-row' : 'lg:flex-row-reverse';
@@ -664,7 +704,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Correctly structured Certificates data
         const certs = [
             { 
                 t: "Computer Networking", 
@@ -706,6 +745,7 @@
 
         function renderCerts() {
             const grid = document.getElementById('certifications-grid');
+            grid.innerHTML = '';
             certs.forEach((cert, idx) => {
                 const card = document.createElement('div');
                 card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group";
@@ -745,7 +785,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Counter Logic
         function animateCounter(el) {
             if(el.dataset.animated) return;
             el.dataset.animated = "true";
@@ -756,13 +795,12 @@
                 const progress = Math.min((now - startTime) / duration, 1);
                 const eased = 1 - Math.pow(2, -10 * progress);
                 const current = eased * target;
-                el.innerText = target % 1 === 0 ? Math.floor(current) : current.toFixed(1);
+                el.innerText = target % 1 === 0 ? Math.floor(current) : (target === 7.4 ? current.toFixed(1) : Math.floor(current));
                 if (progress < 1) requestAnimationFrame(update);
             }
             requestAnimationFrame(update);
         }
 
-        // Navbar Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 20) {
@@ -782,7 +820,6 @@
         }, { threshold: 0.1 });
 
         window.onload = () => {
-            safeCreateIcons();
             renderProjects();
             renderCerts();
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
