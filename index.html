@@ -168,13 +168,13 @@
         .animate-pulse-soft { animation: pulse-soft 2s infinite; }
 
         .gradient-text-animate {
-            background: linear-gradient(to right, #2D1F27, #3b82f6, #2D1F27);
-            background-size: 200% auto;
+            background: linear-gradient(to right, #1a1a1a, #3b82f6, #ec4899, #1a1a1a);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            animation: shine 6s linear infinite;
         }
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes shine { to { background-position: 300% center; } }
 
         /* --- BENTO CARD DEPTH --- */
         .bento-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); perspective: 1000px; }
@@ -305,7 +305,7 @@
     <section id="projects" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="mb-20 reveal">
-                <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Major Projects</h2>
+                <h2 class="text-5xl font-bold tracking-tighter mb-4 gradient-text-animate">Major Projects</h2>
                 <p class="text-zinc-500 text-xl max-w-lg font-medium">Core implementations in machine learning and data engineering.</p>
             </div>
 
@@ -333,7 +333,7 @@
     <section id="skills" class="py-32 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-5xl font-bold tracking-tighter mb-6 text-[#1a1a1a]">Technical Stack</h2>
+                <h2 class="text-5xl font-bold tracking-tighter mb-6 gradient-text-animate">Technical Stack</h2>
             </div>
 
             <!-- DATA ANALYSIS & ENGINEERING SECTION -->
@@ -483,7 +483,7 @@
     <!-- PROFESSIONAL CERTIFICATES -->
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Professional Certificates</h2>
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal gradient-text-animate">Professional Certificates</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal" id="certifications-grid"></div>
         </div>
     </section>
@@ -491,7 +491,7 @@
     <!-- BEYOND ACADEMIC (RESTORED) -->
     <section id="beyond-academics" class="py-32 px-6 bg-zinc-50/50 border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Beyond Academic</h2>
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal gradient-text-animate">Beyond Academic</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Hackathon Card -->
                 <div class="bento-card reveal group">
@@ -595,8 +595,8 @@ y = np.array([0, 1])
 
     <!-- Footer -->
     <footer class="py-32 px-6 text-center bg-white border-t border-zinc-100">
-        <h2 class="text-5xl font-bold tracking-tighter mb-10 text-[#1a1a1a] flex items-center justify-center gap-3">
-            Garvita Goswami <i data-lucide="sparkles" class="w-8 h-8 text-yellow-500 animate-pulse-soft"></i>
+        <h2 class="text-5xl font-bold tracking-tighter mb-10 flex items-center justify-center gap-3">
+            <span class="gradient-text-animate">Garvita Goswami</span> <i data-lucide="sparkles" class="w-8 h-8 text-yellow-500 animate-pulse-soft"></i>
         </h2>
         <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
             <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-2 group">
@@ -1015,7 +1015,7 @@ y = np.array([0, 1])
         const stackRotatorData = [
             { title: "Core Stack", text: "SQL • Python • ML", icon: "cpu", bgClass: "bg-blue-500/20", textClass: "text-blue-400" },
             { title: "Data Analysis", text: "EDA • Mining • Stats", icon: "pie-chart", bgClass: "bg-emerald-500/20", textClass: "text-emerald-400" },
-            { title: "Engineering", text: "C • PL/SQL • Dev", icon: "settings", bgClass: "bg-orange-500/20", textClass: "text-orange-400" },
+            { title: "Engineering", text: "Oracle • APIs • Triggers", icon: "server", bgClass: "bg-orange-500/20", textClass: "text-orange-400" },
             { title: "Soft Skills", text: "Logic • Team • Adapt", icon: "heart-handshake", bgClass: "bg-pink-500/20", textClass: "text-pink-400" }
         ];
         let stackRotatorIndex = 0;
