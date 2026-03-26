@@ -19,38 +19,6 @@
             min-height: 100vh;
         }
 
-        /* --- BACKGROUND ANIMATED ELEMENTS --- */
-        .bg-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .data-grid {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
-        }
-        .blob {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.08;
-            animation: float 20s infinite alternate ease-in-out;
-        }
-        .blob-1 { background: #3b82f6; top: -10%; left: -10%; animation-duration: 25s; }
-        .blob-2 { background: #ec4899; bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
-        
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.1); }
-        }
-
         /* --- REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
@@ -220,14 +188,7 @@
         @keyframes bounce { from { height: 4px; } to { height: 24px; } }
     </style>
 </head>
-<body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
-
-    <!-- Global Canvas Background -->
-    <div class="bg-canvas">
-        <div class="data-grid"></div>
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
+<body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden bg-white">
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
@@ -681,7 +642,7 @@ y = np.array([0, 1])
                 gradient: "recommender-gradient",
                 accentColor: "#5D4250",
                 icon: "cpu",
-                github: "Song-Recommender-ML",
+                github: "Song-recommendation-System-spotify-2024",
                 summary: "Discovery via K-Nearest Neighbors.",
                 description: "Developed a content-based recommendation system using Scikit-Learn. Optimized search latency for song discovery and integrated audio feature vector mapping.",
                 tags: ["Scikit-Learn", "KNN", "NumPy"],
@@ -709,7 +670,7 @@ y = np.array([0, 1])
                 gradient: "library-gradient",
                 accentColor: "#6366f1",
                 icon: "database",
-                github: "Digital-Library-System",
+                github: "LibraryManagementSystem",
                 summary: "Automated Library with OTP & PL/SQL.",
                 description: "Designed a SQL-based system to automate library operations like fine calculation and secure OTP login. Developed triggers for real-time due date management and optimized ER models for efficient retrieval.",
                 tags: ["Oracle SQL", "PL/SQL", "Triggers"],
@@ -723,7 +684,7 @@ y = np.array([0, 1])
                 gradient: "mental-gradient",
                 accentColor: "#0ea5e9",
                 icon: "brain-circuit",
-                github: "Mental-Health-Analysis",
+                github: "Mental-Health-Analysis-of-Employees-",
                 summary: "Workplace health data study.",
                 description: "Conducted EDA on mental-health survey data to uncover workplace patterns. Preprocessed data by handling missing values and normalization, then applied statistical tests (ANOVA, Chi-Square).",
                 tags: ["SciPy", "Stats", "EDA", "Seaborn"],
@@ -859,6 +820,7 @@ y = np.array([0, 1])
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
+                const projectNumberFormatted = String(idx + 1).padStart(2, '0');
                 
                 // Setup specific visualizers inside the dropped card
                 let internalVisualizer = "";
