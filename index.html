@@ -264,17 +264,17 @@
                 <!-- Wrapper for Hero Image and Core Stack Badge -->
                 <div class="relative w-72 h-72 lg:w-[480px] lg:h-[480px] mx-auto group">
                     <div class="w-full h-full rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative z-10">
-                        <img src="https://placehold.co/800x800/e2e8f0/1e293b?text=Your+Photo+Here" alt="Profile Placeholder" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <img src="Profile.jpg" alt="Garvita Goswami Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
                     
-                    <!-- Floating Core Stack Badge -->
+                    <!-- Floating Core Stack Badge Rotator -->
                     <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 bg-zinc-900 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-[2rem] flex items-center gap-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-zinc-700 hover:-translate-y-2 transition-transform duration-300">
-                        <div class="p-2 lg:p-2.5 bg-blue-500/20 rounded-xl text-blue-400">
+                        <div id="core-stack-icon-wrapper" class="p-2 lg:p-2.5 bg-blue-500/20 rounded-xl text-blue-400 transition-all duration-500">
                             <i data-lucide="cpu" class="w-5 h-5 lg:w-6 lg:h-6"></i>
                         </div>
-                        <div class="pr-2 text-left">
-                            <p class="text-[8px] lg:text-[10px] uppercase font-black tracking-widest text-zinc-400 mb-0.5">Core Stack</p>
-                            <p class="text-sm lg:text-base font-bold whitespace-nowrap">SQL • Python • ML</p>
+                        <div class="pr-2 text-left min-w-[140px]">
+                            <p id="core-stack-title" class="text-[8px] lg:text-[10px] uppercase font-black tracking-widest text-zinc-400 mb-0.5 transition-opacity duration-500">Core Stack</p>
+                            <p id="core-stack-text" class="text-sm lg:text-base font-bold whitespace-nowrap transition-opacity duration-500">SQL • Python • ML</p>
                         </div>
                     </div>
                 </div>
@@ -313,7 +313,7 @@
             </div>
 
             <!-- Top Timeline Slicer -->
-            <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide reveal">
+            <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide reveal min-h-[5rem]">
                 <div id="projects-timeline-top" class="min-w-[800px] flex items-center relative h-24"></div>
             </div>
 
@@ -321,9 +321,9 @@
             <div id="project-display-container"></div>
 
             <!-- The Bottom Timeline Slicer (Appears when project is active) -->
-            <div id="bottom-slicer-wrap" class="opacity-0 translate-y-4 pointer-events-none transition-all duration-700">
+            <div id="bottom-slicer-wrap" class="opacity-0 translate-y-4 pointer-events-none transition-all duration-700 min-h-[10rem]">
                 <div class="pt-8 border-t border-zinc-100">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center">Explore More Projects</p>
+                    <p id="bottom-slicer-title" class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center transition-all duration-500">Explore Next Projects</p>
                     <div class="overflow-x-auto pb-10 scrollbar-hide">
                         <div id="projects-timeline-bottom" class="min-w-[800px] flex items-center relative h-24"></div>
                     </div>
@@ -339,10 +339,10 @@
                 <h2 class="text-5xl font-bold tracking-tighter mb-6 text-[#1a1a1a]">Technical Stack</h2>
             </div>
 
-            <!-- DATA ANALYSIS SECTION -->
+            <!-- DATA ANALYSIS & ENGINEERING SECTION -->
             <div class="mb-20">
                 <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
-                    <i data-lucide="pie-chart" class="w-6 h-6 text-blue-600"></i> Data Analysis
+                    <i data-lucide="database" class="w-6 h-6 text-blue-600"></i> Data Analysis & Engineering
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
@@ -385,16 +385,7 @@
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">NLTK (NLP Processing)</h4>
                         <div class="skill-meter-bg"><div class="skill-meter-fill bg-purple-500" style="--percent: 82%"></div></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- ENGINEERING SECTION -->
-            <div class="mb-20">
-                <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
-                    <i data-lucide="settings" class="w-6 h-6 text-zinc-600"></i> Engineering
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
                         <div class="flex items-center justify-between mb-6">
                             <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
@@ -402,7 +393,7 @@
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Python</h4>
                         <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-600" style="--percent: 92%"></div></div>
                     </div>
-                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 300ms;">
                         <div class="flex items-center justify-between mb-6">
                             <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
@@ -410,30 +401,32 @@
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">SQL & PL/SQL (Oracle)</h4>
                         <div class="skill-meter-bg"><div class="skill-meter-fill bg-zinc-900" style="--percent: 88%"></div></div>
                     </div>
-                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                    
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 350ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-700"><i data-lucide="terminal-square"></i></div>
-                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="80">0</span>%</span>
+                            <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600"><i data-lucide="server"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">C Programming</h4>
-                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-slate-600" style="--percent: 80%"></div></div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Database Optimization</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-cyan-500" style="--percent: 85%"></div></div>
                     </div>
-                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                    
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 400ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600"><i data-lucide="layout"></i></div>
-                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
+                            <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600"><i data-lucide="zap"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Dev Environments</h4>
-                        <p class="text-[10px] text-zinc-400 mb-2 leading-none uppercase tracking-wider">Jupyter • VS Code • Anaconda</p>
-                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-orange-500" style="--percent: 95%"></div></div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Automation Triggers</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-amber-500" style="--percent: 90%"></div></div>
                     </div>
-                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 450ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600"><i data-lucide="workflow"></i></div>
-                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="75">0</span>%</span>
+                            <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600"><i data-lucide="webhook"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">System Design Principles</h4>
-                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-rose-500" style="--percent: 75%"></div></div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">API Integration</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-rose-500" style="--percent: 88%"></div></div>
                     </div>
                 </div>
             </div>
@@ -633,6 +626,20 @@ y = np.array([0, 1])
         const projectData = [
             {
                 id: 0,
+                title: "ML Recommendation Engine",
+                subtitle: "Jan 2025",
+                gradient: "recommender-gradient",
+                accentColor: "#5D4250",
+                icon: "cpu",
+                github: "Song-Recommender-ML",
+                summary: "Discovery via K-Nearest Neighbors.",
+                description: "Developed a content-based recommendation system using Scikit-Learn. Optimized search latency for song discovery and integrated audio feature vector mapping.",
+                tags: ["Scikit-Learn", "KNN", "NumPy"],
+                metrics: [{ label: "Algo", value: "KNN" }, { label: "Library", value: "Sklearn" }],
+                details: ["Audio feature vectorization.", "Optimized cosine similarity.", "Scalable search logic."]
+            },
+            {
+                id: 1,
                 title: "Spotify Stream Dynamics",
                 subtitle: "Feb–Mar 2025",
                 gradient: "spotify-gradient",
@@ -646,7 +653,7 @@ y = np.array([0, 1])
                 details: ["Data cleaning & visualization.", "Applied VADER NLP on lyrics.", "Correlation: Explicit vs. Non-Explicit."]
             },
             {
-                id: 1,
+                id: 2,
                 title: "Digital Asset Integrity",
                 subtitle: "Aug–Oct 2025",
                 gradient: "library-gradient",
@@ -660,7 +667,7 @@ y = np.array([0, 1])
                 details: ["Real-time fine computation.", "Role-based access control.", "Optimized ER Database design."]
             },
             {
-                id: 2,
+                id: 3,
                 title: "Mental Well-Being Study",
                 subtitle: "Jan–May 2025",
                 gradient: "mental-gradient",
@@ -672,89 +679,139 @@ y = np.array([0, 1])
                 tags: ["SciPy", "Stats", "EDA", "Seaborn"],
                 metrics: [{ label: "Stats", value: "ANOVA / Chi2" }, { label: "Features", value: "15+ Variables" }],
                 details: ["Feature normalization & encoding.", "Heatmap & distribution analysis.", "Identified work-pressure insights."]
-            },
-            {
-                id: 3,
-                title: "ML Recommendation Engine",
-                subtitle: "Jan 2025",
-                gradient: "recommender-gradient",
-                accentColor: "#5D4250",
-                icon: "cpu",
-                github: "Song-Recommender-ML",
-                summary: "Discovery via K-Nearest Neighbors.",
-                description: "Developed a content-based recommendation system using Scikit-Learn. Optimized search latency for song discovery and integrated audio feature vector mapping.",
-                tags: ["Scikit-Learn", "KNN", "NumPy"],
-                metrics: [{ label: "Algo", value: "KNN" }, { label: "Library", value: "Sklearn" }],
-                details: ["Audio feature vectorization.", "Optimized cosine similarity.", "Scalable search logic."]
             }
         ];
 
         let activeProjectIndex = -1;
 
-        function renderTimeline(containerId) {
-            const container = document.getElementById(containerId);
-            if(!container) return;
-            container.innerHTML = '';
-            projectData.forEach((proj, idx) => {
+        function buildSlicerHtml(projectsArray, containerEl) {
+            containerEl.innerHTML = '';
+            projectsArray.forEach((proj, index) => {
                 const slice = document.createElement('div');
-                slice.className = "relative flex-1 group cursor-pointer transition-all duration-300";
-                slice.style.zIndex = projectData.length - idx;
-                if (idx !== 0) slice.style.marginLeft = "-24px";
-                slice.onclick = () => dropDownProject(idx);
+                // Create stagger animation based on index
+                slice.className = "relative flex-1 group cursor-pointer transition-all duration-500 animate-hero";
+                slice.style.animationDelay = `${index * 100}ms`;
                 
-                let iconClass = "w-5 h-5 text-white opacity-60 group-hover:opacity-100";
+                // Set precise z-index to allow overlapping margins
+                slice.style.zIndex = 50 - index; 
+                if (index !== 0) slice.style.marginLeft = "-24px";
+                
+                slice.onclick = () => dropDownProject(proj.id);
+                
+                const isActive = proj.id === activeProjectIndex;
+                let iconClass = "w-5 h-5 lg:w-6 lg:h-6 text-white opacity-60 group-hover:opacity-100 transition-transform duration-300 group-hover:scale-110";
+                
+                // Add tailored icon animations
+                if (proj.icon === 'music') iconClass += " animate-logo-pulse";
+                else if (proj.icon === 'cpu') iconClass += " animate-logo-rotate";
+                else if (proj.icon === 'database') iconClass += " animate-bounce";
+                else if (proj.icon === 'brain-circuit') iconClass += " animate-pulse";
+
                 let visualizerHtml = "";
                 if (proj.icon === 'music') {
-                    iconClass += " animate-logo-pulse";
                     visualizerHtml = `<div class="flex items-center gap-0.5 mt-2 h-4 opacity-0 group-hover:opacity-100 transition-opacity">
                         <div class="logo-visualizer-bar" style="animation-delay: 0.1s"></div>
                         <div class="logo-visualizer-bar" style="animation-delay: 0.3s"></div>
                         <div class="logo-visualizer-bar" style="animation-delay: 0.2s"></div>
                     </div>`;
-                } else if (proj.icon === 'cpu') {
-                    iconClass += " animate-logo-rotate";
+                }
+
+                // Adjust slice styling based on Active state
+                let heightClass = "h-16";
+                if (isActive) {
+                    heightClass = "h-20 scale-[1.03] shadow-2xl z-[60]";
+                } else {
+                    heightClass = "h-16 group-hover:h-20 opacity-90 hover:opacity-100 hover:z-[55]";
                 }
 
                 slice.innerHTML = `
-                    <div class="h-16 w-full flex flex-col items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}">
+                    <div class="${heightClass} w-full flex flex-col items-center justify-center chevron-path transition-all duration-500" style="background-color: ${proj.accentColor}">
                         <i data-lucide="${proj.icon}" class="${iconClass}"></i>
                         ${visualizerHtml}
                     </div>
                 `;
-                container.appendChild(slice);
+                containerEl.appendChild(slice);
             });
-            const endTip = document.createElement('div');
-            endTip.className = "h-16 w-12 bg-zinc-50 chevron-end";
-            endTip.style.marginLeft = "-24px";
-            container.appendChild(endTip);
+
+            // Add the ending chevron tip if there are items
+            if (projectsArray.length > 0) {
+                const endTip = document.createElement('div');
+                endTip.className = "h-16 w-12 bg-zinc-50 chevron-end transition-all duration-500 animate-hero";
+                endTip.style.animationDelay = `${projectsArray.length * 100}ms`;
+                endTip.style.marginLeft = "-24px";
+                endTip.style.zIndex = 50 - projectsArray.length;
+                containerEl.appendChild(endTip);
+            }
             safeCreateIcons();
+        }
+
+        function updateTimelines() {
+            const topContainer = document.getElementById('projects-timeline-top');
+            const bottomContainer = document.getElementById('projects-timeline-bottom');
+            const bottomWrap = document.getElementById('bottom-slicer-wrap');
+            const bottomTitle = document.getElementById('bottom-slicer-title');
+
+            let topProjects = [];
+            let bottomProjects = [];
+
+            if (activeProjectIndex === -1) {
+                // If nothing clicked: Top shows ALL, Bottom is hidden
+                topProjects = projectData;
+                bottomProjects = [];
+                
+                bottomWrap.style.opacity = '0';
+                bottomWrap.style.transform = 'translateY(20px)';
+                bottomWrap.style.pointerEvents = 'none';
+                setTimeout(() => bottomContainer.innerHTML = '', 500);
+            } else {
+                // Stepped Logic based on active Index
+                topProjects = projectData.slice(0, activeProjectIndex + 1);
+                
+                if (activeProjectIndex < projectData.length - 1) {
+                    // Remaining timeline pieces at the bottom
+                    bottomProjects = projectData.slice(activeProjectIndex + 1);
+                    bottomTitle.innerText = "Explore Next Projects";
+                    
+                    bottomWrap.style.opacity = '1';
+                    bottomWrap.style.transform = 'translateY(0)';
+                    bottomWrap.style.pointerEvents = 'auto';
+                } else {
+                    // Last project reached -> show the entire complete timeline
+                    bottomProjects = projectData;
+                    bottomTitle.innerText = "Complete Project Journey";
+                    
+                    bottomWrap.style.opacity = '1';
+                    bottomWrap.style.transform = 'translateY(0)';
+                    bottomWrap.style.pointerEvents = 'auto';
+                }
+            }
+
+            buildSlicerHtml(topProjects, topContainer);
+            if (bottomProjects.length > 0) {
+                buildSlicerHtml(bottomProjects, bottomContainer);
+            }
         }
 
         function dropDownProject(idx) {
             const container = document.getElementById('project-display-container');
-            const bottomWrap = document.getElementById('bottom-slicer-wrap');
             
-            // If clicking the same project, close it
+            // If clicking the currently active project, close it
             if (activeProjectIndex === idx) {
-                container.classList.remove('active');
-                bottomWrap.style.opacity = '0';
-                bottomWrap.style.transform = 'translateY(16px)';
-                bottomWrap.style.pointerEvents = 'none';
                 activeProjectIndex = -1;
-                renderTimeline('projects-timeline-top');
+                container.classList.remove('active');
+                updateTimelines();
                 return;
             }
             
-            // Transitions
+            // Close animation first
             container.classList.remove('active');
-            bottomWrap.style.opacity = '0';
             
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
                 const projectNumberFormatted = String(idx + 1).padStart(2, '0');
                 
-                // Check if project needs visualizer logo inside the card
+                // Setup specific visualizers inside the dropped card
                 let internalVisualizer = "";
                 if (proj.icon === 'music') {
                     internalVisualizer = `
@@ -768,13 +825,12 @@ y = np.array([0, 1])
                 }
 
                 container.innerHTML = `
-                    <div class="project-card ${proj.gradient} text-white rounded-[3rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group">
+                    <div class="project-card ${proj.gradient} text-white rounded-[3rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group transition-all duration-700">
                         <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10 mb-12">
-                            <div class="flex-1">
+                            <div class="flex-1 animate-hero" style="animation-delay: 100ms">
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8"></i></div>
                                     <div>
-                                        <!-- Added Project Number display -->
                                         <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT ${projectNumberFormatted} • ${proj.subtitle}</span>
                                         <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
                                     </div>
@@ -785,7 +841,7 @@ y = np.array([0, 1])
                                     <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
                                 </a>
                             </div>
-                            <div class="flex-1 w-full lg:w-1/3">
+                            <div class="flex-1 w-full lg:w-1/3 animate-hero" style="animation-delay: 200ms">
                                 <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[2.5rem] border border-white/10">
                                     <div class="space-y-6">
                                         ${proj.metrics.map(m => `
@@ -800,7 +856,7 @@ y = np.array([0, 1])
                                 </div>
                             </div>
                         </div>
-                        <div class="border-t border-white/10 pt-12">
+                        <div class="border-t border-white/10 pt-12 animate-hero" style="animation-delay: 300ms">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                                 <div>
                                     <h4 class="text-xs font-black uppercase text-white/40 mb-6">Execution</h4>
@@ -817,20 +873,19 @@ y = np.array([0, 1])
                         </div>
                     </div>`;
                 
+                // Show drop down
                 container.classList.add('active');
                 
-                // Show Bottom Slicer
-                setTimeout(() => {
-                    bottomWrap.style.opacity = '1';
-                    bottomWrap.style.transform = 'translateY(0)';
-                    bottomWrap.style.pointerEvents = 'auto';
-                    renderTimeline('projects-timeline-bottom');
-                }, 300);
+                // Shift timelines based on active index
+                updateTimelines();
 
-                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                renderTimeline('projects-timeline-top');
+                // Scroll view smoothly to the project title
+                setTimeout(() => {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+
                 safeCreateIcons();
-            }, 300);
+            }, 300); // Small wait for close animation to finish
         }
 
         const certs = [
@@ -915,6 +970,48 @@ y = np.array([0, 1])
             else nav.classList.remove('nav-glass', 'h-16');
         });
 
+        // Stack Rotator Logic
+        const stackRotatorData = [
+            { title: "Core Stack", text: "SQL • Python • ML", icon: "cpu", bgClass: "bg-blue-500/20", textClass: "text-blue-400" },
+            { title: "Data Analysis", text: "EDA • Mining • Stats", icon: "pie-chart", bgClass: "bg-emerald-500/20", textClass: "text-emerald-400" },
+            { title: "Engineering", text: "C • PL/SQL • Dev", icon: "settings", bgClass: "bg-orange-500/20", textClass: "text-orange-400" },
+            { title: "Soft Skills", text: "Logic • Team • Adapt", icon: "heart-handshake", bgClass: "bg-pink-500/20", textClass: "text-pink-400" }
+        ];
+        let stackRotatorIndex = 0;
+
+        function initStackRotator() {
+            setInterval(() => {
+                const titleEl = document.getElementById('core-stack-title');
+                const textEl = document.getElementById('core-stack-text');
+                const iconWrapEl = document.getElementById('core-stack-icon-wrapper');
+                
+                if(!titleEl || !textEl || !iconWrapEl) return;
+
+                // Fade out
+                titleEl.style.opacity = '0';
+                textEl.style.opacity = '0';
+                iconWrapEl.style.opacity = '0';
+
+                setTimeout(() => {
+                    stackRotatorIndex = (stackRotatorIndex + 1) % stackRotatorData.length;
+                    const data = stackRotatorData[stackRotatorIndex];
+                    
+                    // Update content
+                    titleEl.innerText = data.title;
+                    textEl.innerText = data.text;
+                    iconWrapEl.className = `p-2 lg:p-2.5 rounded-xl transition-all duration-500 ${data.bgClass} ${data.textClass}`;
+                    iconWrapEl.innerHTML = `<i data-lucide="${data.icon}" class="w-5 h-5 lg:w-6 lg:h-6"></i>`;
+                    
+                    safeCreateIcons();
+
+                    // Fade in
+                    titleEl.style.opacity = '1';
+                    textEl.style.opacity = '1';
+                    iconWrapEl.style.opacity = '1';
+                }, 500); // 500ms matches the CSS transition duration
+            }, 3500); // Rotate every 3.5 seconds
+        }
+
         // Initialize Everything
         const init = () => {
             // Dynamically set project counter based on the array length
@@ -923,8 +1020,11 @@ y = np.array([0, 1])
                 projectCounterEl.setAttribute('data-target', projectData.length);
             }
 
-            renderTimeline('projects-timeline-top');
+            // Initially render the timelines
+            updateTimelines();
+            
             renderCerts();
+            initStackRotator();
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
