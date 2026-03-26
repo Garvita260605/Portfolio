@@ -257,10 +257,23 @@
                 </div>
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
-                <div class="w-72 h-72 lg:w-[520px] lg:h-[520px] rounded-[3rem] overflow-hidden bg-zinc-900 border border-white/10 relative group">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" alt="Garvita Goswami" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
+                <!-- Hero Image Container with Stylized Placeholder -->
+                <div class="w-72 h-72 lg:w-[520px] lg:h-[520px] rounded-[3rem] overflow-hidden bg-zinc-900 border border-white/10 relative group flex items-center justify-center">
+                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                         onerror="this.style.display='none'; document.getElementById('hero-placeholder').classList.remove('hidden')">
+                    
+                    <!-- Fallback Placeholder -->
+                    <div id="hero-placeholder" class="hidden absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 text-zinc-700 p-12 text-center">
+                        <div class="w-24 h-24 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                            <i data-lucide="user" class="w-12 h-12 opacity-40"></i>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Identity Container</p>
+                        <p class="text-[9px] mt-2 opacity-20 font-bold uppercase tracking-widest">Awaiting profile.jpg</p>
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent pointer-events-none"></div>
                 </div>
+
                 <div class="absolute -bottom-8 -right-4 lg:-right-8 bg-zinc-900/90 border border-white/10 backdrop-blur-2xl p-8 rounded-[2.5rem] shadow-2xl flex items-center gap-6 reveal z-20">
                     <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400">
                         <i data-lucide="cpu" class="w-7 h-7"></i>
