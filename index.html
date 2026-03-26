@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garvita Goswami | Data Science Portfolio</title>
+    <title>Garvita Goswami | Data Science & Engineering Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -14,9 +14,9 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             background-color: #ffffff;
+            min-height: 100vh;
         }
 
         /* --- BACKGROUND ANIMATED ELEMENTS --- */
@@ -123,7 +123,7 @@
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             transform: translateY(-20px);
         }
         #project-display-container.active {
@@ -131,7 +131,7 @@
             opacity: 1;
             transform: translateY(0);
             margin-top: 2rem;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
         /* --- CHEVRON TIMELINE --- */
@@ -213,7 +213,7 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
         <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-            <div class="text-lg font-bold tracking-tighter">Garvita Goswami</div>
+            <a href="#" class="text-lg font-bold tracking-tighter">Garvita Goswami</a>
             <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
                 <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
                 <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
@@ -222,7 +222,7 @@
             </div>
             <div class="flex items-center gap-4">
                 <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-zinc-900 text-white rounded-full uppercase tracking-widest hover:bg-black transition-all">Contact</a>
-                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100">
+                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100" aria-label="Toggle Menu">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
@@ -249,7 +249,7 @@
                     <span class="text-zinc-300">I Listen.</span>
                 </h1>
                 <p class="text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed animate-hero" style="animation-delay: 200ms">
-                    I’m Garvita, a CSE student specializing in Data Science and Data Engineering. From building automated SQL systems to analyzing global music trends on Spotify, I build tools that are as functional as they are insightful.
+                    I’m Garvita, a CSE student specializing in Data Science and Data Engineering. I transform raw variables into automated systems and actionable insights through Python, SQL, and ML.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
                     <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
@@ -262,7 +262,7 @@
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
                 <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
-                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800'">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" alt="Garvita Goswami" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
                 </div>
             </div>
         </div>
@@ -300,25 +300,25 @@
 
             <!-- Top Timeline Slicer -->
             <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide reveal">
-                <div id="projects-timeline-top" class="min-w-[1000px] flex items-center relative h-24"></div>
+                <div id="projects-timeline-top" class="min-w-[800px] flex items-center relative h-24"></div>
             </div>
 
             <!-- The Drop Down Container -->
             <div id="project-display-container"></div>
 
-            <!-- The Bottom Timeline Slicer -->
-            <div id="bottom-slicer-wrap" class="hidden opacity-0 transition-all duration-700 reveal">
+            <!-- The Bottom Timeline Slicer (Appears when project is active) -->
+            <div id="bottom-slicer-wrap" class="opacity-0 translate-y-4 pointer-events-none transition-all duration-700">
                 <div class="pt-8 border-t border-zinc-100">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center">Project Navigator</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center">Explore More Projects</p>
                     <div class="overflow-x-auto pb-10 scrollbar-hide">
-                        <div id="projects-timeline-bottom" class="min-w-[1000px] flex items-center relative h-24"></div>
+                        <div id="projects-timeline-bottom" class="min-w-[800px] flex items-center relative h-24"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TECHNICAL STACK GRID (RESTORED) -->
+    <!-- TECHNICAL STACK GRID -->
     <section id="skills" class="py-32 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
@@ -383,90 +383,22 @@
         </div>
     </section>
 
-    <!-- SOFT SKILLS SEGMENT (DEDICATED) -->
-    <section id="soft-skills" class="py-32 px-6 bg-zinc-50/30">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-20 reveal text-center lg:text-left">
-                <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Core Competencies</h2>
-                <p class="text-zinc-500 text-xl max-w-lg font-medium">Soft skills optimized for collaborative engineering teams.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Communication -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 relative">
-                                <i data-lucide="message-square" class="w-7 h-7 relative z-10 animate-pulse"></i>
-                                <span class="absolute inset-0 bg-blue-400/20 rounded-2xl animate-ping"></span>
-                            </div>
-                            <h4 class="text-xl font-bold text-[#2D1F27]">Communication</h4>
-                        </div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="94">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 94%"></div></div>
-                </div>
-
-                <!-- Problem Solving -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 100ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600">
-                                <i data-lucide="lightbulb" class="w-7 h-7 animate-logo-pulse"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-[#2D1F27]">Problem Solving</h4>
-                        </div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="89">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 89%"></div></div>
-                </div>
-
-                <!-- Team Collaboration -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 200ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-600">
-                                <i data-lucide="users" class="w-7 h-7 animate-bounce" style="animation-duration: 2s;"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-[#2D1F27]">Team Collaboration</h4>
-                        </div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="91">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 91%"></div></div>
-                </div>
-
-                <!-- Adaptability -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 300ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600">
-                                <i data-lucide="refresh-ccw" class="w-7 h-7 animate-logo-rotate" style="animation-duration: 5s;"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-[#2D1F27]">Adaptability</h4>
-                        </div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 90%"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- PROFESSIONAL CERTIFICATES -->
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Professional Certificates</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal" id="certifications-grid"></div>
         </div>
     </section>
 
     <!-- BEYOND ACADEMIC (RESTORED) -->
-    <section id="beyond-academics" class="py-32 px-6 bg-white border-y border-zinc-100">
+    <section id="beyond-academics" class="py-32 px-6 bg-zinc-50/50 border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Beyond Academic</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Hackathon Card -->
                 <div class="bento-card reveal group">
-                    <div class="bento-inner p-12 rounded-[4rem] relative">
+                    <div class="bento-inner p-12 rounded-[4rem] relative min-h-[400px]">
                         <div class="absolute inset-0 opacity-[0.03] overflow-hidden pointer-events-none group-hover:opacity-[0.08] transition-opacity">
                             <div class="code-scroller text-blue-600 p-8">
 import pandas as pd
@@ -474,32 +406,35 @@ df = pd.read_csv('hack_data.csv')
 model.fit(X_train, y_train)
 # Processing features...
 print("Result: ", model.score(X_test, y_test))
+import numpy as np
+X = np.array([[1, 2], [3, 4]])
+y = np.array([0, 1])
                             </div>
                         </div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:scale-110 duration-300"><i data-lucide="terminal" class="w-8 h-8"></i></div>
                             <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Sept 2025</span>
                             <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Code-A-Haunt 2.0</h4>
-                            <p class="text-zinc-500 leading-relaxed">State-level hackathon participant at LPU showcasing intense problem-solving under pressure.</p>
+                            <p class="text-zinc-500 leading-relaxed">State-level hackathon participant at LPU showcasing intense problem-solving under pressure and collaborative engineering.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Singing Card -->
                 <div class="bento-card reveal group">
-                    <div class="bento-inner p-12 rounded-[4rem] relative">
+                    <div class="bento-inner p-12 rounded-[4rem] relative min-h-[400px]">
                         <div class="relative z-10">
                             <div class="flex justify-between items-start mb-8">
                                 <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500 transition-transform group-hover:scale-110 duration-300"><i data-lucide="mic-2" class="w-8 h-8"></i></div>
-                                <div class="flex items-center gap-1 pt-6 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div class="visualizer-bar" style="animation-delay: 0.1s"></div>
-                                    <div class="visualizer-bar" style="animation-delay: 0.3s"></div>
-                                    <div class="visualizer-bar" style="animation-delay: 0.2s"></div>
-                                    <div class="visualizer-bar" style="animation-delay: 0.4s"></div>
+                                <div class="flex items-center gap-1.5 pt-6 h-10 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div class="visualizer-bar h-4" style="animation-delay: 0.1s"></div>
+                                    <div class="visualizer-bar h-6" style="animation-delay: 0.3s"></div>
+                                    <div class="visualizer-bar h-8" style="animation-delay: 0.2s"></div>
+                                    <div class="visualizer-bar h-5" style="animation-delay: 0.4s"></div>
                                 </div>
                             </div>
                             <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Achievement</span>
                             <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Spectra Winner</h4>
-                            <p class="text-zinc-500 leading-relaxed">Winner of the inter-school singing competition Spectra, showcasing vocal discipline.</p>
+                            <p class="text-zinc-500 leading-relaxed">Winner of the inter-school singing competition Spectra, demonstrating discipline, stage presence, and creative expression.</p>
                         </div>
                     </div>
                 </div>
@@ -507,7 +442,7 @@ print("Result: ", model.score(X_test, y_test))
         </div>
     </section>
 
-    <!-- SCHOLASTIC PATHWAY (VERTICAL TIMELINE) -->
+    <!-- SCHOLASTIC PATHWAY -->
     <section id="education" class="py-32 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="mb-24 reveal text-center">
@@ -524,7 +459,7 @@ print("Result: ", model.score(X_test, y_test))
                         <p class="text-zinc-500 mt-2 font-medium italic">B.Tech Computer Science (Hons.)</p>
                     </div>
                     <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 text-center shadow-sm">
-                        <div class="text-5xl font-black tracking-tighter text-[#2D1F27]"><span class="counter" data-target="7.4">0</span> <span class="text-lg font-bold text-zinc-400">CGPA</span></div>
+                        <div class="text-5xl font-black tracking-tighter text-[#2D1F27]"><span class="counter" data-target="7.1">0</span> <span class="text-lg font-bold text-zinc-400">CGPA</span></div>
                     </div>
                 </div>
 
@@ -532,8 +467,8 @@ print("Result: ", model.score(X_test, y_test))
                     <div class="edu-node"></div>
                     <div class="md:w-[45%]">
                         <span class="text-[10px] font-black text-yellow-600 uppercase tracking-widest block mb-2">2021 – 2023</span>
-                        <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School (APS)</h3>
-                        <p class="text-zinc-500 mt-2 font-medium italic">Intermediate Boarding</p>
+                        <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School</h3>
+                        <p class="text-zinc-500 mt-2 font-medium italic">Intermediate</p>
                     </div>
                     <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-yellow-50 rounded-[2.5rem] border border-yellow-100 text-center shadow-sm">
                         <div class="text-5xl font-black tracking-tighter text-zinc-900"><span class="counter" data-target="82">0</span> <span class="text-lg font-bold text-zinc-400">%</span></div>
@@ -544,7 +479,7 @@ print("Result: ", model.score(X_test, y_test))
                     <div class="edu-node"></div>
                     <div class="md:w-[45%] md:text-right">
                         <span class="text-[10px] font-black text-purple-600 uppercase tracking-widest block mb-2">2020 – 2021</span>
-                        <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School (APS)</h3>
+                        <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School</h3>
                         <p class="text-zinc-500 mt-2 font-medium italic">Matriculation</p>
                     </div>
                     <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-purple-50 rounded-[2.5rem] border border-purple-100 text-center shadow-sm">
@@ -560,8 +495,8 @@ print("Result: ", model.score(X_test, y_test))
         <h2 class="text-5xl font-bold tracking-tighter mb-10 text-[#1a1a1a]">Garvita Goswami</h2>
         <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
             <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors">Email</a>
-            <a href="https://linkedin.com/in/garvita-goswami-348" class="hover:text-blue-600 transition-colors">LinkedIn</a>
-            <a href="https://github.com/Garvita260605" class="hover:text-zinc-900 transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors">LinkedIn</a>
+            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors">GitHub</a>
         </div>
         <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Engineering Portfolio • 2026</p>
     </footer>
@@ -570,12 +505,18 @@ print("Result: ", model.score(X_test, y_test))
     <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
         <div class="absolute inset-0 bg-zinc-900/20 backdrop-blur-xl" onclick="closeModal()"></div>
         <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
-            <button onclick="closeModal()" class="absolute top-10 right-10 p-2"><i data-lucide="x"></i></button>
+            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 text-zinc-400 hover:text-zinc-900 transition-colors"><i data-lucide="x"></i></button>
             <div id="modal-icon-container" class="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 overflow-hidden text-white"></div>
             <h3 id="modal-title" class="text-4xl font-bold mb-2"></h3>
             <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-6"></p>
             <p id="modal-desc" class="text-zinc-500 text-lg mb-10"></p>
-            <button onclick="closeModal()" class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black shadow-xl">Close</button>
+            
+            <div class="space-y-4">
+                <a id="modal-pdf-link" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white py-6 rounded-2xl font-black shadow-xl hover:bg-blue-700 transition-all">
+                    <i data-lucide="external-link" class="w-6 h-6"></i> View PDF Document
+                </a>
+                <button onclick="closeModal()" class="w-full bg-zinc-100 text-zinc-500 py-6 rounded-2xl font-black hover:bg-zinc-200 transition-all">Close</button>
+            </div>
         </div>
     </div>
 
@@ -590,50 +531,54 @@ print("Result: ", model.score(X_test, y_test))
                 gradient: "spotify-gradient",
                 accentColor: "#1DB954",
                 icon: "music",
+                github: "Spotify-Stream-Dynamics",
                 summary: "Popularity patterns via NLP sentiment analysis.",
-                description: "Deep-dive analysis of the 2024 global charts using VADER NLP to quantify emotional resonance.",
-                tags: ["Python", "NLP", "Stats"],
-                metrics: [{ label: "Scope", value: "2024 Global" }, { label: "Tech", value: "VADER" }],
-                details: ["Engineered daily global scraper.", "Multi-variate statistical testing.", "Sentiment 'sweet-spots'."]
+                description: "Analyzed Spotify's 2024 global dataset to uncover patterns behind engagement. Used VADER NLP to study how explicit content influences listener preferences and combined storytelling with analytics.",
+                tags: ["Python", "Pandas", "VADER", "Matplotlib"],
+                metrics: [{ label: "Data", value: "2024 Charts" }, { label: "Method", value: "Hypothesis Testing" }],
+                details: ["Data cleaning & visualization.", "Applied VADER NLP on lyrics.", "Correlation: Explicit vs. Non-Explicit."]
             },
             {
                 id: 1,
-                title: "Recommendation Engine",
-                subtitle: "ML Dashboard",
-                gradient: "recommender-gradient",
-                accentColor: "#5D4250",
-                icon: "cpu",
-                summary: "Song discovery via audio vectors.",
-                description: "Content-based filtering system hosted as an interactive dashboard.",
-                tags: ["ML", "Cosine", "Streamlit"],
-                metrics: [{ label: "Model", value: "Neighbors" }, { label: "UI", value: "Custom" }],
-                details: ["Mapped 100k tracks.", "Optimized search latency.", "Integrated API previews."]
-            },
-            {
-                id: 2,
                 title: "Digital Asset Integrity",
                 subtitle: "Aug–Oct 2025",
                 gradient: "library-gradient",
                 accentColor: "#6366f1",
                 icon: "database",
+                github: "Digital-Library-System",
                 summary: "Automated Library with OTP & PL/SQL.",
-                description: "Enterprise-grade library automation system designed for Oracle database handling.",
-                tags: ["Oracle", "PL/SQL", "Security"],
-                metrics: [{ label: "Logic", value: "Triggers" }, { label: "Security", value: "OTP" }],
-                details: ["Robust ER modeling.", "Automated procedures.", "Backup triggers."]
+                description: "Designed a SQL-based system to automate library operations like fine calculation and secure OTP login. Developed triggers for real-time due date management and optimized ER models for efficient retrieval.",
+                tags: ["Oracle SQL", "PL/SQL", "Triggers"],
+                metrics: [{ label: "Efficiency", value: "Automated" }, { label: "Security", value: "OTP Login" }],
+                details: ["Real-time fine computation.", "Role-based access control.", "Optimized ER Database design."]
             },
             {
-                id: 3,
+                id: 2,
                 title: "Mental Well-Being Study",
                 subtitle: "Jan–May 2025",
                 gradient: "mental-gradient",
                 accentColor: "#0ea5e9",
                 icon: "brain-circuit",
+                github: "Mental-Health-Analysis",
                 summary: "Workplace health data study.",
-                description: "Identifying predictors for workplace burnout and mental wellness in tech.",
-                tags: ["SciPy", "EDA", "Stats"],
-                metrics: [{ label: "Factors", value: "15+ Vars" }, { label: "Logic", value: "ANOVA" }],
-                details: ["Longitudinal survey data.", "Validated via Chi-Square.", "Feature ranking visualization."]
+                description: "Conducted EDA on mental-health survey data to uncover workplace patterns. Preprocessed data by handling missing values and normalization, then applied statistical tests (ANOVA, Chi-Square).",
+                tags: ["SciPy", "Stats", "EDA", "Seaborn"],
+                metrics: [{ label: "Stats", value: "ANOVA / Chi2" }, { label: "Features", value: "15+ Variables" }],
+                details: ["Feature normalization & encoding.", "Heatmap & distribution analysis.", "Identified work-pressure insights."]
+            },
+            {
+                id: 3,
+                title: "ML Recommendation Engine",
+                subtitle: "Jan 2025",
+                gradient: "recommender-gradient",
+                accentColor: "#5D4250",
+                icon: "cpu",
+                github: "Song-Recommender-ML",
+                summary: "Discovery via K-Nearest Neighbors.",
+                description: "Developed a content-based recommendation system using Scikit-Learn. Optimized search latency for song discovery and integrated audio feature vector mapping.",
+                tags: ["Scikit-Learn", "KNN", "NumPy"],
+                metrics: [{ label: "Algo", value: "KNN" }, { label: "Library", value: "Sklearn" }],
+                details: ["Audio feature vectorization.", "Optimized cosine similarity.", "Scalable search logic."]
             }
         ];
 
@@ -645,7 +590,7 @@ print("Result: ", model.score(X_test, y_test))
             container.innerHTML = '';
             projectData.forEach((proj, idx) => {
                 const slice = document.createElement('div');
-                slice.className = "relative flex-1 group cursor-pointer";
+                slice.className = "relative flex-1 group cursor-pointer transition-all duration-300";
                 slice.style.zIndex = projectData.length - idx;
                 if (idx !== 0) slice.style.marginLeft = "-24px";
                 slice.onclick = () => dropDownProject(idx);
@@ -659,9 +604,16 @@ print("Result: ", model.score(X_test, y_test))
                         <div class="logo-visualizer-bar" style="animation-delay: 0.3s"></div>
                         <div class="logo-visualizer-bar" style="animation-delay: 0.2s"></div>
                     </div>`;
-                } else { iconClass += " animate-logo-rotate"; }
+                } else if (proj.icon === 'cpu') {
+                    iconClass += " animate-logo-rotate";
+                }
 
-                slice.innerHTML = `<div class="h-16 w-full flex flex-col items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}"><i data-lucide="${proj.icon}" class="${iconClass}"></i>${visualizerHtml}</div>`;
+                slice.innerHTML = `
+                    <div class="h-16 w-full flex flex-col items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}">
+                        <i data-lucide="${proj.icon}" class="${iconClass}"></i>
+                        ${visualizerHtml}
+                    </div>
+                `;
                 container.appendChild(slice);
             });
             const endTip = document.createElement('div');
@@ -674,60 +626,111 @@ print("Result: ", model.score(X_test, y_test))
         function dropDownProject(idx) {
             const container = document.getElementById('project-display-container');
             const bottomWrap = document.getElementById('bottom-slicer-wrap');
+            
+            // If clicking the same project, close it
             if (activeProjectIndex === idx) {
                 container.classList.remove('active');
-                bottomWrap.classList.remove('active', 'visible');
-                bottomWrap.classList.add('hidden');
+                bottomWrap.style.opacity = '0';
+                bottomWrap.style.transform = 'translateY(16px)';
+                bottomWrap.style.pointerEvents = 'none';
                 activeProjectIndex = -1;
                 renderTimeline('projects-timeline-top');
                 return;
             }
+            
+            // Transitions
             container.classList.remove('active');
-            bottomWrap.classList.add('hidden');
+            bottomWrap.style.opacity = '0';
+            
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
-                container.innerHTML = `<div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group reveal visible">
-                        <div class="flex flex-col lg:flex-row items-center gap-16 relative z-10 mb-12">
+                
+                // Check if project needs visualizer logo inside the card
+                let internalVisualizer = "";
+                if (proj.icon === 'music') {
+                    internalVisualizer = `
+                        <div class="flex items-center gap-1.5 h-12 mb-6">
+                            <div class="visualizer-bar h-6 bg-white/40" style="animation-delay: 0.1s"></div>
+                            <div class="visualizer-bar h-10 bg-white/60" style="animation-delay: 0.3s"></div>
+                            <div class="visualizer-bar h-8 bg-white/40" style="animation-delay: 0.2s"></div>
+                            <div class="visualizer-bar h-12 bg-white/80" style="animation-delay: 0.4s"></div>
+                            <div class="visualizer-bar h-6 bg-white/40" style="animation-delay: 0.5s"></div>
+                        </div>`;
+                }
+
+                container.innerHTML = `
+                    <div class="project-card ${proj.gradient} text-white rounded-[3rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group">
+                        <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10 mb-12">
                             <div class="flex-1">
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8"></i></div>
-                                    <div><span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span><h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3></div>
+                                    <div>
+                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span>
+                                        <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
+                                    </div>
                                 </div>
+                                ${internalVisualizer}
                                 <p class="text-xl text-zinc-300 max-w-xl leading-relaxed mb-8">${proj.summary}</p>
+                                <a href="https://github.com/Garvita260605/${proj.github}" target="_blank" class="inline-flex items-center gap-3 bg-white text-zinc-900 px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-all shadow-lg">
+                                    <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
+                                </a>
                             </div>
                             <div class="flex-1 w-full lg:w-1/3">
-                                <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/10">
+                                <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[2.5rem] border border-white/10">
                                     <div class="space-y-6">
-                                        ${proj.metrics.map(m => `<div class="flex items-center justify-between"><div><p class="text-2xl font-bold text-white">${m.value}</p><p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p></div><i data-lucide="trending-up" class="w-5 h-5 opacity-30 text-white"></i></div>`).join('<div class="h-px bg-white/10 w-full"></div>')}
+                                        ${proj.metrics.map(m => `
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-2xl font-bold text-white">${m.value}</p>
+                                                    <p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p>
+                                                </div>
+                                                <i data-lucide="trending-up" class="w-5 h-5 opacity-30 text-white"></i>
+                                            </div>`).join('<div class="h-px bg-white/10 w-full"></div>')}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="border-t border-white/10 pt-12">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                <div><h4 class="text-xs font-black uppercase text-white/40 mb-6">Execution</h4><p class="text-xl font-medium leading-relaxed mb-8 text-white">${proj.description}</p></div>
+                                <div>
+                                    <h4 class="text-xs font-black uppercase text-white/40 mb-6">Execution</h4>
+                                    <p class="text-xl font-medium leading-relaxed mb-8 text-white">${proj.description}</p>
+                                </div>
                                 <div class="grid grid-cols-1 gap-3">
-                                    ${proj.details.map(detail => `<div class="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-3xl"><i data-lucide="check-circle" class="w-5 h-5 text-white/60"></i><p class="font-medium text-white/80 leading-tight">${detail}</p></div>`).join('')}
+                                    ${proj.details.map(detail => `
+                                        <div class="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-2xl">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-white/60"></i>
+                                            <p class="font-medium text-white/80 leading-tight">${detail}</p>
+                                        </div>`).join('')}
                                 </div>
                             </div>
                         </div>
                     </div>`;
+                
                 container.classList.add('active');
-                bottomWrap.classList.remove('hidden');
-                setTimeout(() => bottomWrap.classList.add('visible', 'active'), 50);
-                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Show Bottom Slicer
+                setTimeout(() => {
+                    bottomWrap.style.opacity = '1';
+                    bottomWrap.style.transform = 'translateY(0)';
+                    bottomWrap.style.pointerEvents = 'auto';
+                    renderTimeline('projects-timeline-bottom');
+                }, 300);
+
+                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 renderTimeline('projects-timeline-top');
-                renderTimeline('projects-timeline-bottom');
                 safeCreateIcons();
             }, 300);
         }
 
         const certs = [
-            { t: "Networking", p: "Coursera | Google", ds: "TCP/IP, security, and cloud infra.", icon: "network", color: "bg-blue-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" },
-            { t: "PL/SQL DS", p: "LPU My Class", ds: "Oracle triggers, ETL pipelines.", icon: "database", color: "bg-red-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Oracle_All_Search_Icons_Final_PLSQL.svg/512px-Oracle_All_Search_Icons_Final_PLSQL.svg.png" },
-            { t: "Data Analytics", p: "LinkedIn", ds: "Cleaning, storytelling, and workflows.", icon: "bar-chart", color: "bg-blue-700", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" },
-            { t: "Python ML", p: "Udemy", ds: "Modeling with Scikit-Learn.", icon: "code", color: "bg-purple-600", logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" }
+            { t: "Networking", p: "Coursera | Google", ds: "TCP/IP, security protocols, and infrastructure. Aug 31, 2025.", icon: "network", color: "bg-blue-600", pdf: "12317861.pdf" },
+            { t: "PL/SQL Bootcamp", p: "LPU | My Class", ds: "Oracle SQL & Data Science Masterclass. Obtained Grade 'O'. July 2025.", icon: "database", color: "bg-orange-600", pdf: "Summer Training.pdf" },
+            { t: "ML & Image Proc.", p: "thingQbator | Cisco", ds: "Machine Learning & Image Processing (Nasscom Foundation).", icon: "brain", color: "bg-indigo-600", pdf: "ML and Image Processing.pdf" },
+            { t: "Data Analytics", p: "LinkedIn Learning", ds: "Introduction to Career Skills in Data Analytics. June 2025.", icon: "bar-chart", color: "bg-blue-800", pdf: "Data Analytics .pdf" },
+            { t: "Python for DS/ML", p: "Udemy | Jose Portilla", ds: "Supervised & Unsupervised modeling Bootcamp. Feb 2024.", icon: "code", color: "bg-purple-600", pdf: "Python.pdf" },
+            { t: "WEB Hackathon", p: "Team 7 | BlockseBlock", ds: "24hr Hackathon Participation at LPU. March 2024.", icon: "terminal", color: "bg-zinc-800", pdf: "MOOC Certificate.pdf" }
         ];
 
         function renderCerts() {
@@ -738,9 +741,13 @@ print("Result: ", model.score(X_test, y_test))
                 const card = document.createElement('div');
                 card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group relative overflow-hidden reveal";
                 card.onclick = () => openCertModal(cert);
-                card.innerHTML = `<div class="relative z-10">
-                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative overflow-hidden"><img src="${cert.logo}" class="w-10 h-10 object-contain absolute opacity-0 logo-img" onload="this.style.opacity='1'"><i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i></div>
-                        <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5><p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
+                card.innerHTML = `
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative">
+                            <i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5>
+                        <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
                     </div>`;
                 grid.appendChild(card);
             });
@@ -751,9 +758,14 @@ print("Result: ", model.score(X_test, y_test))
             document.getElementById('modal-title').innerText = data.t;
             document.getElementById('modal-provider').innerText = data.p;
             document.getElementById('modal-desc').innerText = data.ds;
+            
+            const pdfLink = document.getElementById('modal-pdf-link');
+            pdfLink.href = data.pdf;
+            
             const iconCont = document.getElementById('modal-icon-container');
-            iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative ${data.color}`;
-            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain absolute opacity-0" onload="this.style.opacity='1'"><i data-lucide="${data.icon}" class="w-10 h-10 text-white"></i>`;
+            iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-8 relative ${data.color}`;
+            iconCont.innerHTML = `<i data-lucide="${data.icon}" class="w-10 h-10 text-white"></i>`;
+            
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
             document.body.style.overflow = 'hidden';
@@ -762,7 +774,10 @@ print("Result: ", model.score(X_test, y_test))
 
         function closeModal() {
             document.getElementById('modal-content').classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { document.getElementById('cert-modal').classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
+            setTimeout(() => { 
+                document.getElementById('cert-modal').classList.add('hidden'); 
+                document.body.style.overflow = 'auto'; 
+            }, 300);
         }
 
         function animateCounter(el) {
@@ -775,7 +790,11 @@ print("Result: ", model.score(X_test, y_test))
                 const progress = Math.min((now - startTime) / duration, 1);
                 const eased = 1 - Math.pow(2, -10 * progress);
                 const current = eased * target;
-                el.innerText = target % 1 === 0 ? Math.floor(current) : (target === 7.4 ? current.toFixed(1) : Math.floor(current));
+                if (target % 1 === 0) {
+                    el.innerText = Math.floor(current);
+                } else {
+                    el.innerText = current.toFixed(1);
+                }
                 if (progress < 1) requestAnimationFrame(update);
             }
             requestAnimationFrame(update);
@@ -783,24 +802,40 @@ print("Result: ", model.score(X_test, y_test))
 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) nav.classList.add('nav-glass', 'h-16');
+            if (window.scrollY > 50) nav.classList.add('nav-glass', 'h-16');
             else nav.classList.remove('nav-glass', 'h-16');
         });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    entry.target.querySelectorAll('.counter').forEach(animateCounter);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        window.onload = () => {
+        // Initialize Everything
+        const init = () => {
             renderTimeline('projects-timeline-top');
             renderCerts();
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.querySelectorAll('.counter').forEach(animateCounter);
+                    }
+                });
+            }, { threshold: 0.1 });
+
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            // Fallback: If page looks blank after 2 seconds, force visible
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+                document.querySelectorAll('.counter').forEach(animateCounter);
+            }, 2000);
+            
+            safeCreateIcons();
         };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
         
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
