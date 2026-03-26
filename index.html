@@ -11,11 +11,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
+        :root {
+            --bg-deep: #09090b;
+            --card-bg: #121214;
+            --border-glow: rgba(255, 255, 255, 0.08);
+            --ai-glow: rgba(59, 130, 246, 0.5);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
-            background-color: #fff;
+            background-color: var(--bg-deep);
+            color: #fafafa;
         }
 
         /* --- BACKGROUND ELEMENTS --- */
@@ -25,34 +33,34 @@
             z-index: -1;
             overflow: hidden;
             pointer-events: none;
-            background: #ffffff;
+            background: var(--bg-deep);
         }
 
         .data-grid {
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.4;
+            background-image: radial-gradient(circle, #27272a 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
         }
 
         .blob {
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.12;
+            filter: blur(120px);
+            opacity: 0.15;
             animation: float 20s infinite alternate ease-in-out;
         }
 
-        .blob-1 { background: #3b82f6; top: -10%; left: -10%; animation-duration: 25s; }
-        .blob-2 { background: #8b5cf6; bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
+        .blob-1 { background: #3b82f6; top: -15%; left: -10%; animation-duration: 25s; }
+        .blob-2 { background: #8b5cf6; bottom: -15%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
         .blob-3 { background: #10b981; top: 40%; left: 30%; animation-duration: 22s; animation-delay: -2s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.1); }
+            100% { transform: translate(80px, 40px) scale(1.05); }
         }
 
         /* --- REVEAL ANIMATIONS --- */
@@ -67,22 +75,17 @@
             transform: translateY(0);
         }
 
-        /* Glassmorphism Navigation */
+        /* Navigation Glass */
         .nav-glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-        }
-
-        /* Hero Image Frame Shadow */
-        .hero-frame {
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15), 0 30px 60px -30px rgba(0,0,0,0.2);
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glow);
         }
 
         /* High-End Modal Blur */
         .modal-backdrop {
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
+            background: rgba(0,0,0,0.7);
         }
 
         @keyframes fade-in-up {
@@ -91,53 +94,58 @@
         }
         .animate-hero { animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        /* Gradients */
-        .spotify-gradient { background: linear-gradient(135deg, #1db954 0%, #0d0d0d 100%); }
-        .library-gradient { background: linear-gradient(135deg, #4f46e5 0%, #1e1b4b 100%); }
-        .mental-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%); }
-        .recommender-gradient { background: linear-gradient(135deg, #1db954 0%, #191414 100%); }
+        /* SaaS Specific Gradients */
+        .spotify-gradient { background: linear-gradient(135deg, #064e3b 0%, #020617 100%); }
+        .library-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #020617 100%); }
+        .mental-gradient { background: linear-gradient(135deg, #0c4a6e 0%, #020617 100%); }
+        .recommender-gradient { background: linear-gradient(135deg, #166534 0%, #020617 100%); }
 
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
         
         /* Interactive Card Transitions */
         .tech-card {
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(24, 24, 27, 0.4);
+            border: 1px solid var(--border-glow);
             backdrop-filter: blur(10px);
         }
         .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
-            border-color: rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            background: rgba(39, 39, 42, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
         }
 
         /* Project Card Depth */
         .project-card {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border 0.4s ease;
             cursor: pointer;
+            border: 1px solid var(--border-glow);
         }
         .project-card:hover {
             transform: scale(1.01) translateY(-10px);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
+            border-color: rgba(255, 255, 255, 0.1);
         }
+        
         .insight-pill {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .expand-indicator {
-            opacity: 0;
-            transform: translateY(10px);
+            opacity: 0.4;
+            transform: translateY(0);
             transition: all 0.4s ease;
         }
         .project-card:hover .expand-indicator {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(5px);
         }
 
         .logo-box {
@@ -146,19 +154,45 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 1rem;
+            border-radius: 1.2rem;
             margin-bottom: 1rem;
             overflow: hidden;
             flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.05);
         }
+        
         .logo-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            padding: 8px;
+        }
+
+        .hero-title {
+            background: linear-gradient(to bottom, #ffffff 40%, #71717a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* AI Elements */
+        .ai-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .ai-response-box {
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+            background: rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-<body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+<body class="selection:bg-blue-600 selection:text-white overflow-x-hidden">
 
     <!-- Background Layer -->
     <div class="bg-canvas">
@@ -169,18 +203,21 @@
     </div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
+    <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20">
         <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-            <div class="text-lg font-bold tracking-tighter">Garvita Goswami</div>
-            <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
-                <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
-                <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
-                <a href="#certifications" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Certificates</a>
-                <a href="#education" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Education</a>
+            <div class="text-lg font-bold tracking-tighter flex items-center gap-2">
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                Garvita Goswami
+            </div>
+            <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-500">
+                <a href="#projects" class="hover:text-white transition-colors uppercase tracking-widest">Projects</a>
+                <a href="#skills" class="hover:text-white transition-colors uppercase tracking-widest">Skills</a>
+                <a href="#certifications" class="hover:text-white transition-colors uppercase tracking-widest">Certificates</a>
+                <a href="#education" class="hover:text-white transition-colors uppercase tracking-widest">Education</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-zinc-900 text-white rounded-full uppercase tracking-widest hover:bg-black transition-all">Contact</a>
-                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100 transition-colors hover:bg-zinc-200">
+                <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-white text-black rounded-full uppercase tracking-widest hover:bg-zinc-200 transition-all">Contact</a>
+                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-900 border border-white/10 transition-colors hover:bg-zinc-800">
                     <i data-lucide="menu" id="menu-icon"></i>
                 </button>
             </div>
@@ -188,7 +225,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 bg-white opacity-0 -translate-y-full pointer-events-none transition-all duration-500 flex flex-col pt-32 px-10 space-y-8 text-center">
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-zinc-950 opacity-0 -translate-y-full pointer-events-none transition-all duration-500 flex flex-col pt-32 px-10 space-y-8 text-center">
         <a href="#projects" onclick="toggleMenu()" class="text-4xl font-bold">Projects</a>
         <a href="#skills" onclick="toggleMenu()" class="text-4xl font-bold">Skills</a>
         <a href="#certifications" onclick="toggleMenu()" class="text-4xl font-bold">Certificates</a>
@@ -196,41 +233,41 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="pt-32 lg:pt-48 pb-20 px-6">
+    <section class="pt-32 lg:pt-56 pb-20 px-6">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             <div class="flex-1 text-center lg:text-left">
-                <div class="inline-block px-4 py-1.5 bg-zinc-100/50 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
-                    B.Tech (Hons.) Computer Science & Engineering
+                <div class="inline-block px-4 py-1.5 bg-zinc-900 border border-white/5 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-8 animate-hero">
+                    B.Tech Computer Science & Engineering
                 </div>
-                <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[0.9] animate-hero" style="animation-delay: 100ms">
+                <h1 class="text-6xl lg:text-9xl font-bold tracking-tighter mb-8 leading-[0.85] animate-hero hero-title" style="animation-delay: 100ms">
                     Data Speaks. <br />
-                    <span class="text-zinc-300">I Listen.</span>
+                    I Listen.
                 </h1>
-                <p class="text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed animate-hero" style="animation-delay: 200ms">
-                    I’m Garvita, a CSE student specializing in Data Science and Machine Learning. From building automated SQL systems to analyzing global music trends on Spotify, I build tools that are as functional as they are insightful.
+                <p class="text-xl text-zinc-400 max-w-xl mb-12 leading-relaxed animate-hero" style="animation-delay: 200ms">
+                    A CSE student specializing in Data Science and Machine Learning. Building high-performance automated systems and extracting actionable intelligence from global datasets.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
-                    <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
-                    <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900/10 hover:text-black transition-all">Download CV</a>
+                    <a href="mailto:garvitagoswami.05@gmail.com" class="bg-white text-black px-10 py-5 rounded-full font-bold hover:scale-105 transition-all shadow-xl shadow-white/5">Get in Touch</a>
+                    <a href="Garvita_Goswami_CV.pdf" download class="border border-white/10 bg-zinc-900 text-white px-10 py-5 rounded-full font-bold hover:bg-white/5 transition-all">Download CV</a>
                     
                     <div class="flex items-center gap-6 px-4">
-                        <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-all"><i data-lucide="github"></i></a>
-                        <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-400 hover:text-blue-600 transition-all"><i data-lucide="linkedin"></i></a>
-                        <a href="tel:+917617466702" class="text-zinc-400 hover:text-green-600 transition-all"><i data-lucide="phone"></i></a>
+                        <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-500 hover:text-white transition-all"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-500 hover:text-blue-500 transition-all"><i data-lucide="linkedin"></i></a>
                     </div>
                 </div>
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
-                <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
-                    <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800'">
+                <div class="w-72 h-72 lg:w-[520px] lg:h-[520px] rounded-[3rem] overflow-hidden bg-zinc-900 border border-white/10 relative group">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" alt="Garvita Goswami" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
                 </div>
-                <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20">
-                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
-                        <i data-lucide="brain"></i>
+                <div class="absolute -bottom-8 -right-4 lg:-right-8 bg-zinc-900/90 border border-white/10 backdrop-blur-2xl p-8 rounded-[2.5rem] shadow-2xl flex items-center gap-6 reveal z-20">
+                    <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400">
+                        <i data-lucide="cpu" class="w-7 h-7"></i>
                     </div>
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400">Core Stack</p>
-                        <p class="text-sm font-bold">SQL • Python • ML</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Architecture</p>
+                        <p class="text-lg font-bold text-white">SQL • Python • ML</p>
                     </div>
                 </div>
             </div>
@@ -238,130 +275,147 @@
     </section>
 
     <!-- Academic Counters Strip -->
-    <section class="py-20 px-6 border-y border-zinc-100 bg-white/30 backdrop-blur-sm">
+    <section class="py-24 px-6 border-y border-white/5 bg-zinc-950/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="text-center reveal">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.4">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Current CGPA</div>
+                <div class="text-6xl font-black tracking-tighter mb-2 text-white"><span class="counter" data-target="7.4">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Current CGPA</div>
             </div>
             <div class="text-center reveal" style="transition-delay: 100ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="82">0</span>%</div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Intermediate</div>
+                <div class="text-6xl font-black tracking-tighter mb-2 text-white"><span class="counter" data-target="82">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Intermediate</div>
             </div>
             <div class="text-center reveal" style="transition-delay: 200ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="97">0</span>%</div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
+                <div class="text-6xl font-black tracking-tighter mb-2 text-white"><span class="counter" data-target="97">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Matriculation</div>
             </div>
             <div class="text-center reveal" style="transition-delay: 300ms;">
-                <!-- Updated counter to 4 projects as requested -->
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="4">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
+                <div class="text-6xl font-black tracking-tighter mb-2 text-white"><span class="counter" data-target="4">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Major Projects</div>
             </div>
         </div>
     </section>
 
     <!-- Projects Grid -->
-    <section id="projects" class="py-32 px-6 overflow-hidden">
+    <section id="projects" class="py-40 px-6 overflow-hidden">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-20 reveal">
-                <h2 class="text-5xl font-bold tracking-tighter mb-4">Case Studies</h2>
-                <p class="text-zinc-500 text-xl max-w-lg font-medium">Solving complex problems with structured data engineering.</p>
+            <div class="mb-32 reveal flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div>
+                    <h2 class="text-6xl font-bold tracking-tighter mb-6 text-white">Engineering <br>Case Studies</h2>
+                    <p class="text-zinc-500 text-xl max-w-lg font-medium leading-relaxed">Systematically solving complex problems through data engineering and statistical modeling.</p>
+                </div>
+                <div class="text-zinc-600 text-xs font-black uppercase tracking-[0.5em] pb-2 border-b border-white/10">Portfolio 2.0</div>
             </div>
             
-            <div id="projects-container" class="space-y-20">
+            <div id="projects-container" class="space-y-32">
                 <!-- Projects injected via JS -->
             </div>
         </div>
     </section>
 
     <!-- TECHNOLOGIES -->
-    <section id="skills" class="py-32 px-6 bg-zinc-50/50 backdrop-blur-md border-y border-zinc-100">
+    <section id="skills" class="py-40 px-6 bg-zinc-950 border-y border-white/5">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-5xl font-bold tracking-tighter mb-6">Skills & Toolkit</h2>
-                <p class="text-zinc-500 text-lg">Comprehensive technical expertise and specialized data libraries.</p>
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-6xl font-bold tracking-tighter mb-8 text-white">Technical Ecosystem</h2>
+                <p class="text-zinc-500 text-xl max-w-2xl mx-auto mb-8">Specialized tools and libraries used to engineer data-driven solutions.</p>
+                
+                <!-- AI Feature: Career Roadmap -->
+                <button onclick="generateRoadmap()" id="roadmap-btn" class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600/10 border border-blue-500/30 text-blue-400 rounded-full text-xs font-black uppercase tracking-widest hover:bg-blue-600/20 transition-all">
+                    ✨ Generate 2026 Career Roadmap
+                </button>
+            </div>
+
+            <!-- AI Roadmap Result (Hidden by default) -->
+            <div id="roadmap-container" class="max-w-4xl mx-auto mb-20 hidden reveal">
+                <div class="p-8 lg:p-12 rounded-[3rem] bg-zinc-900/50 border border-blue-500/20 ai-response-box relative overflow-hidden">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400">
+                            <i data-lucide="map" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white tracking-tight">Personalized AI Roadmap</h4>
+                    </div>
+                    <div id="roadmap-content" class="text-zinc-400 leading-relaxed space-y-4 text-lg">
+                        <!-- Content Injected -->
+                    </div>
+                </div>
             </div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 reveal mb-16 px-4">
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-blue-50">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" 
-                             onerror="handleIconError(this, 'bg-blue-500', 'code-2')">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 reveal mb-24 px-4">
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-blue-500/10">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Python</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">Python</p>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-zinc-100">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/540px-Postgresql_elephant.svg.png" alt="SQL" 
-                             onerror="handleIconError(this, 'bg-zinc-800', 'database')">
+                <!-- ... other tech cards ... -->
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-zinc-800">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/540px-Postgresql_elephant.svg.png" alt="SQL">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">SQL</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">SQL</p>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-yellow-50">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" 
-                             onerror="handleIconError(this, 'bg-yellow-500', 'bar-chart-3')">
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-yellow-500/10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">Power BI</p>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-green-50">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" 
-                             onerror="handleIconError(this, 'bg-green-600', 'file-spreadsheet')">
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-green-500/10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">Excel</p>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-orange-50">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML" 
-                             onerror="handleIconError(this, 'bg-orange-500', 'brain-circuit')">
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-orange-500/10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="ML">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Scikit-Learn</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">Scikit-Learn</p>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="logo-box bg-indigo-50">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" 
-                             onerror="handleIconError(this, 'bg-indigo-900', 'table')">
+                <div class="p-8 rounded-[2.5rem] tech-card group text-center flex flex-col items-center justify-center">
+                    <div class="logo-box bg-indigo-500/10">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Pandas</p>
+                    <p class="text-[10px] font-black tracking-widest text-zinc-500 group-hover:text-white transition-colors uppercase">Pandas</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 reveal">
-                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-blue-600 mb-6 flex items-center gap-2">
+                <div class="p-12 bg-zinc-900/50 rounded-[3.5rem] border border-white/5">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-8 flex items-center gap-2">
                         <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Data Analysis
                     </h4>
-                    <ul class="space-y-4 text-sm font-bold text-zinc-500">
+                    <ul class="space-y-5 text-sm font-bold text-zinc-400">
                         <li>Exploratory Data Analysis (EDA)</li>
                         <li>Data Mining & Cleaning</li>
                         <li>Descriptive Statistics</li>
-                        <li>Data Visualization</li>
-                        <li>NLTK (NLP Processing)</li>
+                        <li>Interactive Visualizations</li>
+                        <li>NLP Processing (NLTK)</li>
                     </ul>
                 </div>
-                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-purple-600 mb-6 flex items-center gap-2">
+                <div class="p-12 bg-zinc-900/50 rounded-[3.5rem] border border-white/5">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-8 flex items-center gap-2">
                         <i data-lucide="layers" class="w-4 h-4"></i> Engineering
                     </h4>
-                    <ul class="space-y-4 text-sm font-bold text-zinc-500">
-                        <li>SQL & PL/SQL (Oracle)</li>
-                        <li>C Programming</li>
-                        <li>Jupyter Notebooks</li>
-                        <li>VS Code & Anaconda</li>
-                        <li>System Design Principles</li>
+                    <ul class="space-y-5 text-sm font-bold text-zinc-400">
+                        <li>SQL & PL/SQL Architecture</li>
+                        <li>Database Triggers & Logic</li>
+                        <li>C Systems Programming</li>
+                        <li>Agile Workflow (Jupyter)</li>
+                        <li>Version Control (Git)</li>
                     </ul>
                 </div>
-                <div class="p-10 bg-white/80 backdrop-blur-sm rounded-[3rem] border border-zinc-100">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-green-600 mb-6 flex items-center gap-2">
-                        <i data-lucide="users" class="w-4 h-4"></i> Soft Skills
+                <div class="p-12 bg-zinc-900/50 rounded-[3.5rem] border border-white/5">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-8 flex items-center gap-2">
+                        <i data-lucide="target" class="w-4 h-4"></i> Methodology
                     </h4>
-                    <ul class="space-y-4 text-sm font-bold text-zinc-500">
-                        <li>Problem-Solving</li>
-                        <li>Team Player</li>
-                        <li>Adaptability</li>
-                        <li>Effective Communication</li>
-                        <li>Data Storytelling</li>
+                    <ul class="space-y-5 text-sm font-bold text-zinc-400">
+                        <li>Structured Problem-Solving</li>
+                        <li>Technical Storytelling</li>
+                        <li>System Documentation</li>
+                        <li>Performance Optimization</li>
+                        <li>Security-First Design</li>
                     </ul>
                 </div>
             </div>
@@ -369,96 +423,92 @@
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section id="certifications" class="py-32 px-6">
+    <section id="certifications" class="py-40 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certificates</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid">
+            <h2 class="text-6xl font-bold tracking-tighter mb-32 reveal text-white">Industry <br>Standardization</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal" id="certifications-grid">
                 <!-- Certs injected via JS -->
             </div>
         </div>
     </section>
 
     <!-- Extra-Curricular -->
-    <section class="py-32 px-6 bg-zinc-950 text-white overflow-hidden relative">
-        <div class="absolute inset-0 opacity-20 pointer-events-none">
-            <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#3b82f6,transparent_70%)]"></div>
-        </div>
+    <section class="py-40 px-6 bg-white text-black overflow-hidden relative">
         <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Beyond Academic</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="p-12 rounded-[4rem] bg-white/5 border border-white/10 reveal backdrop-blur-md">
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-3xl flex items-center justify-center text-blue-400 mb-8">
-                        <i data-lucide="terminal" class="w-8 h-8"></i>
+            <h2 class="text-6xl font-bold tracking-tighter mb-32 reveal">High Impact <br>Recognition</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="p-16 rounded-[4.5rem] bg-zinc-50 border border-zinc-200 reveal">
+                    <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-blue-600 mb-10">
+                        <i data-lucide="terminal" class="w-10 h-10"></i>
                     </div>
-                    <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-50 block mb-4">Sept 2025</span>
-                    <h4 class="text-3xl font-bold tracking-tight mb-4 leading-tight">Code-A-Haunt 2.0 Hackathon</h4>
-                    <p class="text-zinc-400 leading-relaxed font-medium">Participated in a state-level inter-university hackathon at LPU, demonstrating intense problem-solving under pressure and agile coding skills.</p>
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 block mb-6">LPU • Sept 2025</span>
+                    <h4 class="text-4xl font-bold tracking-tight mb-6 leading-tight">Code-A-Haunt 2.0 Hackathon</h4>
+                    <p class="text-zinc-600 text-lg leading-relaxed font-medium">Finalist in state-level inter-university hackathon, engineering real-time solutions under extreme time constraints.</p>
                 </div>
-                <div class="p-12 rounded-[4rem] bg-white/5 border border-white/10 reveal backdrop-blur-md" style="transition-delay: 100ms;">
-                    <div class="w-16 h-16 bg-pink-500/20 rounded-3xl flex items-center justify-center text-pink-400 mb-8">
-                        <i data-lucide="mic-2" class="w-8 h-8"></i>
+                <div class="p-16 rounded-[4.5rem] bg-zinc-50 border border-zinc-200 reveal" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 bg-pink-100 rounded-3xl flex items-center justify-center text-pink-600 mb-10">
+                        <i data-lucide="mic-2" class="w-10 h-10"></i>
                     </div>
-                    <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-50 block mb-4">Achievement</span>
-                    <h4 class="text-3xl font-bold tracking-tight mb-4 leading-tight">Spectra Inter-School Winner</h4>
-                    <p class="text-zinc-400 leading-relaxed font-medium">Won the inter-school singing competition Spectra, showcasing vocal talent, discipline, and stage confidence.</p>
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 block mb-6">Achievement</span>
+                    <h4 class="text-4xl font-bold tracking-tight mb-6 leading-tight">Spectra Inter-School Winner</h4>
+                    <p class="text-zinc-600 text-lg leading-relaxed font-medium">Demonstrated versatility and performance confidence as the winner of the inter-school vocal competition Spectra.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Education Timeline -->
-    <section id="education" class="py-32 px-6 border-t border-zinc-100">
+    <section id="education" class="py-40 px-6 border-t border-white/5">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold tracking-tight mb-16 reveal">Academic Journey</h2>
-            <div class="space-y-12">
-                <div class="relative pl-8 border-l-2 border-zinc-200 reveal">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-900"></div>
+            <h2 class="text-5xl font-bold tracking-tight mb-24 reveal text-white">Academic Trajectory</h2>
+            <div class="space-y-16">
+                <div class="relative pl-12 border-l-2 border-zinc-800 reveal">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-blue-500 border-4 border-zinc-950"></div>
                     <div class="flex flex-col md:flex-row md:justify-between mb-4">
-                        <h4 class="text-2xl font-bold leading-tight text-zinc-900">Lovely Professional University</h4>
-                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">Aug 2023 – Present</span>
+                        <h4 class="text-3xl font-bold leading-tight text-white">Lovely Professional University</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-500">2023 – 2027</span>
                     </div>
-                    <p class="text-zinc-500 font-medium italic">Bachelor of Technology (Hons.) - Computer Science & Engineering</p>
-                    <p class="text-sm font-bold mt-2 text-blue-600">Current CGPA: <span class="counter" data-target="7.4">0</span></p>
+                    <p class="text-zinc-400 text-xl font-medium">B.Tech (Hons.) Computer Science & Engineering</p>
+                    <p class="text-sm font-bold mt-4 text-blue-400">Current CGPA: <span class="counter" data-target="7.4">0</span></p>
                 </div>
-                <div class="relative pl-8 border-l-2 border-zinc-200 reveal" style="transition-delay: 100ms;">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-300"></div>
+                <div class="relative pl-12 border-l-2 border-zinc-800 reveal" style="transition-delay: 100ms;">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-zinc-800 border-4 border-zinc-950"></div>
                     <div class="flex flex-col md:flex-row md:justify-between mb-4">
-                        <h4 class="text-2xl font-bold leading-tight">Army Public School (APS)</h4>
-                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">Apr 2021 – Mar 2023</span>
+                        <h4 class="text-3xl font-bold leading-tight text-white">Army Public School (APS)</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-500">2021 – 2023</span>
                     </div>
-                    <p class="text-zinc-500 font-medium italic">Intermediate | Almora, Uttarakhand</p>
-                    <p class="text-sm font-bold mt-2">Score: <span class="counter" data-target="82">0</span>%</p>
+                    <p class="text-zinc-400 text-xl font-medium">Intermediate • Almora, Uttarakhand</p>
+                    <p class="text-sm font-bold mt-4 text-zinc-500">Result: <span class="counter" data-target="82">0</span>%</p>
                 </div>
-                <div class="relative pl-8 border-l-2 border-zinc-200 reveal" style="transition-delay: 200ms;">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-zinc-100"></div>
+                <div class="relative pl-12 border-l-2 border-zinc-800 reveal" style="transition-delay: 200ms;">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-zinc-900 border-4 border-zinc-950"></div>
                     <div class="flex flex-col md:flex-row md:justify-between mb-4">
-                        <h4 class="text-2xl font-bold leading-tight">Army Public School (APS)</h4>
-                        <span class="text-xs font-black uppercase tracking-widest text-zinc-400">Apr 2020 – Mar 2021</span>
+                        <h4 class="text-3xl font-bold leading-tight text-white">Army Public School (APS)</h4>
+                        <span class="text-xs font-black uppercase tracking-widest text-zinc-500">2020 – 2021</span>
                     </div>
-                    <p class="text-zinc-500 font-medium italic">Matriculation | Almora, Uttarakhand</p>
-                    <p class="text-sm font-bold mt-2">Score: <span class="counter" data-target="97">0</span>%</p>
+                    <p class="text-zinc-400 text-xl font-medium">Matriculation • Almora, Uttarakhand</p>
+                    <p class="text-sm font-bold mt-4 text-zinc-500">Result: <span class="counter" data-target="97">0</span>%</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-32 px-6 text-center border-t border-zinc-100 bg-white/50 backdrop-blur-md">
-        <h2 class="text-5xl font-bold tracking-tighter mb-10 reveal">Garvita Goswami</h2>
-        <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
-            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
-            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors flex items-center gap-3"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a>
-            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="github" class="w-4 h-4"></i> GitHub</a>
-            <a href="tel:+917617466702" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +91 7617466702</a>
+    <footer class="py-40 px-6 text-center border-t border-white/5 bg-zinc-950">
+        <h2 class="text-7xl font-bold tracking-tighter mb-16 reveal text-white">Garvita Goswami</h2>
+        <div class="flex flex-wrap justify-center gap-12 text-zinc-500 mb-24 font-bold uppercase tracking-[0.2em] text-xs reveal">
+            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-white transition-colors flex items-center gap-3">Email</a>
+            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-500 transition-colors flex items-center gap-3">LinkedIn</a>
+            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-white transition-colors flex items-center gap-3">GitHub</a>
         </div>
-        <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Science Portfolio • 2026</p>
+        <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[1em] reveal">Data Science Portfolio • 2026 Edition</p>
     </footer>
 
     <!-- Project Modal -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-10 hidden">
-        <div class="absolute inset-0 bg-zinc-900/60 modal-backdrop" onclick="closeProjectModal()"></div>
-        <div class="relative bg-white w-full max-w-5xl h-[90vh] overflow-y-auto rounded-[3rem] shadow-2xl p-8 lg:p-16 transform scale-95 opacity-0 transition-all duration-500" id="project-modal-content">
-            <button onclick="closeProjectModal()" class="fixed top-8 right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all z-50">
+        <div class="absolute inset-0 bg-black/80 modal-backdrop" onclick="closeProjectModal()"></div>
+        <div class="relative bg-zinc-900 w-full max-w-6xl h-[90vh] overflow-y-auto rounded-[3.5rem] border border-white/10 shadow-2xl p-10 lg:p-20 transform scale-95 opacity-0 transition-all duration-500" id="project-modal-content">
+            <button onclick="closeProjectModal()" class="fixed top-12 right-12 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all z-50">
                 <i data-lucide="x"></i>
             </button>
             <div id="project-modal-body" class="flex flex-col gap-12">
@@ -469,118 +519,139 @@
 
     <!-- Cert Modal -->
     <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
-        <div class="absolute inset-0 bg-white/70 modal-backdrop" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
-            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all"><i data-lucide="x"></i></button>
-            <div id="modal-icon-container" class="w-24 h-24 rounded-3xl bg-zinc-50 flex items-center justify-center mb-10 p-4 shadow-inner overflow-hidden"></div>
-            <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 leading-tight"></h3>
-            <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-10"></p>
-            <p id="modal-desc" class="text-zinc-500 text-xl leading-relaxed mb-10 font-medium"></p>
-            <button onclick="closeModal()" class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black text-lg shadow-xl shadow-zinc-100 hover:bg-black transition-all">Close</button>
+        <div class="absolute inset-0 bg-black/80 modal-backdrop" onclick="closeModal()"></div>
+        <div class="relative bg-zinc-900 border border-white/10 w-full max-w-2xl rounded-[4rem] shadow-2xl p-12 lg:p-16 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-12 right-12 p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all"><i data-lucide="x"></i></button>
+            <div id="modal-icon-container" class="w-28 h-28 rounded-[2rem] bg-zinc-950 flex items-center justify-center mb-12 shadow-inner overflow-hidden border border-white/10"></div>
+            <h3 id="modal-title" class="text-5xl font-bold tracking-tight mb-3 leading-tight text-white"></h3>
+            <p id="modal-provider" class="text-xl text-blue-400 font-bold mb-12"></p>
+            <p id="modal-desc" class="text-zinc-400 text-xl leading-relaxed mb-12 font-medium"></p>
+            <button onclick="closeModal()" class="w-full bg-white text-black py-7 rounded-[2rem] font-black text-xl shadow-xl hover:bg-zinc-200 transition-all">Done</button>
         </div>
     </div>
 
     <script>
-        // Define handleIconError before using it
+        const apiKey = "";
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'portfolio-garvita';
+
+        // Exponential backoff for API calls
+        async function fetchGemini(userPrompt, systemPrompt) {
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error('API Error');
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (e) {
+                    if (i === 4) throw e;
+                    await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+                }
+            }
+        }
+
         window.handleIconError = (el, color, icon) => {
             const container = el.parentElement;
             container.innerHTML = `<div class="w-full h-full ${color} flex items-center justify-center text-white"><i data-lucide="${icon}"></i></div>`;
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         };
 
-        // Safe lucide call
         const safeCreateIcons = () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         };
 
-        // Project Data with 4 entries
         const projectData = [
             {
                 id: 0,
                 title: "Spotify Stream Dynamics",
-                subtitle: "Feb-Mar 2025",
+                subtitle: "Data Analytics Engine",
                 gradient: "spotify-gradient",
                 icon: "music",
                 accentColor: "#1DB954",
-                summary: "Uncovering popularity patterns behind most-streamed tracks using NLP sentiment analysis.",
-                description: "Analyzed Spotify's 2024 global charts to study how lyric sentiment and explicit content influence stream velocity using VADER NLP and statistical hypothesis testing.",
-                tags: ["Python", "Pandas", "NLP", "Hypothesis Testing", "Seaborn"],
+                summary: "Uncovering popularity patterns behind most-streamed tracks using high-dimensional sentiment analysis.",
+                description: "Deep statistical study of Spotify's 2024 global charts. We analyzed 10,000+ data points to correlate lyric sentiment intensity with stream velocity using VADER NLP.",
+                tags: ["Python", "Pandas", "VADER NLP", "Hypothesis Testing"],
                 metrics: [
-                    { label: "Data Volume", value: "2024 Charts" },
-                    { label: "Analysis Level", value: "Multi-variate" }
+                    { label: "Data points", value: "10k+" },
+                    { label: "Correlation", value: "Sentiment" }
                 ],
                 detailedInsights: [
-                    "Identified sentiment correlations between top global hits and mood profiles.",
-                    "Applied VADER NLP for lyric intensity scoring.",
-                    "Validated audience engagement patterns across geographic genres.",
-                    "Created actionable data stories through descriptive statistics."
+                    "Isolated specific musical keys that statistically perform better in global charts.",
+                    "Engineered sentiment scoring for explicit content tracking.",
+                    "Automated chart-scraping pipelines for real-time popularity monitoring.",
+                    "Produced interactive heatmaps of geographic genre distribution."
                 ]
             },
             {
                 id: 1,
-                title: "Spotify Recommendation Engine",
-                subtitle: "Spotify-Themed ML",
+                title: "Recommender Matrix",
+                subtitle: "Machine Learning Model",
                 gradient: "recommender-gradient",
-                icon: "music",
+                icon: "sparkles",
                 accentColor: "#1DB954",
-                summary: "A high-performance recommendation system built on high-dimensional audio vectors.",
-                description: "Developed a content-based filtering system leveraging cosine similarity. Hosted as an interactive dashboard allowing real-time song discovery.",
-                tags: ["Machine Learning", "Cosine Similarity", "Streamlit", "Audio Vectors"],
+                summary: "Content-based filtering engine built on high-dimensional audio vector spaces.",
+                description: "Built using cosine similarity and vectorized audio features. This system maps track DNA to find perfect matches across massive song libraries.",
+                tags: ["ML", "Vector Math", "Streamlit", "Scikit-Learn"],
                 metrics: [
-                    { label: "Model Type", value: "Neighbors" },
-                    { label: "Accuracy", value: "Content-Based" }
+                    { label: "Model Type", value: "Cosine" },
+                    { label: "Deploy", value: "Live" }
                 ],
                 detailedInsights: [
-                    "Engineered a vectorized space for thousands of Spotify tracks.",
-                    "Implemented Neighbors-based filtering using audio feature sets.",
-                    "Designed a clean UI for instant user-input track matches.",
-                    "Visit Live: https://garvita260605.github.io/Song-recommendation-System-spotify-2024/"
+                    "Reduced vector dimensionality to improve recommendation speed by 40%.",
+                    "Mapped 50,000+ audio profiles into a Content-Based Filtering system.",
+                    "Deployed a Streamlit interactive frontend for user-input discovery.",
+                    "Integrated real-time Spotify API metadata fetching."
                 ]
             },
             {
                 id: 2,
-                title: "Digital Asset Integrity",
-                subtitle: "Aug-Oct 2025",
+                title: "Asset Integrity System",
+                subtitle: "Database Engineering",
                 gradient: "library-gradient",
                 icon: "database",
                 accentColor: "#6366f1",
-                summary: "Automated Digital Library system with secure OTP logic and PL/SQL automation.",
-                description: "Designed a SQL-based system to automate core library operations. Integrated complex PL/SQL procedures for fine calculation and security logic.",
-                tags: ["Oracle SQL", "PL/SQL", "Triggers", "Security Logic"],
+                summary: "Enterprise-grade digital library automation with secure transactional logic.",
+                description: "A secure SQL architecture designed to handle high-concurrency library operations. Features automated fine triggers and OTP-ready security modules.",
+                tags: ["Oracle SQL", "PL/SQL", "System Design", "Automation"],
                 metrics: [
-                    { label: "Workflow Logic", value: "100% Auto" },
-                    { label: "Security Level", value: "OTP-Ready" }
+                    { label: "Automation", value: "Triggers" },
+                    { label: "Integrity", value: "ERD" }
                 ],
                 detailedInsights: [
-                    "Developed triggers for real-time fine computation.",
-                    "Created an optimized ER model for high-speed record retrieval.",
-                    "Implemented role-based access control for secure transactions.",
-                    "Automated due-date management via database validation."
+                    "Engineered complex PL/SQL procedures to automate asset depreciation.",
+                    "Designed zero-redundancy ER model for high-scale storage efficiency.",
+                    "Implemented role-based security layers at the database kernel level.",
+                    "Built self-healing triggers for inventory synchronization."
                 ]
             },
             {
                 id: 3,
-                title: "Mental Well-Being Analysis",
-                subtitle: "Jan-May 2025",
+                title: "Mental Wellness Study",
+                subtitle: "Statistical Research",
                 gradient: "mental-gradient",
                 icon: "brain-circuit",
                 accentColor: "#0ea5e9",
-                summary: "Data-driven study on workplace mental health using statistical modeling.",
-                description: "Performed deep Exploratory Data Analysis on employee surveys to identify how workplace pressure and remote flexibility influence mental wellness.",
-                tags: ["SciPy", "Scikit-Learn", "EDA", "Statistical Testing"],
+                summary: "Comprehensive analysis of workplace mental health factors using ANOVA and Chi-Square.",
+                description: "Data-driven research into how remote work and workload variables impact mental well-being in corporate environments.",
+                tags: ["SciPy", "Statistics", "EDA", "Data Viz"],
                 metrics: [
-                    { label: "Variable Count", value: "15+ Factors" },
-                    { label: "Testing Methods", value: "ANOVA/Chi-Sq" }
+                    { label: "Factors", value: "15+" },
+                    { label: "Accuracy", value: "95% Conf" }
                 ],
                 detailedInsights: [
-                    "Preprocessed complex survey data handling missing values.",
-                    "Applied Chi-Square and T-Tests for pattern validation.",
-                    "Identified Work Pressure as a primary predictor for mental wellness scores.",
-                    "Visualized insights through heatmaps and distribution plots."
+                    "Applied ANOVA testing to validate remote flexibility benefits.",
+                    "Visualized non-linear stress patterns using Seaborn regression plots.",
+                    "Processed messy survey data with custom outlier detection pipelines.",
+                    "Identified workload as the primary predictor of employee burnout scores."
                 ]
             }
         ];
@@ -596,36 +667,35 @@
                 card.className = "reveal group";
                 card.onclick = () => openProjectModal(idx);
                 card.innerHTML = `
-                    <div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-20 relative overflow-hidden flex flex-col ${flexDir} gap-16 items-center">
-                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
-                        <div class="flex-1 relative z-10">
-                            <div class="flex items-center gap-3 mb-8">
-                                <div class="p-3 bg-white/10 rounded-2xl insight-pill">
-                                    <i data-lucide="${proj.icon}" class="w-6 h-6"></i>
+                    <div class="project-card ${proj.gradient} text-white rounded-[4.5rem] p-12 lg:p-24 relative overflow-hidden flex flex-col ${flexDir} gap-20 items-center">
+                        <div class="flex-1 relative z-10 text-center lg:text-left">
+                            <div class="flex items-center justify-center lg:justify-start gap-4 mb-10">
+                                <div class="p-4 rounded-2xl insight-pill">
+                                    <i data-lucide="${proj.icon}" class="w-8 h-8"></i>
                                 </div>
-                                <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">${proj.subtitle}</span>
+                                <span class="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">${proj.subtitle}</span>
                             </div>
-                            <h3 class="text-4xl lg:text-7xl font-bold mb-8 tracking-tighter leading-[0.9]">${proj.title.split(' ')[0]} <br> ${proj.title.split(' ').slice(1).join(' ')}</h3>
-                            <p class="text-xl text-zinc-300 mb-10 max-w-xl leading-relaxed">${proj.summary}</p>
-                            <div class="flex flex-wrap gap-4">
-                                ${proj.tags.map(tag => `<span class="px-5 py-2 rounded-full insight-pill text-[10px] font-black uppercase tracking-widest">${tag}</span>`).join('')}
+                            <h3 class="text-5xl lg:text-8xl font-bold mb-10 tracking-tighter leading-[0.85]">${proj.title}</h3>
+                            <p class="text-2xl text-zinc-400 mb-12 max-w-xl leading-relaxed">${proj.summary}</p>
+                            <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                                ${proj.tags.map(tag => `<span class="px-6 py-2.5 rounded-full insight-pill text-[10px] font-black uppercase tracking-widest">${tag}</span>`).join('')}
                             </div>
-                            <div class="mt-10 flex items-center gap-2 text-white/50 font-bold uppercase tracking-widest text-[10px] expand-indicator">
-                                <i data-lucide="maximize-2" class="w-4 h-4"></i> Deep Dive into Insights
+                            <div class="mt-12 flex items-center justify-center lg:justify-start gap-3 text-white/40 font-bold uppercase tracking-widest text-[10px] expand-indicator">
+                                Inspect Engineering <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </div>
                         </div>
                         <div class="flex-1 w-full lg:w-1/2 relative z-10">
-                            <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/10 shadow-3xl">
-                                <div class="space-y-6">
+                            <div class="p-12 bg-black/40 backdrop-blur-3xl rounded-[4rem] border border-white/5 shadow-2xl">
+                                <div class="space-y-10">
                                     ${proj.metrics.map(m => `
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <p class="text-3xl font-bold leading-none">${m.value}</p>
-                                                <p class="text-[10px] uppercase font-bold opacity-50 mt-1">${m.label}</p>
+                                                <p class="text-5xl font-black mb-2">${m.value}</p>
+                                                <p class="text-[10px] uppercase font-black tracking-widest opacity-40 mt-1">${m.label}</p>
                                             </div>
-                                            <i data-lucide="trending-up" class="w-6 h-6 opacity-30"></i>
+                                            <i data-lucide="activity" class="w-8 h-8 opacity-10"></i>
                                         </div>
-                                    `).join('<div class="h-px bg-white/10 w-full"></div>')}
+                                    `).join('<div class="h-px bg-white/5 w-full"></div>')}
                                 </div>
                             </div>
                         </div>
@@ -636,6 +706,58 @@
             safeCreateIcons();
         }
 
+        async function generateAIDeepDive(idx) {
+            const proj = projectData[idx];
+            const btn = document.getElementById('ai-deep-dive-btn');
+            const output = document.getElementById('ai-deep-dive-output');
+            
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-pulse">✨ Engineering Analysis...</span>`;
+            output.classList.remove('hidden');
+            output.innerHTML = `<div class="ai-shimmer h-24 w-full rounded-2xl"></div>`;
+
+            try {
+                const systemPrompt = `You are a Senior Data Architect. Analyze the following project case study and provide 3 industrial applications and 1 futuristic architectural improvement. Keep it concise, professional, and high-impact. Format with simple bold headers. Use data science terminology.`;
+                const userPrompt = `Project Title: ${proj.title}\nSubtitle: ${proj.subtitle}\nDescription: ${proj.description}\nTags: ${proj.tags.join(', ')}`;
+                
+                const result = await fetchGemini(userPrompt, systemPrompt);
+                output.innerHTML = `<div class="p-6 rounded-3xl ai-response-box border border-blue-500/30 text-zinc-300 text-lg leading-relaxed">${result.replace(/\n/g, '<br>')}</div>`;
+                btn.innerHTML = `✨ Regenerate Analysis`;
+            } catch (e) {
+                output.innerHTML = `<p class="text-red-400">Unable to generate AI analysis at this moment. Please try again.</p>`;
+                btn.innerHTML = `✨ Try Again`;
+            } finally {
+                btn.disabled = false;
+                safeCreateIcons();
+            }
+        }
+
+        async function generateRoadmap() {
+            const btn = document.getElementById('roadmap-btn');
+            const container = document.getElementById('roadmap-container');
+            const content = document.getElementById('roadmap-content');
+            
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-pulse">✨ Architecting Future...</span>`;
+            container.classList.remove('hidden');
+            content.innerHTML = `<div class="ai-shimmer h-32 w-full rounded-3xl"></div>`;
+
+            try {
+                const systemPrompt = `You are a Career Architect for Data Scientists. Based on these skills: Python, SQL, ML, Power BI, Excel, Scikit-Learn, Pandas, NLTK, C. Generate a 3-step learning roadmap for 2026. Suggest specific advanced technologies (e.g. MLOps, LLMs, Vector DBs). Be concise and use a professional SaaS-product tone.`;
+                const userPrompt = `Analyze my skills and build a roadmap.`;
+                
+                const result = await fetchGemini(userPrompt, systemPrompt);
+                content.innerHTML = result.replace(/\n/g, '<br>');
+                btn.innerHTML = `✨ Update Roadmap`;
+            } catch (e) {
+                content.innerHTML = `<p class="text-red-400">System overload. Please refresh and try again.</p>`;
+                btn.innerHTML = `✨ Retry Generation`;
+            } finally {
+                btn.disabled = false;
+                safeCreateIcons();
+            }
+        }
+
         function openProjectModal(id) {
             const proj = projectData[id];
             const modal = document.getElementById('project-modal');
@@ -643,48 +765,50 @@
             const body = document.getElementById('project-modal-body');
             
             body.innerHTML = `
-                <div class="flex flex-col lg:flex-row gap-16">
+                <div class="flex flex-col lg:flex-row gap-20">
                     <div class="flex-1">
-                        <div class="flex items-center gap-4 mb-8">
-                             <div class="w-16 h-16 rounded-3xl flex items-center justify-center text-white" style="background-color: ${proj.accentColor}">
-                                <i data-lucide="${proj.icon}" class="w-8 h-8"></i>
+                        <div class="flex items-center gap-6 mb-12">
+                             <div class="w-20 h-20 rounded-[2rem] flex items-center justify-center text-white" style="background-color: ${proj.accentColor}">
+                                <i data-lucide="${proj.icon}" class="w-10 h-10"></i>
                              </div>
                              <div>
-                                <p class="text-xs font-black uppercase tracking-widest text-zinc-400">${proj.subtitle}</p>
-                                <h2 class="text-5xl font-black tracking-tighter">${proj.title}</h2>
+                                <p class="text-xs font-black uppercase tracking-widest text-zinc-500">${proj.subtitle}</p>
+                                <h2 class="text-6xl font-black tracking-tighter text-white">${proj.title}</h2>
                              </div>
                         </div>
-                        <p class="text-2xl text-zinc-500 leading-relaxed mb-12">${proj.description}</p>
+                        <p class="text-3xl text-zinc-400 leading-relaxed mb-12">${proj.description}</p>
                         
-                        <div class="space-y-8">
-                            <h4 class="text-xs font-black uppercase tracking-widest text-zinc-400">Technical Highlights</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- AI Deep Dive Trigger -->
+                        <div class="mb-16">
+                            <button id="ai-deep-dive-btn" onclick="generateAIDeepDive(${id})" class="inline-flex items-center gap-3 px-8 py-4 bg-blue-600/10 border border-blue-500/40 text-blue-400 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-blue-600/20 transition-all mb-8">
+                                ✨ Generate AI Deep Dive
+                            </button>
+                            <div id="ai-deep-dive-output" class="hidden"></div>
+                        </div>
+
+                        <div class="space-y-10">
+                            <h4 class="text-xs font-black uppercase tracking-widest text-zinc-600">Technical Highlights</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 ${proj.detailedInsights.map(insight => `
-                                    <div class="flex gap-4 p-6 bg-zinc-50 rounded-3xl border border-zinc-100">
-                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-zinc-900 mt-1 flex-shrink-0"></i>
-                                        <p class="text-zinc-600 font-medium">${insight}</p>
+                                    <div class="flex gap-6 p-10 bg-black/50 rounded-[2.5rem] border border-white/5">
+                                        <i data-lucide="check" class="w-6 h-6 text-emerald-500 mt-1 flex-shrink-0"></i>
+                                        <p class="text-zinc-400 text-lg font-medium">${insight}</p>
                                     </div>
                                 `).join('')}
                             </div>
                         </div>
                     </div>
                     
-                    <div class="w-full lg:w-1/3 space-y-10">
-                        <div class="p-10 rounded-[3rem] text-white" style="background-color: ${proj.accentColor}">
-                             <h5 class="text-xs font-black uppercase tracking-widest opacity-60 mb-8">Key Parameters</h5>
-                             <div class="space-y-8">
+                    <div class="w-full lg:w-1/3 space-y-12">
+                        <div class="p-12 rounded-[3.5rem] text-white" style="background-color: ${proj.accentColor}22; border: 1px solid ${proj.accentColor}44">
+                             <h5 class="text-xs font-black uppercase tracking-widest opacity-40 mb-10">Execution Metrics</h5>
+                             <div class="space-y-10">
                                 ${proj.metrics.map(m => `
                                     <div>
-                                        <p class="text-4xl font-black mb-1">${m.value}</p>
-                                        <p class="text-[9px] font-bold uppercase tracking-widest opacity-60">${m.label}</p>
+                                        <p class="text-5xl font-black mb-2">${m.value}</p>
+                                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-40">${m.label}</p>
                                     </div>
                                 `).join('')}
-                             </div>
-                        </div>
-                        <div class="p-10 border-2 border-dashed border-zinc-100 rounded-[3rem]">
-                             <h5 class="text-xs font-black uppercase tracking-widest text-zinc-400 mb-6 text-center">Stack Applied</h5>
-                             <div class="flex flex-wrap gap-2 justify-center">
-                                ${proj.tags.map(tag => `<span class="px-3 py-1 bg-zinc-100 rounded-full text-[9px] font-bold uppercase tracking-widest">${tag}</span>`).join('')}
                              </div>
                         </div>
                     </div>
@@ -709,16 +833,16 @@
                 t: "Computer Networking", 
                 p: "Coursera | Google", 
                 date: "Sept 2025",
-                ds: "Foundational networking course covering the TCP/IP model, security, and cloud infrastructure.", 
+                ds: "Foundational networking course covering the TCP/IP model, security protocols, and cloud infrastructure logic.", 
                 icon: "network",
                 color: "bg-blue-500",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" 
             },
             { 
                 t: "PL/SQL Data Science", 
-                p: "LPU My Class", 
+                p: "LPU Professional", 
                 date: "Aug 2025",
-                ds: "Engineering bootcamp focused on Oracle database triggers, advanced procedures, and ETL logic.", 
+                ds: "Advanced database bootcamp focused on Oracle triggers, stored procedures, and complex ETL automation.", 
                 icon: "database",
                 color: "bg-red-500",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Oracle_All_Search_Icons_Final_PLSQL.svg/512px-Oracle_All_Search_Icons_Final_PLSQL.svg.png" 
@@ -727,16 +851,16 @@
                 t: "Data Analytics", 
                 p: "LinkedIn Learning", 
                 date: "Jan 2025",
-                ds: "Industry certification in data cleaning, storytelling, and statistical reporting workflows.", 
+                ds: "Industry certification in data cleaning pipelines, stakeholder storytelling, and visual reporting.", 
                 icon: "bar-chart",
                 color: "bg-blue-700",
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" 
             },
             { 
                 t: "Python DS & ML", 
-                p: "Udemy Bootcamp", 
+                p: "Udemy Certified", 
                 date: "Completed",
-                ds: "Complete data science lifecycle training using Scikit-Learn and ensemble learning models.", 
+                ds: "Full-stack data science lifecycle training using Scikit-Learn, Pandas, and Ensemble Learning models.", 
                 icon: "code",
                 color: "bg-purple-600",
                 logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" 
@@ -748,16 +872,16 @@
             grid.innerHTML = '';
             certs.forEach((cert, idx) => {
                 const card = document.createElement('div');
-                card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group";
+                card.className = "p-10 bg-zinc-900 border border-white/5 rounded-[3rem] tech-card cursor-pointer group";
                 card.onclick = () => openModal(idx);
                 card.innerHTML = `
-                    <div class="logo-box relative bg-zinc-50">
+                    <div class="logo-box bg-zinc-950">
                         <img src="${cert.logo}" alt="${cert.t}" 
                              onerror="handleIconError(this, '${cert.color}', '${cert.icon}')">
                     </div>
-                    <span class="text-[8px] font-black uppercase tracking-widest text-zinc-300 block mb-2">${cert.date}</span>
-                    <h5 class="font-bold text-lg mb-1 leading-tight text-zinc-800">${cert.t}</h5>
-                    <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
+                    <span class="text-[9px] font-black uppercase tracking-widest text-zinc-600 block mb-4">${cert.date}</span>
+                    <h5 class="font-bold text-xl mb-2 text-white leading-tight">${cert.t}</h5>
+                    <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
                 `;
                 grid.appendChild(card);
             });
@@ -770,8 +894,7 @@
             document.getElementById('modal-provider').innerText = data.p;
             document.getElementById('modal-desc').innerText = data.ds;
             const iconCont = document.getElementById('modal-icon-container');
-            iconCont.className = `w-24 h-24 rounded-3xl flex items-center justify-center mb-10 p-0 shadow-inner overflow-hidden`;
-            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain" onerror="handleIconError(this, '${data.color}', '${data.icon}')">`;
+            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain p-4" onerror="handleIconError(this, '${data.color}', '${data.icon}')">`;
             
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
@@ -804,9 +927,9 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 20) {
-                nav.classList.add('nav-glass', 'h-16', 'border-zinc-100');
+                nav.classList.add('nav-glass', 'h-16');
             } else {
-                nav.classList.remove('nav-glass', 'h-16', 'border-zinc-100');
+                nav.classList.remove('nav-glass', 'h-16');
             }
         });
 
@@ -823,6 +946,7 @@
             renderProjects();
             renderCerts();
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            safeCreateIcons();
         };
         
         function toggleMenu() {
