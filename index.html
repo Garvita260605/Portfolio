@@ -95,7 +95,7 @@
             transform: translateY(-20px);
         }
         #project-display-container.active {
-            max-height: 3000px;
+            max-height: 20000px;
             opacity: 1;
             transform: translateY(0);
             margin-top: 2rem;
@@ -436,7 +436,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="lightbulb" class="animate-pulse-soft"></i></div>
+                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600 group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300"><i data-lucide="lightbulb" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Problem-Solving</h4>
@@ -444,7 +444,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="users" class="animate-float-subtle"></i></div>
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-125 group-hover:-translate-y-2 transition-transform duration-300"><i data-lucide="users" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="98">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Team Player</h4>
@@ -452,7 +452,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-110 group-hover:rotate-180 transition-transform duration-700"><i data-lucide="refresh-cw" class="animate-spin-slow"></i></div>
+                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-125 group-hover:rotate-180 transition-all duration-700"><i data-lucide="refresh-cw" class="animate-spin-slow"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Adaptability</h4>
@@ -460,7 +460,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="mic" class="animate-float-subtle"></i></div>
+                            <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300"><i data-lucide="mic" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Effective Communication</h4>
@@ -468,7 +468,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="book-open" class="animate-pulse-soft"></i></div>
+                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 group-hover:scale-125 group-hover:-rotate-6 transition-transform duration-300"><i data-lucide="book-open" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Storytelling</h4>
@@ -693,26 +693,24 @@ y = np.array([0, 1])
             }
         ];
 
-        let activeProjectIndex = -1;
+        // Track array of active projects
+        let activeProjectIds = [];
 
         function buildSlicerHtml(projectsArray, containerEl) {
             containerEl.innerHTML = '';
             projectsArray.forEach((proj, index) => {
                 const slice = document.createElement('div');
-                // Create stagger animation based on index
                 slice.className = "relative flex-1 group cursor-pointer transition-all duration-500 animate-hero";
                 slice.style.animationDelay = `${index * 100}ms`;
                 
-                // Set precise z-index to allow overlapping margins
                 slice.style.zIndex = 50 - index; 
                 if (index !== 0) slice.style.marginLeft = "-24px";
                 
                 slice.onclick = () => dropDownProject(proj.id);
                 
-                const isActive = proj.id === activeProjectIndex;
+                const isActive = activeProjectIds.includes(proj.id);
                 let iconClass = "w-5 h-5 lg:w-6 lg:h-6 text-white opacity-60 group-hover:opacity-100 transition-transform duration-300 group-hover:scale-110";
                 
-                // Add tailored icon animations
                 if (proj.icon === 'music') iconClass += " animate-logo-pulse";
                 else if (proj.icon === 'cpu') iconClass += " animate-logo-rotate";
                 else if (proj.icon === 'database') iconClass += " animate-float-subtle";
@@ -727,7 +725,6 @@ y = np.array([0, 1])
                     </div>`;
                 }
 
-                // Adjust slice styling based on Active state
                 let heightClass = "h-16";
                 if (isActive) {
                     heightClass = "h-20 scale-[1.03] shadow-2xl z-[60]";
@@ -744,7 +741,6 @@ y = np.array([0, 1])
                 containerEl.appendChild(slice);
             });
 
-            // Add the ending chevron tip if there are items
             if (projectsArray.length > 0) {
                 const endTip = document.createElement('div');
                 endTip.className = "h-16 w-12 bg-zinc-50 chevron-end transition-all duration-500 animate-hero";
@@ -765,8 +761,7 @@ y = np.array([0, 1])
             let topProjects = [];
             let bottomProjects = [];
 
-            if (activeProjectIndex === -1) {
-                // If nothing clicked: Top shows ALL, Bottom is hidden
+            if (activeProjectIds.length === 0) {
                 topProjects = projectData;
                 bottomProjects = [];
                 
@@ -775,22 +770,17 @@ y = np.array([0, 1])
                 bottomWrap.style.pointerEvents = 'none';
                 setTimeout(() => bottomContainer.innerHTML = '', 500);
             } else {
-                // Stepped Logic based on active Index
-                topProjects = projectData.slice(0, activeProjectIndex + 1);
+                // Filter and sort chronologically
+                topProjects = projectData.filter(p => activeProjectIds.includes(p.id)).sort((a,b) => a.id - b.id);
+                bottomProjects = projectData.filter(p => !activeProjectIds.includes(p.id)).sort((a,b) => a.id - b.id);
                 
-                if (activeProjectIndex < projectData.length - 1) {
-                    // Remaining timeline pieces at the bottom
-                    bottomProjects = projectData.slice(activeProjectIndex + 1);
+                if (bottomProjects.length > 0) {
                     bottomTitle.innerText = "Explore Next Projects";
-                    
                     bottomWrap.style.opacity = '1';
                     bottomWrap.style.transform = 'translateY(0)';
                     bottomWrap.style.pointerEvents = 'auto';
                 } else {
-                    // Last project reached -> show the entire complete timeline
-                    bottomProjects = projectData;
                     bottomTitle.innerText = "Complete Project Journey";
-                    
                     bottomWrap.style.opacity = '1';
                     bottomWrap.style.transform = 'translateY(0)';
                     bottomWrap.style.pointerEvents = 'auto';
@@ -800,29 +790,30 @@ y = np.array([0, 1])
             buildSlicerHtml(topProjects, topContainer);
             if (bottomProjects.length > 0) {
                 buildSlicerHtml(bottomProjects, bottomContainer);
+            } else {
+                bottomContainer.innerHTML = '';
             }
         }
 
-        function dropDownProject(idx) {
+        function renderCards() {
             const container = document.getElementById('project-display-container');
             
-            // If clicking the currently active project, close it
-            if (activeProjectIndex === idx) {
-                activeProjectIndex = -1;
+            if (activeProjectIds.length === 0) {
                 container.classList.remove('active');
-                updateTimelines();
+                setTimeout(() => container.innerHTML = '', 1000);
                 return;
             }
+
+            container.classList.add('active');
+            container.innerHTML = ''; 
             
-            // Close animation first
-            container.classList.remove('active');
+            // Loop through active projects in chronological order
+            const sortedIds = [...activeProjectIds].sort((a, b) => a - b);
             
-            setTimeout(() => {
-                activeProjectIndex = idx;
-                const proj = projectData[idx];
-                const projectNumberFormatted = String(idx + 1).padStart(2, '0');
+            sortedIds.forEach((id) => {
+                const proj = projectData.find(p => p.id === id);
+                const projectNumberFormatted = String(proj.id + 1).padStart(2, '0');
                 
-                // Setup specific visualizers inside the dropped card
                 let internalVisualizer = "";
                 if (proj.icon === 'music') {
                     internalVisualizer = `
@@ -835,14 +826,14 @@ y = np.array([0, 1])
                         </div>`;
                 }
 
-                container.innerHTML = `
-                    <div class="project-card ${proj.gradient} text-white rounded-[3rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group transition-all duration-700">
+                const cardHtml = `
+                    <div id="project-card-${proj.id}" class="project-card ${proj.gradient} text-white rounded-[3rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group transition-all duration-700 mb-12 animate-hero">
                         <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10 mb-12">
                             <div class="flex-1 animate-hero" style="animation-delay: 100ms">
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8 animate-pulse-soft"></i></div>
                                     <div>
-                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT <span class="counter" data-pad="2" data-target="${idx + 1}">00</span> • ${proj.subtitle}</span>
+                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT <span class="counter" data-pad="2" data-target="${proj.id + 1}">00</span> • ${proj.subtitle}</span>
                                         <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
                                     </div>
                                 </div>
@@ -884,27 +875,38 @@ y = np.array([0, 1])
                         </div>
                     </div>`;
                 
-                // Show drop down
-                container.classList.add('active');
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = cardHtml;
+                container.appendChild(wrapper.firstElementChild);
+            });
+        }
+
+        function dropDownProject(idx) {
+            if (activeProjectIds.includes(idx)) {
+                // If it's already open, click removes it
+                activeProjectIds = activeProjectIds.filter(id => id !== idx);
+            } else {
+                // Otherwise, add it to the open list
+                activeProjectIds.push(idx);
+            }
+            
+            updateTimelines();
+            renderCards();
+
+            setTimeout(() => {
+                const container = document.getElementById('project-display-container');
                 
-                // Shift timelines based on active index
-                updateTimelines();
-
-                // Trigger counters inside the dynamically injected container
-                setTimeout(() => {
-                    container.querySelectorAll('.counter').forEach(el => {
-                        el.dataset.animated = ""; // reset state
-                        animateCounter(el);
-                    });
-                }, 50);
-
-                // Scroll view smoothly to the project title
-                setTimeout(() => {
-                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-
+                // Automatically scroll down to the specific project card if we just opened it
+                if (activeProjectIds.includes(idx)) {
+                    const targetCard = document.getElementById(`project-card-${idx}`);
+                    if (targetCard) targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                container.querySelectorAll('.counter').forEach(el => {
+                    if (el.dataset.animated !== "true") animateCounter(el);
+                });
                 safeCreateIcons();
-            }, 300); // Small wait for close animation to finish
+            }, 50);
         }
 
         const certs = [
