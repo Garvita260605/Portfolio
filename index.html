@@ -118,28 +118,6 @@
         }
         .reveal.visible .skill-meter-fill { width: var(--percent); }
 
-        /* --- LOGO ANIMATIONS --- */
-        .logo-visualizer-bar {
-            width: 3px;
-            background: white;
-            border-radius: 1px;
-            animation: logo-bounce 0.8s ease-in-out infinite alternate;
-        }
-        @keyframes logo-bounce { from { height: 4px; } to { height: 18px; } }
-
-        @keyframes logo-pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .animate-logo-pulse { animation: logo-pulse 2s ease-in-out infinite; }
-
-        @keyframes logo-rotate-subtle {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .animate-logo-rotate { animation: logo-rotate-subtle 10s linear infinite; }
-
         /* --- PROJECT DROP DOWN --- */
         #project-display-container {
             max-height: 0;
@@ -188,25 +166,19 @@
         }
         @media (max-width: 768px) { .edu-node { left: 20px; } }
 
-        /* --- BENTO STYLES (FLASHY) --- */
-        .bento-card {
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            perspective: 1000px;
+        /* --- LOGO ANIMATIONS --- */
+        @keyframes logo-bounce { from { height: 4px; } to { height: 18px; } }
+        .logo-visualizer-bar { width: 3px; background: white; border-radius: 1px; animation: logo-bounce 0.8s ease-in-out infinite alternate; }
+        
+        @keyframes logo-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
-        .bento-inner {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.02);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-style: preserve-3d;
-            overflow: hidden;
-        }
-        .bento-card:hover .bento-inner {
-            transform: translateY(-10px) rotateX(2deg) rotateY(-1deg);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.08);
-            border-color: #3b82f6;
-        }
+        .animate-logo-pulse { animation: logo-pulse 2s ease-in-out infinite; }
+
+        @keyframes logo-rotate-subtle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-logo-rotate { animation: logo-rotate-subtle 10s linear infinite; }
 
         .gradient-text-animate {
             background: linear-gradient(to right, #2D1F27, #3b82f6, #2D1F27);
@@ -217,6 +189,11 @@
         }
         @keyframes shine { to { background-position: 200% center; } }
 
+        /* --- BENTO CARD DEPTH --- */
+        .bento-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); perspective: 1000px; }
+        .bento-inner { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid #f1f5f9; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.02); transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; overflow: hidden; }
+        .bento-card:hover .bento-inner { transform: translateY(-5px); box-shadow: 0 40px 80px -20px rgba(0,0,0,0.05); border-color: #3b82f6; }
+
         /* --- CODE & AUDIO ANIMATIONS --- */
         @keyframes scroll-code { from { transform: translateY(0); } to { transform: translateY(-50%); } }
         .code-scroller { animation: scroll-code 20s linear infinite; font-family: 'Fira Code', monospace; font-size: 10px; white-space: pre; pointer-events: none; }
@@ -226,7 +203,7 @@
 </head>
 <body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
 
-    <!-- Global Background -->
+    <!-- Global Canvas Background -->
     <div class="bg-canvas">
         <div class="data-grid"></div>
         <div class="blob blob-1"></div>
@@ -320,10 +297,16 @@
                 <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Major Projects</h2>
                 <p class="text-zinc-500 text-xl max-w-lg font-medium">Core implementations in machine learning and data engineering.</p>
             </div>
+
+            <!-- Top Timeline Slicer -->
             <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide reveal">
                 <div id="projects-timeline-top" class="min-w-[1000px] flex items-center relative h-24"></div>
             </div>
+
+            <!-- The Drop Down Container -->
             <div id="project-display-container"></div>
+
+            <!-- The Bottom Timeline Slicer -->
             <div id="bottom-slicer-wrap" class="hidden opacity-0 transition-all duration-700 reveal">
                 <div class="pt-8 border-t border-zinc-100">
                     <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center">Project Navigator</p>
@@ -335,106 +318,134 @@
         </div>
     </section>
 
-    <!-- TECHNICAL STACK -->
-    <section id="skills" class="py-32 px-6 border-y border-zinc-100">
+    <!-- TECHNICAL STACK GRID (RESTORED) -->
+    <section id="skills" class="py-32 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6 text-[#1a1a1a]">Technical Stack</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Python -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">Python</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Python</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-600" style="--percent: 92%"></div></div>
                 </div>
                 <!-- SQL -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">SQL / PL-SQL</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">SQL / PL-SQL</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-zinc-900" style="--percent: 88%"></div></div>
                 </div>
                 <!-- Power BI -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="bar-chart-3"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="80">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">Power BI</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Power BI</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-yellow-500" style="--percent: 80%"></div></div>
                 </div>
                 <!-- ML -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600"><i data-lucide="brain-circuit"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="82">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">ML Architectures</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">ML Architectures</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-orange-500" style="--percent: 82%"></div></div>
                 </div>
                 <!-- Stats -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i data-lucide="binary"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">Statistical Analysis</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Statistical Analysis</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-indigo-600" style="--percent: 85%"></div></div>
                 </div>
                 <!-- EDA -->
-                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600"><i data-lucide="filter"></i></div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">EDA & Cleaning</h4>
+                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">EDA & Cleaning</h4>
                     <div class="skill-meter-bg"><div class="skill-meter-fill bg-emerald-600" style="--percent: 95%"></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SOFT SKILLS SEGMENT -->
+    <!-- SOFT SKILLS SEGMENT (DEDICATED) -->
     <section id="soft-skills" class="py-32 px-6 bg-zinc-50/30">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-20 reveal">
+            <div class="mb-20 reveal text-center lg:text-left">
                 <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Core Competencies</h2>
-                <p class="text-zinc-500 text-xl max-w-lg font-medium">Professional soft skills optimized for collaborative engineering teams.</p>
+                <p class="text-zinc-500 text-xl max-w-lg font-medium">Soft skills optimized for collaborative engineering teams.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Communication -->
                 <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group">
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-xl font-bold">Communication</h4>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 relative">
+                                <i data-lucide="message-square" class="w-7 h-7 relative z-10 animate-pulse"></i>
+                                <span class="absolute inset-0 bg-blue-400/20 rounded-2xl animate-ping"></span>
+                            </div>
+                            <h4 class="text-xl font-bold text-[#2D1F27]">Communication</h4>
+                        </div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="94">0</span>%</span>
                     </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 95%"></div></div>
+                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 94%"></div></div>
                 </div>
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group">
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-xl font-bold">Problem Solving</h4>
+
+                <!-- Problem Solving -->
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 100ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600">
+                                <i data-lucide="lightbulb" class="w-7 h-7 animate-logo-pulse"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-[#2D1F27]">Problem Solving</h4>
+                        </div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="89">0</span>%</span>
+                    </div>
+                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 89%"></div></div>
+                </div>
+
+                <!-- Team Collaboration -->
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 200ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-600">
+                                <i data-lucide="users" class="w-7 h-7 animate-bounce" style="animation-duration: 2s;"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-[#2D1F27]">Team Collaboration</h4>
+                        </div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="91">0</span>%</span>
+                    </div>
+                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 91%"></div></div>
+                </div>
+
+                <!-- Adaptability -->
+                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group" style="transition-delay: 300ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600">
+                                <i data-lucide="refresh-ccw" class="w-7 h-7 animate-logo-rotate" style="animation-duration: 5s;"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-[#2D1F27]">Adaptability</h4>
+                        </div>
                         <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                     </div>
                     <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 90%"></div></div>
-                </div>
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group">
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-xl font-bold">Team Collaboration</h4>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 92%"></div></div>
-                </div>
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 reveal group">
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-xl font-bold">Adaptability</h4>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
-                    </div>
-                    <div class="skill-meter-bg bg-zinc-100"><div class="skill-meter-fill bg-[#2D1F27]" style="--percent: 88%"></div></div>
                 </div>
             </div>
         </div>
@@ -443,12 +454,12 @@
     <!-- PROFESSIONAL CERTIFICATES -->
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certificates</h2>
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Professional Certificates</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid"></div>
         </div>
     </section>
 
-    <!-- BEYOND ACADEMIC -->
+    <!-- BEYOND ACADEMIC (RESTORED) -->
     <section id="beyond-academics" class="py-32 px-6 bg-white border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal text-[#1a1a1a]">Beyond Academic</h2>
@@ -459,14 +470,14 @@
                         <div class="absolute inset-0 opacity-[0.03] overflow-hidden pointer-events-none group-hover:opacity-[0.08] transition-opacity">
                             <div class="code-scroller text-blue-600 p-8">
 import pandas as pd
-df = pd.read_csv('hackathon_data.csv')
+df = pd.read_csv('hack_data.csv')
 model.fit(X_train, y_train)
-# Submitting solution...
-print("Accuracy: ", model.score(X_test, y_test))
+# Processing features...
+print("Result: ", model.score(X_test, y_test))
                             </div>
                         </div>
                         <div class="relative z-10">
-                            <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8"><i data-lucide="terminal"></i></div>
+                            <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:scale-110 duration-300"><i data-lucide="terminal" class="w-8 h-8"></i></div>
                             <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Sept 2025</span>
                             <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Code-A-Haunt 2.0</h4>
                             <p class="text-zinc-500 leading-relaxed">State-level hackathon participant at LPU showcasing intense problem-solving under pressure.</p>
@@ -478,8 +489,8 @@ print("Accuracy: ", model.score(X_test, y_test))
                     <div class="bento-inner p-12 rounded-[4rem] relative">
                         <div class="relative z-10">
                             <div class="flex justify-between items-start mb-8">
-                                <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500"><i data-lucide="mic-2"></i></div>
-                                <div class="flex items-center gap-1 pt-6 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500 transition-transform group-hover:scale-110 duration-300"><i data-lucide="mic-2" class="w-8 h-8"></i></div>
+                                <div class="flex items-center gap-1 pt-6 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                     <div class="visualizer-bar" style="animation-delay: 0.1s"></div>
                                     <div class="visualizer-bar" style="animation-delay: 0.3s"></div>
                                     <div class="visualizer-bar" style="animation-delay: 0.2s"></div>
@@ -488,7 +499,7 @@ print("Accuracy: ", model.score(X_test, y_test))
                             </div>
                             <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Achievement</span>
                             <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Spectra Winner</h4>
-                            <p class="text-zinc-500 leading-relaxed">Winner of the inter-school singing competition Spectra, showcasing vocal discipline and confidence.</p>
+                            <p class="text-zinc-500 leading-relaxed">Winner of the inter-school singing competition Spectra, showcasing vocal discipline.</p>
                         </div>
                     </div>
                 </div>
@@ -496,7 +507,7 @@ print("Accuracy: ", model.score(X_test, y_test))
         </div>
     </section>
 
-    <!-- SCHOLASTIC PATHWAY -->
+    <!-- SCHOLASTIC PATHWAY (VERTICAL TIMELINE) -->
     <section id="education" class="py-32 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="mb-24 reveal text-center">
@@ -505,7 +516,6 @@ print("Accuracy: ", model.score(X_test, y_test))
             <div class="relative max-w-4xl mx-auto py-20">
                 <div class="edu-line"></div>
                 
-                <!-- University -->
                 <div class="relative pl-12 md:pl-0 md:flex items-center justify-between mb-32 reveal">
                     <div class="edu-node"></div>
                     <div class="md:w-[45%] md:text-right">
@@ -518,7 +528,6 @@ print("Accuracy: ", model.score(X_test, y_test))
                     </div>
                 </div>
 
-                <!-- Intermediate -->
                 <div class="relative pl-12 md:pl-0 md:flex flex-row-reverse items-center justify-between mb-32 reveal">
                     <div class="edu-node"></div>
                     <div class="md:w-[45%]">
@@ -531,7 +540,6 @@ print("Accuracy: ", model.score(X_test, y_test))
                     </div>
                 </div>
 
-                <!-- Matriculation -->
                 <div class="relative pl-12 md:pl-0 md:flex items-center justify-between reveal">
                     <div class="edu-node"></div>
                     <div class="md:w-[45%] md:text-right">
@@ -651,16 +659,9 @@ print("Accuracy: ", model.score(X_test, y_test))
                         <div class="logo-visualizer-bar" style="animation-delay: 0.3s"></div>
                         <div class="logo-visualizer-bar" style="animation-delay: 0.2s"></div>
                     </div>`;
-                } else if (proj.icon === 'cpu' || proj.icon === 'database') {
-                    iconClass += " animate-logo-rotate";
-                }
+                } else { iconClass += " animate-logo-rotate"; }
 
-                slice.innerHTML = `
-                    <div class="h-16 w-full flex flex-col items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}">
-                        <i data-lucide="${proj.icon}" class="${iconClass}"></i>
-                        ${visualizerHtml}
-                    </div>
-                `;
+                slice.innerHTML = `<div class="h-16 w-full flex flex-col items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}"><i data-lucide="${proj.icon}" class="${iconClass}"></i>${visualizerHtml}</div>`;
                 container.appendChild(slice);
             });
             const endTip = document.createElement('div');
@@ -686,59 +687,32 @@ print("Accuracy: ", model.score(X_test, y_test))
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
-                
-                let activeLogoHtml = `<div class="p-4 bg-white/10 rounded-2xl relative overflow-hidden group">`;
-                if (proj.icon === 'music') {
-                    activeLogoHtml += `
-                        <div class="flex items-center gap-1 absolute bottom-1 left-1/2 -translate-x-1/2 h-6">
-                            <div class="logo-visualizer-bar" style="animation-delay: 0.1s"></div>
-                            <div class="logo-visualizer-bar" style="animation-delay: 0.4s"></div>
-                            <div class="logo-visualizer-bar" style="animation-delay: 0.2s"></div>
-                            <div class="logo-visualizer-bar" style="animation-delay: 0.5s"></div>
-                        </div>
-                        <i data-lucide="${proj.icon}" class="w-8 h-8 text-white relative z-10 animate-logo-pulse"></i>
-                    `;
-                } else {
-                    activeLogoHtml += `<i data-lucide="${proj.icon}" class="w-8 h-8 text-white relative z-10 animate-logo-rotate"></i>`;
-                }
-                activeLogoHtml += `</div>`;
-
-                container.innerHTML = `
-                    <div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group reveal visible">
+                container.innerHTML = `<div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group reveal visible">
                         <div class="flex flex-col lg:flex-row items-center gap-16 relative z-10 mb-12">
                             <div class="flex-1">
                                 <div class="flex items-center gap-4 mb-6">
-                                    ${activeLogoHtml}
-                                    <div>
-                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span>
-                                        <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
-                                    </div>
+                                    <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8"></i></div>
+                                    <div><span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span><h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3></div>
                                 </div>
                                 <p class="text-xl text-zinc-300 max-w-xl leading-relaxed mb-8">${proj.summary}</p>
                             </div>
                             <div class="flex-1 w-full lg:w-1/3">
                                 <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/10">
                                     <div class="space-y-6">
-                                        ${proj.metrics.map(m => `
-                                            <div class="flex items-center justify-between">
-                                                <div><p class="text-2xl font-bold text-white">${m.value}</p><p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p></div>
-                                                <i data-lucide="trending-up" class="w-5 h-5 opacity-30 text-white"></i>
-                                            </div>
-                                        `).join('<div class="h-px bg-white/10 w-full"></div>')}
+                                        ${proj.metrics.map(m => `<div class="flex items-center justify-between"><div><p class="text-2xl font-bold text-white">${m.value}</p><p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p></div><i data-lucide="trending-up" class="w-5 h-5 opacity-30 text-white"></i></div>`).join('<div class="h-px bg-white/10 w-full"></div>')}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="border-t border-white/10 pt-12">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                <div><h4 class="text-xs font-black uppercase text-white/40 mb-6">Methodology</h4><p class="text-xl font-medium leading-relaxed mb-8 text-white">${proj.description}</p></div>
+                                <div><h4 class="text-xs font-black uppercase text-white/40 mb-6">Execution</h4><p class="text-xl font-medium leading-relaxed mb-8 text-white">${proj.description}</p></div>
                                 <div class="grid grid-cols-1 gap-3">
                                     ${proj.details.map(detail => `<div class="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-3xl"><i data-lucide="check-circle" class="w-5 h-5 text-white/60"></i><p class="font-medium text-white/80 leading-tight">${detail}</p></div>`).join('')}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 container.classList.add('active');
                 bottomWrap.classList.remove('hidden');
                 setTimeout(() => bottomWrap.classList.add('visible', 'active'), 50);
@@ -765,11 +739,8 @@ print("Accuracy: ", model.score(X_test, y_test))
                 card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group relative overflow-hidden reveal";
                 card.onclick = () => openCertModal(cert);
                 card.innerHTML = `<div class="relative z-10">
-                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative overflow-hidden">
-                            <img src="${cert.logo}" class="w-10 h-10 object-contain absolute opacity-0 logo-img" onload="this.style.opacity='1'"><i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5>
-                        <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
+                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative overflow-hidden"><img src="${cert.logo}" class="w-10 h-10 object-contain absolute opacity-0 logo-img" onload="this.style.opacity='1'"><i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i></div>
+                        <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5><p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
                     </div>`;
                 grid.appendChild(card);
             });
@@ -804,7 +775,7 @@ print("Accuracy: ", model.score(X_test, y_test))
                 const progress = Math.min((now - startTime) / duration, 1);
                 const eased = 1 - Math.pow(2, -10 * progress);
                 const current = eased * target;
-                el.innerText = target % 1 === 0 ? Math.floor(current) : current.toFixed(1);
+                el.innerText = target % 1 === 0 ? Math.floor(current) : (target === 7.4 ? current.toFixed(1) : Math.floor(current));
                 if (progress < 1) requestAnimationFrame(update);
             }
             requestAnimationFrame(update);
