@@ -213,7 +213,7 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
         <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="#" class="text-lg font-bold tracking-tighter">Garvita Goswami</a>
+            <a href="#" class="text-lg font-bold tracking-tighter">all.garvita</a>
             <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
                 <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
                 <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
@@ -261,8 +261,22 @@
                 </div>
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
-                <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" alt="Garvita Goswami" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <!-- Wrapper for Hero Image and Core Stack Badge -->
+                <div class="relative w-72 h-72 lg:w-[480px] lg:h-[480px] mx-auto group">
+                    <div class="w-full h-full rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative z-10">
+                        <img src="https://placehold.co/800x800/e2e8f0/1e293b?text=Your+Photo+Here" alt="Profile Placeholder" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    
+                    <!-- Floating Core Stack Badge -->
+                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 bg-zinc-900 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-[2rem] flex items-center gap-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-zinc-700 hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-2 lg:p-2.5 bg-blue-500/20 rounded-xl text-blue-400">
+                            <i data-lucide="cpu" class="w-5 h-5 lg:w-6 lg:h-6"></i>
+                        </div>
+                        <div class="pr-2 text-left">
+                            <p class="text-[8px] lg:text-[10px] uppercase font-black tracking-widest text-zinc-400 mb-0.5">Core Stack</p>
+                            <p class="text-sm lg:text-base font-bold whitespace-nowrap">SQL • Python • ML</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -284,7 +298,7 @@
                 <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
             </div>
             <div class="reveal" style="transition-delay: 300ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="4">0</span></div>
+                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" id="project-counter" data-target="0">0</span></div>
                 <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
             </div>
         </div>
@@ -318,68 +332,161 @@
         </div>
     </section>
 
-    <!-- TECHNICAL STACK GRID -->
+    <!-- TECHNICAL STACK GRID (Categorized with Progress Meters) -->
     <section id="skills" class="py-32 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-24 reveal">
+            <div class="text-center mb-20 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6 text-[#1a1a1a]">Technical Stack</h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Python -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
+
+            <!-- DATA ANALYSIS SECTION -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
+                    <i data-lucide="pie-chart" class="w-6 h-6 text-blue-600"></i> Data Analysis
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600"><i data-lucide="filter"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Exploratory Data Analysis</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-emerald-500" style="--percent: 95%"></div></div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Python</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-600" style="--percent: 92%"></div></div>
-                </div>
-                <!-- SQL -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600"><i data-lucide="database-zap"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Mining & Cleaning</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-teal-500" style="--percent: 90%"></div></div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">SQL / PL-SQL</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-zinc-900" style="--percent: 88%"></div></div>
-                </div>
-                <!-- Power BI -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="bar-chart-3"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="80">0</span>%</span>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i data-lucide="binary"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Descriptive Statistics</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-indigo-500" style="--percent: 85%"></div></div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Power BI</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-yellow-500" style="--percent: 80%"></div></div>
-                </div>
-                <!-- ML -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600"><i data-lucide="brain-circuit"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="82">0</span>%</span>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="bar-chart-3"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Visualization</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-yellow-500" style="--percent: 88%"></div></div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">ML Architectures</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-orange-500" style="--percent: 82%"></div></div>
-                </div>
-                <!-- Stats -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i data-lucide="binary"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600"><i data-lucide="message-square"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="82">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">NLTK (NLP Processing)</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-purple-500" style="--percent: 82%"></div></div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">Statistical Analysis</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-indigo-600" style="--percent: 85%"></div></div>
-                </div>
-                <!-- EDA -->
-                <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600"><i data-lucide="filter"></i></div>
-                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 text-[#2D1F27]">EDA & Cleaning</h4>
-                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-emerald-600" style="--percent: 95%"></div></div>
                 </div>
             </div>
+
+            <!-- ENGINEERING SECTION -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
+                    <i data-lucide="settings" class="w-6 h-6 text-zinc-600"></i> Engineering
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Python</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-600" style="--percent: 92%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">SQL & PL/SQL (Oracle)</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-zinc-900" style="--percent: 88%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-700"><i data-lucide="terminal-square"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="80">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">C Programming</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-slate-600" style="--percent: 80%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600"><i data-lucide="layout"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Dev Environments</h4>
+                        <p class="text-[10px] text-zinc-400 mb-2 leading-none uppercase tracking-wider">Jupyter • VS Code • Anaconda</p>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-orange-500" style="--percent: 95%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600"><i data-lucide="workflow"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="75">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">System Design Principles</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-rose-500" style="--percent: 75%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOFT SKILLS SECTION -->
+            <div>
+                <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
+                    <i data-lucide="heart-handshake" class="w-6 h-6 text-pink-500"></i> Soft Skills
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="lightbulb"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Problem-Solving</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-yellow-500" style="--percent: 95%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="users"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="98">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Team Player</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-500" style="--percent: 98%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600"><i data-lucide="refresh-cw"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Adaptability</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-green-500" style="--percent: 90%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600"><i data-lucide="mic"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Effective Communication</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-pink-500" style="--percent: 92%"></div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600"><i data-lucide="book-open"></i></div>
+                            <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Storytelling</h4>
+                        <div class="skill-meter-bg"><div class="skill-meter-fill bg-purple-500" style="--percent: 88%"></div></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -459,7 +566,7 @@ y = np.array([0, 1])
                         <p class="text-zinc-500 mt-2 font-medium italic">B.Tech Computer Science (Hons.)</p>
                     </div>
                     <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 text-center shadow-sm">
-                        <div class="text-5xl font-black tracking-tighter text-[#2D1F27]"><span class="counter" data-target="7.1">0</span> <span class="text-lg font-bold text-zinc-400">CGPA</span></div>
+                        <div class="text-5xl font-black tracking-tighter text-[#2D1F27]"><span class="counter" data-target="7.4">0</span> <span class="text-lg font-bold text-zinc-400">CGPA</span></div>
                     </div>
                 </div>
 
@@ -645,6 +752,7 @@ y = np.array([0, 1])
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
+                const projectNumberFormatted = String(idx + 1).padStart(2, '0');
                 
                 // Check if project needs visualizer logo inside the card
                 let internalVisualizer = "";
@@ -666,7 +774,8 @@ y = np.array([0, 1])
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8"></i></div>
                                     <div>
-                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span>
+                                        <!-- Added Project Number display -->
+                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT ${projectNumberFormatted} • ${proj.subtitle}</span>
                                         <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
                                     </div>
                                 </div>
@@ -808,6 +917,12 @@ y = np.array([0, 1])
 
         // Initialize Everything
         const init = () => {
+            // Dynamically set project counter based on the array length
+            const projectCounterEl = document.getElementById('project-counter');
+            if (projectCounterEl) {
+                projectCounterEl.setAttribute('data-target', projectData.length);
+            }
+
             renderTimeline('projects-timeline-top');
             renderCerts();
             
