@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -18,13 +19,44 @@
             background-color: #ffffff;
         }
 
+        /* --- BACKGROUND ANIMATED ELEMENTS --- */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .data-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+        }
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.08;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob-1 { background: #3b82f6; top: -10%; left: -10%; animation-duration: 25s; }
+        .blob-2 { background: #ec4899; bottom: -10%; right: -5%; animation-duration: 30s; animation-delay: -5s; }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+
         /* --- REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
@@ -33,7 +65,7 @@
         .nav-glass {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .hero-frame {
@@ -57,23 +89,21 @@
         ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
         
-        /* --- TRENDING BENTO/3D STYLES --- */
+        /* --- BENTO STYLES --- */
         .bento-card {
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             perspective: 1000px;
         }
-        
         .bento-inner {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             border: 1px solid #f1f5f9;
             box-shadow: 0 10px 30px -5px rgba(0,0,0,0.02);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-style: preserve-3d;
         }
-
         .bento-card:hover .bento-inner {
-            transform: translateY(-10px) rotateX(4deg) rotateY(-2deg);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.05);
             border-color: #3b82f6;
         }
 
@@ -84,12 +114,26 @@
             -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
         }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        /* --- SKILL METER --- */
+        .skill-meter-bg {
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 12px;
         }
+        .skill-meter-fill {
+            height: 100%;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 10px;
+        }
+        .reveal.visible .skill-meter-fill { width: var(--percent); }
 
-        /* --- PROJECT DROP DOWN STYLES --- */
+        /* --- PROJECT DROP DOWN --- */
         #project-display-container {
             max-height: 0;
             overflow: hidden;
@@ -98,19 +142,14 @@
             transform: translateY(-20px);
         }
         #project-display-container.active {
-            max-height: 2500px;
+            max-height: 3000px;
             opacity: 1;
             transform: translateY(0);
             margin-top: 2rem;
+            margin-bottom: 4rem;
         }
 
-        .insight-pill {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- CHEVRON TIMELINE STYLES --- */
+        /* --- CHEVRON TIMELINE --- */
         .chevron-path {
             clip-path: polygon(0% 0%, calc(100% - 25px) 0%, 100% 50%, calc(100% - 25px) 100%, 0% 100%, 25px 50%);
         }
@@ -118,9 +157,22 @@
             clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 25px 50%);
         }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+        /* --- CODE & AUDIO ANIMATIONS --- */
+        @keyframes scroll-code { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+        .code-scroller { animation: scroll-code 20s linear infinite; font-family: 'Fira Code', monospace; font-size: 10px; white-space: pre; pointer-events: none; }
+        .visualizer-bar { width: 4px; background: #ec4899; border-radius: 2px; animation: bounce 1s ease-in-out infinite alternate; }
+        @keyframes bounce { from { height: 4px; } to { height: 24px; } }
     </style>
 </head>
 <body class="text-zinc-900 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+
+    <!-- Global Animations Background -->
+    <div class="bg-canvas">
+        <div class="data-grid"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
@@ -134,8 +186,8 @@
             </div>
             <div class="flex items-center gap-4">
                 <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-zinc-900 text-white rounded-full uppercase tracking-widest hover:bg-black transition-all">Contact</a>
-                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100 transition-colors hover:bg-zinc-200">
-                    <i data-lucide="menu" id="menu-icon"></i>
+                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100">
+                    <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>
@@ -161,16 +213,14 @@
                     <span class="text-zinc-300">I Listen.</span>
                 </h1>
                 <p class="text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed animate-hero" style="animation-delay: 200ms">
-                    I’m Garvita, a CSE student specializing in Data Science and Machine Learning. From building automated SQL systems to analyzing global music trends on Spotify, I build tools that are as functional as they are insightful.
+                    I’m Garvita, a CSE student specializing in Data Science and Data Engineering. From building automated SQL systems to analyzing global music trends on Spotify, I build tools that are as functional as they are insightful.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
                     <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
                     <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900/10 hover:text-black transition-all">Download CV</a>
-                    
                     <div class="flex items-center gap-6 px-4">
                         <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-all"><i data-lucide="github"></i></a>
                         <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-400 hover:text-blue-600 transition-all"><i data-lucide="linkedin"></i></a>
-                        <a href="tel:+917617466702" class="text-zinc-400 hover:text-green-600 transition-all"><i data-lucide="phone"></i></a>
                     </div>
                 </div>
             </div>
@@ -178,21 +228,12 @@
                 <div class="w-72 h-72 lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative group">
                     <img src="profile.jpg" alt="Garvita Goswami" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800'">
                 </div>
-                <div class="absolute -bottom-4 right-1/4 lg:right-0 bg-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-4 reveal z-20 border border-zinc-100">
-                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
-                        <i data-lucide="brain"></i>
-                    </div>
-                    <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400">Core Stack</p>
-                        <p class="text-sm font-bold">SQL • Python • ML</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Academic Counters Strip -->
-    <section class="py-20 px-6 border-y border-zinc-100 bg-white">
+    <section class="py-20 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="text-center reveal">
                 <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.4">0</span></div>
@@ -213,72 +254,88 @@
         </div>
     </section>
 
-    <!-- CASE STUDIES -->
+    <!-- MAJOR PROJECTS SECTION -->
     <section id="projects" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="mb-20 reveal">
-                <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Case Studies</h2>
-                <p class="text-zinc-500 text-xl max-w-lg font-medium">Click on a project milestone in the timeline below to drop down into the study.</p>
+                <h2 class="text-5xl font-bold tracking-tighter mb-4 text-[#1a1a1a]">Major Projects</h2>
+                <p class="text-zinc-500 text-xl max-w-lg font-medium">Click on a project milestone below to explore my technical contributions.</p>
             </div>
 
-            <!-- Project Timeline Interaction Points -->
-            <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide">
-                <div id="projects-timeline" class="min-w-[1000px] flex items-center relative h-24">
-                    <!-- Timeline Segments injected via JS -->
+            <!-- Top Timeline Slicer -->
+            <div class="relative mb-8 overflow-x-auto pb-6 scrollbar-hide reveal">
+                <div id="projects-timeline-top" class="min-w-[1000px] flex items-center relative h-24"></div>
+            </div>
+
+            <!-- The Drop Down Container -->
+            <div id="project-display-container"></div>
+
+            <!-- The Bottom Timeline Slicer (Appears when project active) -->
+            <div id="bottom-slicer-wrap" class="hidden opacity-0 transition-all duration-700 reveal">
+                <div class="pt-8 border-t border-zinc-100">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-8 text-center">Continue Exploring Projects</p>
+                    <div class="overflow-x-auto pb-10 scrollbar-hide">
+                        <div id="projects-timeline-bottom" class="min-w-[1000px] flex items-center relative h-24"></div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- The Drop Down Container (This is where cards appear) -->
-            <div id="project-display-container">
-                <!-- Active project content will be injected here -->
             </div>
         </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="py-32 px-6 bg-white border-y border-zinc-100">
+    <!-- SKILLS & TOOLKIT -->
+    <section id="skills" class="py-32 px-6 border-y border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24 reveal">
                 <h2 class="text-5xl font-bold tracking-tighter mb-6">Skills & Toolkit</h2>
-                <p class="text-zinc-500 text-lg">Comprehensive technical expertise and specialized data libraries.</p>
             </div>
-            
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 reveal mb-16 px-4">
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
-                        <i data-lucide="code-2"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Python</p>
+                    <h4 class="text-xl font-bold mb-2">Python</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-blue-600" style="--percent: 92%"></div></div>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900">
-                        <i data-lucide="database"></i>
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">SQL</p>
+                    <h4 class="text-xl font-bold mb-2">SQL & PL/SQL</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-zinc-900" style="--percent: 88%"></div></div>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600">
-                        <i data-lucide="bar-chart-3"></i>
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="bar-chart-3"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="80">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Power BI</p>
+                    <h4 class="text-xl font-bold mb-2">Power BI</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-yellow-500" style="--percent: 80%"></div></div>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-green-50 rounded-2xl flex items-center justify-center text-green-600">
-                        <i data-lucide="file-spreadsheet"></i>
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600"><i data-lucide="file-spreadsheet"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Excel</p>
+                    <h4 class="text-xl font-bold mb-2">Excel Automation</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-green-600" style="--percent: 95%"></div></div>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600">
-                        <i data-lucide="brain-circuit"></i>
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600"><i data-lucide="brain-circuit"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="82">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Scikit-Learn</p>
+                    <h4 class="text-xl font-bold mb-2">ML Architectures</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-orange-500" style="--percent: 82%"></div></div>
                 </div>
-                <div class="p-6 bg-white rounded-[2rem] border border-zinc-100 tech-card group text-center flex flex-col items-center justify-center">
-                    <div class="w-14 h-14 mb-4 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
-                        <i data-lucide="table"></i>
+                <div class="p-8 bg-white/50 backdrop-blur-sm rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i data-lucide="table"></i></div>
+                        <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>% Proficient</span>
                     </div>
-                    <p class="text-[10px] font-black tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors uppercase">Pandas</p>
+                    <h4 class="text-xl font-bold mb-2">Data Wrangling</h4>
+                    <div class="skill-meter-bg"><div class="skill-meter-fill bg-indigo-600" style="--percent: 90%"></div></div>
                 </div>
             </div>
         </div>
@@ -288,132 +345,119 @@
     <section id="certifications" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Professional Certificates</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid">
-                <!-- Certs injected via JS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal" id="certifications-grid"></div>
+        </div>
+    </section>
+
+    <!-- BEYOND ACADEMIC -->
+    <section id="beyond-academics" class="py-32 px-6 bg-zinc-50/20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold tracking-tighter mb-20 reveal">Beyond Academic</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bento-card reveal group">
+                    <div class="bento-inner p-12 rounded-[4rem] relative">
+                        <div class="absolute inset-0 opacity-[0.03] overflow-hidden pointer-events-none group-hover:opacity-[0.08] transition-opacity">
+                            <div class="code-scroller text-blue-600 p-8">
+import pandas as pd
+df = pd.read_csv('data.csv')
+model.fit(X_train, y_train)
+print("Score: ", model.score(X_test, y_test))
+                            </div>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8"><i data-lucide="terminal"></i></div>
+                            <h4 class="text-3xl font-bold mb-4">Code-A-Haunt 2.0</h4>
+                            <p class="text-zinc-500 leading-relaxed">State-level hackathon at LPU showcasing intense problem-solving.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-card reveal group">
+                    <div class="bento-inner p-12 rounded-[4rem] relative">
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-start mb-8">
+                                <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500"><i data-lucide="mic-2"></i></div>
+                                <div class="flex items-center gap-1 pt-6 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="visualizer-bar" style="animation-delay: 0.1s"></div>
+                                    <div class="visualizer-bar" style="animation-delay: 0.3s"></div>
+                                    <div class="visualizer-bar" style="animation-delay: 0.2s"></div>
+                                    <div class="visualizer-bar" style="animation-delay: 0.4s"></div>
+                                </div>
+                            </div>
+                            <h4 class="text-3xl font-bold mb-4">Spectra Winner</h4>
+                            <p class="text-zinc-500 leading-relaxed">Won inter-school singing competition showcasing vocal talent.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- TRENDING SCHOLASTIC PATHWAY (BENTO GRID STYLE) -->
+    <!-- SCHOLASTIC PATHWAY -->
     <section id="education" class="py-32 px-6 border-t border-zinc-100 overflow-hidden bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="mb-24 reveal text-center lg:text-left">
                 <h2 class="text-5xl lg:text-6xl font-black tracking-tighter mb-4 gradient-text-animate">Scholastic Pathway</h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-                
-                <!-- University Card (Large Bento) -->
                 <div class="md:col-span-12 lg:col-span-8 bento-card reveal">
                     <div class="bento-inner p-10 lg:p-16 rounded-[4rem] relative overflow-hidden h-full">
-                        <div class="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                            <i data-lucide="binary" class="w-64 h-64"></i>
-                        </div>
-                        
-                        <div class="relative z-10">
-                            <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-full mb-8">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                                <span class="text-[10px] font-black uppercase tracking-widest text-blue-600">Active Enrollment</span>
-                            </div>
-                            
-                            <h4 class="text-4xl lg:text-6xl font-black text-[#2D1F27] mb-4 tracking-tighter">LPU University</h4>
-                            <p class="text-2xl text-zinc-500 font-medium mb-12 max-w-lg leading-snug">Bachelor of Technology (Hons.) in Computer Science & Engineering</p>
-                            
-                            <div class="flex flex-col md:flex-row gap-12 items-start">
-                                <div class="p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100">
-                                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-2">Verified Academic Standing</p>
-                                    <div class="flex items-end gap-2">
-                                        <span class="text-6xl font-black tracking-tighter text-[#2D1F27] counter" data-target="7.4">0</span>
-                                        <span class="text-2xl font-bold text-zinc-400 mb-2">CGPA</span>
-                                    </div>
-                                </div>
-                                <div class="pt-4">
-                                    <p class="text-zinc-400 text-sm font-bold uppercase tracking-widest mb-4">Core Specialization</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-4 py-2 bg-white border border-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">Data Science</span>
-                                        <span class="px-4 py-2 bg-white border border-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">Machine Learning</span>
-                                        <span class="px-4 py-2 bg-white border border-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">SQL Dev</span>
-                                    </div>
-                                </div>
+                        <h4 class="text-4xl lg:text-6xl font-black text-[#2D1F27] mb-4 tracking-tighter">LPU University</h4>
+                        <p class="text-2xl text-zinc-500 font-medium mb-12">B.Tech (Hons.) Computer Science & Engineering</p>
+                        <div class="p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 inline-block">
+                            <p class="text-[10px] font-black uppercase text-zinc-400 mb-2 tracking-widest">Academic Standing</p>
+                            <div class="flex items-end gap-2">
+                                <span class="text-6xl font-black counter text-[#2D1F27]" data-target="7.4">0</span>
+                                <span class="text-2xl font-bold text-zinc-400 mb-2">CGPA</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- APS Intermediate (Vertical Bento) -->
-                <div class="md:col-span-6 lg:col-span-4 bento-card reveal" style="transition-delay: 100ms;">
-                    <div class="bento-inner p-10 rounded-[4rem] relative overflow-hidden flex flex-col justify-between h-full min-h-[450px]">
-                        <div class="absolute bottom-0 right-0 p-6 opacity-[0.05] pointer-events-none">
-                            <i data-lucide="line-chart" class="w-32 h-32"></i>
-                        </div>
-                        <div>
-                            <span class="text-[9px] font-black text-zinc-400 uppercase tracking-widest block mb-4">2021 – 2023</span>
-                            <h4 class="text-3xl font-black text-zinc-900 mb-2 leading-tight">Army Public School (APS)</h4>
-                            <p class="text-zinc-500 font-medium italic text-lg mb-8">Intermediate | Almora</p>
-                        </div>
-                        <div class="p-8 bg-yellow-50/50 rounded-[3rem] border border-yellow-100">
-                            <p class="text-[9px] font-black uppercase tracking-widest text-yellow-600/60 mb-1">Final Standing</p>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-5xl font-black text-zinc-900 counter" data-target="82">0</span>
-                                <span class="text-xl font-bold text-zinc-400">%</span>
-                            </div>
+                <div class="md:col-span-6 lg:col-span-4 bento-card reveal">
+                    <div class="bento-inner p-10 rounded-[4rem] flex flex-col justify-between h-full min-h-[400px]">
+                        <h4 class="text-3xl font-black">APS Almora</h4>
+                        <p class="text-zinc-500 italic">Intermediate</p>
+                        <div class="p-8 bg-yellow-50 rounded-[3rem] border border-yellow-100">
+                            <span class="text-5xl font-black counter" data-target="82">0</span><span class="text-xl font-bold">%</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- APS Matriculation (Horizontal Bento) -->
-                <div class="md:col-span-6 lg:col-span-12 bento-card reveal" style="transition-delay: 200ms;">
-                    <div class="bento-inner p-10 lg:p-12 rounded-[4rem] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 h-full">
-                        <div class="flex-1">
-                            <span class="text-[9px] font-black text-zinc-400 uppercase tracking-widest block mb-4">2020 – 2021</span>
-                            <h4 class="text-3xl lg:text-4xl font-black text-zinc-900 mb-2 tracking-tighter">Matriculation Milestone</h4>
-                            <p class="text-zinc-500 font-medium italic text-lg">Army Public School, Almora, Uttarakhand</p>
-                        </div>
-                        <div class="w-full md:w-auto px-10 py-8 bg-purple-50 rounded-[3rem] border border-purple-100 flex flex-col items-center">
-                            <p class="text-[9px] font-black uppercase tracking-widest text-purple-600/60 mb-1">Achieved Rank</p>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-6xl font-black text-purple-900 counter" data-target="97">0</span>
-                                <span class="text-2xl font-bold text-purple-400">%</span>
-                            </div>
+                <div class="md:col-span-6 lg:col-span-12 bento-card reveal">
+                    <div class="bento-inner p-10 lg:p-12 rounded-[4rem] flex flex-col md:flex-row items-center justify-between gap-8">
+                        <h4 class="text-3xl lg:text-4xl font-black">Matriculation Milestone</h4>
+                        <div class="px-10 py-8 bg-purple-50 rounded-[3rem] border border-purple-100 flex flex-col items-center">
+                            <span class="text-6xl font-black text-purple-900 counter" data-target="97">0</span><span class="text-2xl font-bold text-purple-400">%</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-32 px-6 text-center border-t border-zinc-100 bg-white">
-        <h2 class="text-5xl font-bold tracking-tighter mb-10 reveal">Garvita Goswami</h2>
+    <footer class="py-32 px-6 text-center bg-white border-t border-zinc-100">
+        <h2 class="text-5xl font-bold tracking-tighter mb-10 reveal text-[#1a1a1a]">Garvita Goswami</h2>
         <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
-            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
-            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors flex items-center gap-3"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a>
-            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="github" class="w-4 h-4"></i> GitHub</a>
-            <a href="tel:+917617466702" class="hover:text-zinc-900 transition-colors flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +91 7617466702</a>
+            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors">Email</a>
+            <a href="https://linkedin.com/in/garvita-goswami-348" class="hover:text-blue-600 transition-colors">LinkedIn</a>
+            <a href="https://github.com/Garvita260605" class="hover:text-zinc-900 transition-colors">GitHub</a>
         </div>
-        <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Science Portfolio • 2026</p>
     </footer>
 
     <!-- Certification Modal -->
     <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
-        <div class="absolute inset-0 bg-zinc-900/10 backdrop-blur-xl" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 lg:p-14 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
-            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 rounded-full bg-zinc-100"><i data-lucide="x"></i></button>
+        <div class="absolute inset-0 bg-zinc-900/20 backdrop-blur-xl" onclick="closeModal()"></div>
+        <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-10 right-10 p-2"><i data-lucide="x"></i></button>
             <div id="modal-icon-container" class="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 overflow-hidden text-white"></div>
-            <h3 id="modal-title" class="text-4xl font-bold tracking-tight mb-2 text-[#1a1a1a]"></h3>
+            <h3 id="modal-title" class="text-4xl font-bold mb-2"></h3>
             <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-6"></p>
-            <p id="modal-desc" class="text-zinc-500 text-lg leading-relaxed mb-10"></p>
+            <p id="modal-desc" class="text-zinc-500 text-lg mb-10"></p>
             <button onclick="closeModal()" class="w-full bg-zinc-900 text-white py-6 rounded-2xl font-black shadow-xl">Close</button>
         </div>
     </div>
 
     <script>
-        const safeCreateIcons = () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        };
+        const safeCreateIcons = () => { if (typeof lucide !== 'undefined') lucide.createIcons(); };
 
         const projectData = [
             {
@@ -423,34 +467,24 @@
                 gradient: "spotify-gradient",
                 accentColor: "#1DB954",
                 icon: "music",
-                summary: "Uncovering popularity patterns behind global most-streamed tracks using NLP sentiment analysis.",
-                description: "Deep-dive analysis of the 2024 global charts. Using VADER NLP to quantify emotional resonance and explicit content correlations with stream velocity.",
-                tags: ["Python", "Pandas", "NLP", "Hypothesis Testing"],
-                metrics: [{ label: "Data Scope", value: "2024 Global" }, { label: "Algorithm", value: "VADER Sentiment" }],
-                details: [
-                    "Engineered a dynamic scraper for daily global charts.",
-                    "Applied multi-variate statistical testing on explicit vs clean tracks.",
-                    "Identified sentiment 'sweet-spots' for billboard longevity.",
-                    "Visualized findings through high-fidelity heatmaps."
-                ]
+                summary: "Popularity patterns via NLP sentiment analysis.",
+                description: "Deep-dive analysis of the 2024 global charts using VADER NLP to quantify emotional resonance.",
+                tags: ["Python", "NLP", "Stats"],
+                metrics: [{ label: "Data Scope", value: "2024 Global" }, { label: "Algorithm", value: "VADER" }],
+                details: ["Engineered daily global scraper.", "Multi-variate statistical testing.", "Sentiment 'sweet-spots'."]
             },
             {
                 id: 1,
                 title: "Recommendation Engine",
-                subtitle: "ML Dashboard",
+                subtitle: "ML Product",
                 gradient: "recommender-gradient",
                 accentColor: "#5D4250",
                 icon: "cpu",
-                summary: "A high-performance song recommendation system built on high-dimensional audio vectors.",
-                description: "A content-based filtering system hosted as an interactive dashboard, allowing real-time song discovery based on sonic signatures.",
-                tags: ["ML", "Cosine Similarity", "Streamlit", "Audio Vectors"],
-                metrics: [{ label: "Model", value: "Neighbors" }, { label: "Tech", value: "Streamlit" }],
-                details: [
-                    "Mapped 100k tracks into high-dimensional vector space.",
-                    "Optimized cosine similarity searches for sub-second latency.",
-                    "Built responsive UI with real-time feedback loops.",
-                    "Integrated Spotify API for live audio previews."
-                ]
+                summary: "Song discovery via high-dimensional audio vectors.",
+                description: "Content-based filtering system hosted as an interactive dashboard.",
+                tags: ["ML", "Cosine", "Streamlit"],
+                metrics: [{ label: "Model", value: "Neighbors" }, { label: "UI", value: "Custom" }],
+                details: ["Mapped 100k tracks.", "Optimized search latency.", "Integrated API previews."]
             },
             {
                 id: 2,
@@ -459,16 +493,11 @@
                 gradient: "library-gradient",
                 accentColor: "#6366f1",
                 icon: "database",
-                summary: "Automated Digital Library system with secure OTP logic and PL/SQL automation.",
-                description: "Enterprise-grade library automation system designed to handle complex transaction logic through database-level triggers.",
-                tags: ["Oracle SQL", "PL/SQL", "System Design"],
-                metrics: [{ label: "Logic", value: "Triggers" }, { label: "Security", value: "OTP-Ready" }],
-                details: [
-                    "Designed robust ER modeling for high-throughput records.",
-                    "Automated late-fee computation via Oracle procedures.",
-                    "Implemented role-based security protocols.",
-                    "Designed zero-latency backup and recovery triggers."
-                ]
+                summary: "Automated Library with OTP & PL/SQL.",
+                description: "Enterprise-grade library automation system designed for Oracle database handling.",
+                tags: ["Oracle", "PL/SQL", "Security"],
+                metrics: [{ label: "Logic", value: "Triggers" }, { label: "Security", value: "OTP" }],
+                details: ["Robust ER modeling.", "Automated procedures.", "Backup triggers."]
             },
             {
                 id: 3,
@@ -477,144 +506,136 @@
                 gradient: "mental-gradient",
                 accentColor: "#0ea5e9",
                 icon: "brain-circuit",
-                summary: "Data-driven study on workplace mental health using complex statistical modeling.",
-                description: "Using exploratory data analysis to identify significant predictors for workplace burnout and mental wellness in tech environments.",
-                tags: ["SciPy", "Scikit-Learn", "EDA", "Statistics"],
-                metrics: [{ label: "Factors", value: "15+ Variables" }, { label: "Logic", value: "ANOVA" }],
-                details: [
-                    "Preprocessed large-scale longitudinal survey data.",
-                    "Validated hypotheses via Chi-Square and T-Tests.",
-                    "Visualized variable importance through feature ranking.",
-                    "Identified 'Flexibility' as the #1 predictor for retention."
-                ]
+                summary: "Workplace health data driven study.",
+                description: "Identifying predictors for workplace burnout and mental wellness in tech.",
+                tags: ["SciPy", "EDA", "Stats"],
+                metrics: [{ label: "Factors", value: "15+ Vars" }, { label: "Logic", value: "ANOVA" }],
+                details: ["Longitudinal survey data.", "Validated via Chi-Square.", "Feature ranking visualization."]
             }
         ];
 
         let activeProjectIndex = -1;
 
-        function initProjects() {
-            const tracker = document.getElementById('projects-timeline');
-            if (!tracker) return;
-            tracker.innerHTML = '';
+        function renderTimeline(containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            container.innerHTML = '';
             projectData.forEach((proj, idx) => {
-                const phase = document.createElement('div');
-                phase.className = "relative flex-1 group cursor-pointer";
-                phase.style.zIndex = projectData.length - idx;
-                if (idx !== 0) phase.style.marginLeft = "-24px";
-                phase.onclick = () => dropDownProject(idx);
-                phase.innerHTML = `
-                    <div class="h-16 w-full flex items-center justify-center chevron-path transition-all duration-300 group-hover:h-20" style="background-color: ${proj.accentColor}">
+                const slice = document.createElement('div');
+                slice.className = "relative flex-1 group cursor-pointer";
+                slice.style.zIndex = projectData.length - idx;
+                if (idx !== 0) slice.style.marginLeft = "-24px";
+                slice.onclick = () => dropDownProject(idx);
+                slice.innerHTML = `
+                    <div class="h-16 w-full flex items-center justify-center chevron-path transition-all duration-300 group-hover:h-20 ${activeProjectIndex === idx ? 'h-20 scale-105 shadow-xl' : 'opacity-80'}" style="background-color: ${proj.accentColor}">
                         <div class="text-center">
-                            <i data-lucide="${proj.icon}" class="w-5 h-5 text-white opacity-40 mb-1 mx-auto"></i>
+                            <i data-lucide="${proj.icon}" class="w-5 h-5 text-white opacity-60 group-hover:opacity-100"></i>
                         </div>
                     </div>
                 `;
-                tracker.appendChild(phase);
+                container.appendChild(slice);
             });
             const endTip = document.createElement('div');
             endTip.className = "h-16 w-12 bg-zinc-50 chevron-end";
             endTip.style.marginLeft = "-24px";
-            tracker.appendChild(endTip);
+            container.appendChild(endTip);
             safeCreateIcons();
         }
 
         function dropDownProject(idx) {
             const container = document.getElementById('project-display-container');
+            const bottomWrap = document.getElementById('bottom-slicer-wrap');
+
             if (activeProjectIndex === idx) {
                 container.classList.remove('active');
+                bottomWrap.classList.remove('active', 'visible');
+                bottomWrap.classList.add('hidden');
                 activeProjectIndex = -1;
+                renderTimeline('projects-timeline-top');
                 return;
             }
+
             container.classList.remove('active');
+            bottomWrap.classList.add('hidden');
+            bottomWrap.classList.remove('visible', 'active');
+            
             setTimeout(() => {
+                activeProjectIndex = idx;
                 const proj = projectData[idx];
                 container.innerHTML = `
-                    <div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-20 shadow-2xl overflow-hidden relative group">
-                        <div class="flex flex-col lg:flex-row items-center gap-16 relative z-10 mb-16">
+                    <div class="project-card ${proj.gradient} text-white rounded-[4rem] p-10 lg:p-16 shadow-2xl overflow-hidden relative group reveal visible">
+                        <div class="flex flex-col lg:flex-row items-center gap-16 relative z-10 mb-12">
                             <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-8">
-                                    <div class="p-3 bg-white/10 rounded-2xl insight-pill">
-                                        <i data-lucide="${proj.icon}" class="w-6 h-6"></i>
-                                    </div>
-                                    <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">${proj.subtitle}</span>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}"></i></div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest opacity-60">${proj.subtitle}</span>
                                 </div>
-                                <h3 class="text-5xl lg:text-7xl font-bold mb-8 tracking-tighter leading-[0.9]">${proj.title}</h3>
-                                <p class="text-xl text-zinc-300 max-w-xl leading-relaxed">${proj.summary}</p>
+                                <h3 class="text-5xl lg:text-7xl font-bold mb-6 tracking-tighter leading-tight">${proj.title}</h3>
+                                <p class="text-xl text-zinc-300 max-w-xl leading-relaxed mb-8">${proj.summary}</p>
                             </div>
                             <div class="flex-1 w-full lg:w-1/3">
                                 <div class="p-8 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/10">
                                     <div class="space-y-6">
                                         ${proj.metrics.map(m => `
                                             <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-3xl font-bold">${m.value}</p>
-                                                    <p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p>
-                                                </div>
-                                                <i data-lucide="trending-up" class="w-5 h-5 opacity-30"></i>
+                                                <div><p class="text-2xl font-bold text-white">${m.value}</p><p class="text-[10px] uppercase font-bold opacity-50">${m.label}</p></div>
+                                                <i data-lucide="trending-up" class="w-5 h-5 opacity-30 text-white"></i>
                                             </div>
                                         `).join('<div class="h-px bg-white/10 w-full"></div>')}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="border-t border-white/10 pt-16">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <div class="border-t border-white/10 pt-12">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                                 <div>
-                                    <h4 class="text-xs font-black uppercase tracking-widest text-white/40 mb-8">Methodology & Result</h4>
-                                    <p class="text-2xl font-medium leading-relaxed mb-12">${proj.description}</p>
+                                    <h4 class="text-xs font-black uppercase text-white/40 mb-6">Result & Method</h4>
+                                    <p class="text-xl font-medium leading-relaxed mb-8 text-white">${proj.description}</p>
                                     <div class="flex flex-wrap gap-2">
-                                        ${proj.tags.map(t => `<span class="px-5 py-2 rounded-full insight-pill text-[10px] font-black uppercase tracking-widest">${t}</span>`).join('')}
+                                        ${proj.tags.map(t => `<span class="px-4 py-2 rounded-full insight-pill text-[10px] font-black uppercase text-white">${t}</span>`).join('')}
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 gap-4">
-                                    ${proj.details.map(detail => `
-                                        <div class="flex gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl">
-                                            <i data-lucide="check-circle" class="w-5 h-5 text-white/60 flex-shrink-0"></i>
-                                            <p class="font-medium text-lg leading-tight text-white/80">${detail}</p>
-                                        </div>
-                                    `).join('')}
+                                <div class="grid grid-cols-1 gap-3">
+                                    ${proj.details.map(detail => `<div class="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-3xl"><i data-lucide="check-circle" class="w-5 h-5 text-white/60"></i><p class="font-medium text-white/80 leading-tight">${detail}</p></div>`).join('')}
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
-                activeProjectIndex = idx;
+                
                 container.classList.add('active');
+                bottomWrap.classList.remove('hidden');
+                setTimeout(() => bottomWrap.classList.add('visible', 'active'), 50);
+                
                 container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                renderTimeline('projects-timeline-top');
+                renderTimeline('projects-timeline-bottom');
                 safeCreateIcons();
             }, 300);
         }
 
         const certs = [
-            { t: "Computer Networking", p: "Coursera | Google", ds: "Foundational networking course covering the TCP/IP model, security, and cloud infrastructure.", icon: "network", color: "bg-blue-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" },
-            { t: "PL/SQL Data Science", p: "LPU My Class", ds: "Engineering bootcamp focused on Oracle database triggers, advanced procedures, and ETL logic.", icon: "database", color: "bg-red-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Oracle_All_Search_Icons_Final_PLSQL.svg/512px-Oracle_All_Search_Icons_Final_PLSQL.svg.png" },
-            { t: "Data Analytics", p: "LinkedIn Learning", ds: "Industry certification in data cleaning, storytelling, and statistical reporting workflows.", icon: "bar-chart", color: "bg-blue-700", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" },
-            { t: "Python DS & ML", p: "Udemy Bootcamp", ds: "Complete data science lifecycle training using Scikit-Learn and ensemble learning models.", icon: "code", color: "bg-purple-600", logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" }
+            { t: "Networking", p: "Coursera | Google", ds: "TCP/IP, security, and cloud infra.", icon: "network", color: "bg-blue-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-logo_square.png/512px-Coursera-logo_square.png" },
+            { t: "PL/SQL DS", p: "LPU My Class", ds: "Oracle triggers, ETL pipelines.", icon: "database", color: "bg-red-500", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Oracle_All_Search_Icons_Final_PLSQL.svg/512px-Oracle_All_Search_Icons_Final_PLSQL.svg.png" },
+            { t: "Data Analytics", p: "LinkedIn", ds: "Cleaning, storytelling, and workflows.", icon: "bar-chart", color: "bg-blue-700", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" },
+            { t: "Python ML", p: "Udemy", ds: "Modeling with Scikit-Learn.", icon: "code", color: "bg-purple-600", logo: "https://www.vectorlogo.zone/logos/udemy/udemy-icon.svg" }
         ];
 
         function renderCerts() {
             const grid = document.getElementById('certifications-grid');
             if (!grid) return;
             grid.innerHTML = '';
-            
-            certs.forEach((cert, idx) => {
+            certs.forEach((cert) => {
                 const card = document.createElement('div');
-                card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group relative overflow-hidden";
+                card.className = "p-8 bg-white border border-zinc-100 rounded-[2.5rem] tech-card cursor-pointer group relative overflow-hidden reveal";
                 card.onclick = () => openCertModal(cert);
-                
                 card.innerHTML = `
                     <div class="relative z-10">
-                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg transition-transform group-hover:scale-110 duration-300">
-                            <!-- Try logo first, Lucide icon is the underlying visual -->
-                            <img src="${cert.logo}" class="w-10 h-10 object-contain absolute opacity-0 transition-opacity duration-300 logo-img" onload="this.style.opacity='1'">
-                            <i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i>
+                        <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative overflow-hidden">
+                            <img src="${cert.logo}" class="w-10 h-10 object-contain absolute opacity-0 logo-img" onload="this.style.opacity='1'"><i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i>
                         </div>
                         <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5>
                         <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
-                    </div>
-                    <!-- Decorative background graphic -->
-                    <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none">
-                        <i data-lucide="${cert.icon}" class="w-24 h-24"></i>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -628,10 +649,7 @@
             document.getElementById('modal-desc').innerText = data.ds;
             const iconCont = document.getElementById('modal-icon-container');
             iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative ${data.color}`;
-            iconCont.innerHTML = `
-                <img src="${data.logo}" class="w-full h-full object-contain absolute opacity-0 transition-opacity duration-300" onload="this.style.opacity='1'">
-                <i data-lucide="${data.icon}" class="w-10 h-10 text-white"></i>
-            `;
+            iconCont.innerHTML = `<img src="${data.logo}" class="w-full h-full object-contain absolute opacity-0" onload="this.style.opacity='1'"><i data-lucide="${data.icon}" class="w-10 h-10 text-white"></i>`;
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
             document.body.style.overflow = 'hidden';
@@ -640,8 +658,7 @@
 
         function closeModal() {
             document.getElementById('modal-content').classList.add('scale-95', 'opacity-0');
-            setTimeout(() => document.getElementById('cert-modal').classList.add('hidden'), 300);
-            document.body.style.overflow = 'auto';
+            setTimeout(() => { document.getElementById('cert-modal').classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
         }
 
         function animateCounter(el) {
@@ -662,8 +679,8 @@
 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) nav.classList.add('nav-glass', 'h-16', 'border-zinc-100');
-            else nav.classList.remove('nav-glass', 'h-16', 'border-zinc-100');
+            if (window.scrollY > 20) nav.classList.add('nav-glass', 'h-16');
+            else nav.classList.remove('nav-glass', 'h-16');
         });
 
         const observer = new IntersectionObserver((entries) => {
@@ -676,7 +693,7 @@
         }, { threshold: 0.1 });
 
         window.onload = () => {
-            initProjects();
+            renderTimeline('projects-timeline-top');
             renderCerts();
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         };
