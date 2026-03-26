@@ -166,7 +166,7 @@
         }
         @media (max-width: 768px) { .edu-node { left: 20px; } }
 
-        /* --- LOGO ANIMATIONS --- */
+        /* --- LOGO ANIMATIONS & CUSTOM KEYFRAMES --- */
         @keyframes logo-bounce { from { height: 4px; } to { height: 18px; } }
         .logo-visualizer-bar { width: 3px; background: white; border-radius: 1px; animation: logo-bounce 0.8s ease-in-out infinite alternate; }
         
@@ -179,6 +179,25 @@
 
         @keyframes logo-rotate-subtle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .animate-logo-rotate { animation: logo-rotate-subtle 10s linear infinite; }
+
+        /* NEW: Universal Icon Animations */
+        @keyframes float-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
+        
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 2s infinite; }
 
         .gradient-text-animate {
             background: linear-gradient(to right, #2D1F27, #3b82f6, #2D1F27);
@@ -213,7 +232,9 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-[60] transition-all duration-500 h-20 border-b border-transparent">
         <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="#" class="text-lg font-bold tracking-tighter">all.garvita</a>
+            <a href="#" class="text-lg font-bold tracking-tighter flex items-center gap-2 group">
+                <i data-lucide="hexagon" class="w-5 h-5 animate-spin-slow group-hover:text-blue-600 transition-colors"></i> GG
+            </a>
             <div class="hidden md:flex space-x-8 text-[11px] font-bold text-zinc-400">
                 <a href="#projects" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Projects</a>
                 <a href="#skills" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Skills</a>
@@ -221,9 +242,9 @@
                 <a href="#education" class="hover:text-zinc-900 transition-colors uppercase tracking-widest">Education</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-zinc-900 text-white rounded-full uppercase tracking-widest hover:bg-black transition-all">Contact</a>
-                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100" aria-label="Toggle Menu">
-                    <i data-lucide="menu"></i>
+                <a href="mailto:garvitagoswami.05@gmail.com" class="hidden md:block text-[10px] font-black px-6 py-2.5 bg-zinc-900 text-white rounded-full uppercase tracking-widest hover:bg-black hover:scale-105 transition-all">Contact</a>
+                <button onclick="toggleMenu()" class="md:hidden p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-colors" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="animate-pulse-soft"></i>
                 </button>
             </div>
         </div>
@@ -241,8 +262,8 @@
     <section class="pt-32 lg:pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             <div class="flex-1 text-center lg:text-left">
-                <div class="inline-block px-4 py-1.5 bg-zinc-100 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
-                    B.Tech (Hons.) Computer Science & Engineering
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-zinc-100 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 animate-hero">
+                    <i data-lucide="graduation-cap" class="w-3 h-3 text-blue-500 animate-bounce"></i> B.Tech (Hons.) Computer Science & Engineering
                 </div>
                 <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[0.9] animate-hero" style="animation-delay: 100ms">
                     Data Speaks. <br />
@@ -252,25 +273,32 @@
                     I’m Garvita, a CSE student specializing in Data Science and Data Engineering. I transform raw variables into automated systems and actionable insights through Python, SQL, and ML.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-hero" style="animation-delay: 300ms">
-                    <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
-                    <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900/10 hover:text-black transition-all">Download CV</a>
+                    <a href="mailto:garvitagoswami.05@gmail.com" class="bg-zinc-900 text-white px-8 py-4 rounded-full font-bold hover:bg-black hover:scale-105 transition-all shadow-xl shadow-zinc-200">Get in Touch</a>
+                    <a href="Garvita_Goswami_CV.pdf" download class="border-2 border-zinc-900 text-zinc-900 px-8 py-4 rounded-full font-bold hover:bg-zinc-900/10 hover:text-black hover:scale-105 transition-all flex items-center gap-2">
+                        Download CV <i data-lucide="download" class="w-4 h-4 animate-float-subtle"></i>
+                    </a>
                     <div class="flex items-center gap-6 px-4">
-                        <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-all"><i data-lucide="github"></i></a>
-                        <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-400 hover:text-blue-600 transition-all"><i data-lucide="linkedin"></i></a>
+                        <a href="https://github.com/Garvita260605" target="_blank" class="text-zinc-400 hover:text-zinc-900 transition-colors group">
+                            <i data-lucide="github" class="group-hover:animate-float-subtle"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="text-zinc-400 hover:text-blue-600 transition-colors group">
+                            <i data-lucide="linkedin" class="group-hover:animate-pulse-soft"></i>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="flex-1 relative animate-hero" style="animation-delay: 200ms">
                 <!-- Wrapper for Hero Image and Core Stack Badge -->
                 <div class="relative w-72 h-72 lg:w-[480px] lg:h-[480px] mx-auto group">
-                    <div class="w-full h-full rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative z-10">
-                        <img src="Profile.jpg" alt="Garvita Goswami Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="w-full h-full rounded-full overflow-hidden hero-frame bg-zinc-50 border-[16px] border-white relative z-10 hover:border-blue-50 transition-colors duration-500">
+                        <!-- Removed grayscale, kept colorful permanently -->
+                        <img src="Profile.jpg" alt="Garvita Goswami Profile" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
                     </div>
                     
                     <!-- Floating Core Stack Badge Rotator -->
                     <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 bg-zinc-900 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-[2rem] flex items-center gap-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-zinc-700 hover:-translate-y-2 transition-transform duration-300">
                         <div id="core-stack-icon-wrapper" class="p-2 lg:p-2.5 bg-blue-500/20 rounded-xl text-blue-400 transition-all duration-500">
-                            <i data-lucide="cpu" class="w-5 h-5 lg:w-6 lg:h-6"></i>
+                            <i data-lucide="cpu" class="w-5 h-5 lg:w-6 lg:h-6 animate-pulse-soft"></i>
                         </div>
                         <div class="pr-2 text-left min-w-[140px]">
                             <p id="core-stack-title" class="text-[8px] lg:text-[10px] uppercase font-black tracking-widest text-zinc-400 mb-0.5 transition-opacity duration-500">Core Stack</p>
@@ -285,21 +313,29 @@
     <!-- Academic Counters Strip -->
     <section class="py-20 px-6 border-y border-zinc-100 bg-white/50 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            <div class="reveal">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="7.4">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Current CGPA</div>
+            <div class="reveal group">
+                <div class="text-5xl font-black tracking-tighter mb-2 group-hover:text-blue-600 transition-colors"><span class="counter" data-target="7.4">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center justify-center gap-1">
+                    <i data-lucide="award" class="w-3 h-3 animate-float-subtle"></i> Current CGPA
+                </div>
             </div>
-            <div class="reveal" style="transition-delay: 100ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="82">0</span>%</div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Intermediate</div>
+            <div class="reveal group" style="transition-delay: 100ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2 group-hover:text-amber-500 transition-colors"><span class="counter" data-target="82">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center justify-center gap-1">
+                    <i data-lucide="book" class="w-3 h-3 animate-pulse-soft"></i> Intermediate
+                </div>
             </div>
-            <div class="reveal" style="transition-delay: 200ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" data-target="97">0</span>%</div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Matriculation</div>
+            <div class="reveal group" style="transition-delay: 200ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2 group-hover:text-purple-500 transition-colors"><span class="counter" data-target="97">0</span>%</div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center justify-center gap-1">
+                    <i data-lucide="check-circle" class="w-3 h-3 animate-float-subtle"></i> Matriculation
+                </div>
             </div>
-            <div class="reveal" style="transition-delay: 300ms;">
-                <div class="text-5xl font-black tracking-tighter mb-2"><span class="counter" id="project-counter" data-target="0">0</span></div>
-                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Major Projects</div>
+            <div class="reveal group" style="transition-delay: 300ms;">
+                <div class="text-5xl font-black tracking-tighter mb-2 group-hover:text-emerald-500 transition-colors"><span class="counter" id="project-counter" data-target="0">0</span></div>
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center justify-center gap-1">
+                    <i data-lucide="folder-git-2" class="w-3 h-3 animate-pulse-soft"></i> Major Projects
+                </div>
             </div>
         </div>
     </section>
@@ -342,12 +378,12 @@
             <!-- DATA ANALYSIS & ENGINEERING SECTION -->
             <div class="mb-20">
                 <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
-                    <i data-lucide="database" class="w-6 h-6 text-blue-600"></i> Data Analysis & Engineering
+                    <i data-lucide="database" class="w-6 h-6 text-blue-600 animate-pulse-soft"></i> Data Analysis & Engineering
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600"><i data-lucide="filter"></i></div>
+                            <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"><i data-lucide="filter" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Exploratory Data Analysis</h4>
@@ -355,7 +391,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600"><i data-lucide="database-zap"></i></div>
+                            <div class="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><i data-lucide="database-zap" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Mining & Cleaning</h4>
@@ -363,7 +399,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i data-lucide="binary"></i></div>
+                            <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="binary" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Descriptive Statistics</h4>
@@ -371,7 +407,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="bar-chart-3"></i></div>
+                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="bar-chart-3" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Visualization</h4>
@@ -379,7 +415,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600"><i data-lucide="message-square"></i></div>
+                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"><i data-lucide="message-square" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="82">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">NLTK (NLP Processing)</h4>
@@ -387,7 +423,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 250ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="code-2"></i></div>
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><i data-lucide="code-2" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Python</h4>
@@ -395,7 +431,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 300ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900"><i data-lucide="database"></i></div>
+                            <div class="w-12 h-12 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900 group-hover:scale-110 transition-transform duration-300"><i data-lucide="database" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">SQL & PL/SQL (Oracle)</h4>
@@ -404,7 +440,7 @@
                     
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 350ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600"><i data-lucide="server"></i></div>
+                            <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"><i data-lucide="server" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="85">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Database Optimization</h4>
@@ -413,7 +449,7 @@
                     
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 400ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600"><i data-lucide="zap"></i></div>
+                            <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="zap" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Automation Triggers</h4>
@@ -422,7 +458,7 @@
 
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 450ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600"><i data-lucide="webhook"></i></div>
+                            <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><i data-lucide="webhook" class="animate-spin-slow"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">API Integration</h4>
@@ -434,12 +470,12 @@
             <!-- SOFT SKILLS SECTION -->
             <div>
                 <h3 class="text-2xl font-black mb-8 text-[#2D1F27] reveal flex items-center gap-3">
-                    <i data-lucide="heart-handshake" class="w-6 h-6 text-pink-500"></i> Soft Skills
+                    <i data-lucide="heart-handshake" class="w-6 h-6 text-pink-500 animate-float-subtle"></i> Soft Skills
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600"><i data-lucide="lightbulb"></i></div>
+                            <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="lightbulb" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="95">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Problem-Solving</h4>
@@ -447,7 +483,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 50ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600"><i data-lucide="users"></i></div>
+                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="users" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="98">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Team Player</h4>
@@ -455,7 +491,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 100ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600"><i data-lucide="refresh-cw"></i></div>
+                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-110 group-hover:rotate-180 transition-transform duration-700"><i data-lucide="refresh-cw" class="animate-spin-slow"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="90">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Adaptability</h4>
@@ -463,7 +499,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 150ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600"><i data-lucide="mic"></i></div>
+                            <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="mic" class="animate-float-subtle"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="92">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Effective Communication</h4>
@@ -471,7 +507,7 @@
                     </div>
                     <div class="p-8 bg-white rounded-[2.5rem] border border-zinc-100 tech-card group reveal" style="transition-delay: 200ms;">
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600"><i data-lucide="book-open"></i></div>
+                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300"><i data-lucide="book-open" class="animate-pulse-soft"></i></div>
                             <span class="text-xs font-black text-zinc-400 uppercase tracking-widest"><span class="counter" data-target="88">0</span>%</span>
                         </div>
                         <h4 class="text-lg font-bold mb-2 text-[#2D1F27]">Data Storytelling</h4>
@@ -512,9 +548,9 @@ y = np.array([0, 1])
                             </div>
                         </div>
                         <div class="relative z-10">
-                            <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:scale-110 duration-300"><i data-lucide="terminal" class="w-8 h-8"></i></div>
-                            <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Sept 2025</span>
-                            <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Code-A-Haunt 2.0</h4>
+                            <div class="w-16 h-16 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:scale-110 duration-300"><i data-lucide="terminal" class="w-8 h-8 animate-pulse-soft"></i></div>
+                            <span class="text-[10px] font-black uppercase tracking-widest opacity-40 block mb-4">Sept <span class="counter" data-target="2025">0</span></span>
+                            <h4 class="text-3xl font-bold mb-4 text-[#2D1F27]">Code-A-Haunt <span class="counter" data-target="2.0">0</span></h4>
                             <p class="text-zinc-500 leading-relaxed">State-level hackathon participant at LPU showcasing intense problem-solving under pressure and collaborative engineering.</p>
                         </div>
                     </div>
@@ -524,7 +560,7 @@ y = np.array([0, 1])
                     <div class="bento-inner p-12 rounded-[4rem] relative min-h-[400px]">
                         <div class="relative z-10">
                             <div class="flex justify-between items-start mb-8">
-                                <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500 transition-transform group-hover:scale-110 duration-300"><i data-lucide="mic-2" class="w-8 h-8"></i></div>
+                                <div class="w-16 h-16 bg-pink-500/10 rounded-3xl flex items-center justify-center text-pink-500 transition-transform group-hover:scale-110 duration-300"><i data-lucide="mic-2" class="w-8 h-8 animate-float-subtle"></i></div>
                                 <div class="flex items-center gap-1.5 pt-6 h-10 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
                                     <div class="visualizer-bar h-4" style="animation-delay: 0.1s"></div>
                                     <div class="visualizer-bar h-6" style="animation-delay: 0.3s"></div>
@@ -551,38 +587,44 @@ y = np.array([0, 1])
             <div class="relative max-w-4xl mx-auto py-20">
                 <div class="edu-line"></div>
                 
-                <div class="relative pl-12 md:pl-0 md:flex items-center justify-between mb-32 reveal">
-                    <div class="edu-node"></div>
+                <div class="relative pl-12 md:pl-0 md:flex items-center justify-between mb-32 reveal group">
+                    <div class="edu-node group-hover:scale-150 group-hover:bg-blue-600 transition-all duration-300"></div>
                     <div class="md:w-[45%] md:text-right">
-                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-2">2023 – Present</span>
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-2"><span class="counter" data-target="2023">0</span> – Present</span>
                         <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Lovely Professional University</h3>
-                        <p class="text-zinc-500 mt-2 font-medium italic">B.Tech Computer Science (Hons.)</p>
+                        <p class="text-zinc-500 mt-2 font-medium italic flex items-center md:justify-end gap-2">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 animate-float-subtle"></i> B.Tech Computer Science (Hons.)
+                        </p>
                     </div>
-                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 text-center shadow-sm">
+                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 text-center shadow-sm group-hover:border-blue-200 transition-colors">
                         <div class="text-5xl font-black tracking-tighter text-[#2D1F27]"><span class="counter" data-target="7.4">0</span> <span class="text-lg font-bold text-zinc-400">CGPA</span></div>
                     </div>
                 </div>
 
-                <div class="relative pl-12 md:pl-0 md:flex flex-row-reverse items-center justify-between mb-32 reveal">
-                    <div class="edu-node"></div>
+                <div class="relative pl-12 md:pl-0 md:flex flex-row-reverse items-center justify-between mb-32 reveal group">
+                    <div class="edu-node group-hover:scale-150 group-hover:bg-yellow-500 transition-all duration-300"></div>
                     <div class="md:w-[45%]">
-                        <span class="text-[10px] font-black text-yellow-600 uppercase tracking-widest block mb-2">2021 – 2023</span>
+                        <span class="text-[10px] font-black text-yellow-600 uppercase tracking-widest block mb-2"><span class="counter" data-target="2021">0</span> – <span class="counter" data-target="2023">0</span></span>
                         <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School</h3>
-                        <p class="text-zinc-500 mt-2 font-medium italic">Intermediate</p>
+                        <p class="text-zinc-500 mt-2 font-medium italic flex items-center gap-2">
+                            <i data-lucide="book" class="w-4 h-4 animate-pulse-soft"></i> Intermediate
+                        </p>
                     </div>
-                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-yellow-50 rounded-[2.5rem] border border-yellow-100 text-center shadow-sm">
+                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-yellow-50 rounded-[2.5rem] border border-yellow-100 text-center shadow-sm group-hover:border-yellow-300 transition-colors">
                         <div class="text-5xl font-black tracking-tighter text-zinc-900"><span class="counter" data-target="82">0</span> <span class="text-lg font-bold text-zinc-400">%</span></div>
                     </div>
                 </div>
 
-                <div class="relative pl-12 md:pl-0 md:flex items-center justify-between reveal">
-                    <div class="edu-node"></div>
+                <div class="relative pl-12 md:pl-0 md:flex items-center justify-between reveal group">
+                    <div class="edu-node group-hover:scale-150 group-hover:bg-purple-600 transition-all duration-300"></div>
                     <div class="md:w-[45%] md:text-right">
-                        <span class="text-[10px] font-black text-purple-600 uppercase tracking-widest block mb-2">2020 – 2021</span>
+                        <span class="text-[10px] font-black text-purple-600 uppercase tracking-widest block mb-2"><span class="counter" data-target="2020">0</span> – <span class="counter" data-target="2021">0</span></span>
                         <h3 class="text-3xl font-black text-[#2D1F27] leading-tight">Army Public School</h3>
-                        <p class="text-zinc-500 mt-2 font-medium italic">Matriculation</p>
+                        <p class="text-zinc-500 mt-2 font-medium italic flex items-center md:justify-end gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 animate-float-subtle"></i> Matriculation
+                        </p>
                     </div>
-                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-purple-50 rounded-[2.5rem] border border-purple-100 text-center shadow-sm">
+                    <div class="md:w-[45%] mt-8 md:mt-0 p-8 bg-purple-50 rounded-[2.5rem] border border-purple-100 text-center shadow-sm group-hover:border-purple-300 transition-colors">
                         <div class="text-5xl font-black tracking-tighter text-purple-900"><span class="counter" data-target="97">0</span> <span class="text-lg font-bold text-zinc-400">%</span></div>
                     </div>
                 </div>
@@ -592,28 +634,36 @@ y = np.array([0, 1])
 
     <!-- Footer -->
     <footer class="py-32 px-6 text-center bg-white border-t border-zinc-100">
-        <h2 class="text-5xl font-bold tracking-tighter mb-10 text-[#1a1a1a]">Garvita Goswami</h2>
+        <h2 class="text-5xl font-bold tracking-tighter mb-10 text-[#1a1a1a] flex items-center justify-center gap-3">
+            Garvita Goswami <i data-lucide="sparkles" class="w-8 h-8 text-yellow-500 animate-pulse-soft"></i>
+        </h2>
         <div class="flex flex-wrap justify-center gap-10 text-zinc-400 mb-16 font-bold uppercase tracking-[0.2em] text-[10px] reveal">
-            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors">Email</a>
-            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors">LinkedIn</a>
-            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors">GitHub</a>
+            <a href="mailto:garvitagoswami.05@gmail.com" class="hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+                <i data-lucide="mail" class="w-4 h-4 group-hover:animate-float-subtle"></i> Email
+            </a>
+            <a href="https://linkedin.com/in/garvita-goswami-348" target="_blank" class="hover:text-blue-600 transition-colors flex items-center gap-2 group">
+                <i data-lucide="linkedin" class="w-4 h-4 group-hover:animate-pulse-soft"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Garvita260605" target="_blank" class="hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+                <i data-lucide="github" class="w-4 h-4 group-hover:animate-float-subtle"></i> GitHub
+            </a>
         </div>
-        <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Engineering Portfolio • 2026</p>
+        <p class="text-zinc-300 text-[10px] font-black uppercase tracking-[0.5em] reveal">Data Engineering Portfolio • <span class="counter" data-target="2026">0</span></p>
     </footer>
 
     <!-- Certification Modal -->
     <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 hidden">
         <div class="absolute inset-0 bg-zinc-900/20 backdrop-blur-xl" onclick="closeModal()"></div>
         <div class="relative bg-white w-full max-w-2xl rounded-[3.5rem] shadow-2xl p-10 transform scale-95 opacity-0 transition-all duration-500" id="modal-content">
-            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 text-zinc-400 hover:text-zinc-900 transition-colors"><i data-lucide="x"></i></button>
+            <button onclick="closeModal()" class="absolute top-10 right-10 p-2 text-zinc-400 hover:text-zinc-900 transition-colors hover:rotate-90 duration-300"><i data-lucide="x"></i></button>
             <div id="modal-icon-container" class="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 overflow-hidden text-white"></div>
             <h3 id="modal-title" class="text-4xl font-bold mb-2"></h3>
             <p id="modal-provider" class="text-xl text-blue-600 font-bold mb-6"></p>
             <p id="modal-desc" class="text-zinc-500 text-lg mb-10"></p>
             
             <div class="space-y-4">
-                <a id="modal-pdf-link" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white py-6 rounded-2xl font-black shadow-xl hover:bg-blue-700 transition-all">
-                    <i data-lucide="external-link" class="w-6 h-6"></i> View PDF Document
+                <a id="modal-pdf-link" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white py-6 rounded-2xl font-black shadow-xl hover:bg-blue-700 hover:scale-[1.02] transition-all group">
+                    <i data-lucide="external-link" class="w-6 h-6 group-hover:animate-float-subtle"></i> View PDF Document
                 </a>
                 <button onclick="closeModal()" class="w-full bg-zinc-100 text-zinc-500 py-6 rounded-2xl font-black hover:bg-zinc-200 transition-all">Close</button>
             </div>
@@ -627,7 +677,7 @@ y = np.array([0, 1])
             {
                 id: 0,
                 title: "ML Recommendation Engine",
-                subtitle: "Jan 2025",
+                subtitle: "Jan <span class='counter' data-target='2025'>0</span>",
                 gradient: "recommender-gradient",
                 accentColor: "#5D4250",
                 icon: "cpu",
@@ -641,21 +691,21 @@ y = np.array([0, 1])
             {
                 id: 1,
                 title: "Spotify Stream Dynamics",
-                subtitle: "Feb–Mar 2025",
+                subtitle: "Feb–Mar <span class='counter' data-target='2025'>0</span>",
                 gradient: "spotify-gradient",
                 accentColor: "#1DB954",
                 icon: "music",
                 github: "Spotify-Stream-Dynamics",
                 summary: "Popularity patterns via NLP sentiment analysis.",
-                description: "Analyzed Spotify's 2024 global dataset to uncover patterns behind engagement. Used VADER NLP to study how explicit content influences listener preferences and combined storytelling with analytics.",
+                description: "Analyzed Spotify's <span class='counter' data-target='2024'>0</span> global dataset to uncover patterns behind engagement. Used VADER NLP to study how explicit content influences listener preferences and combined storytelling with analytics.",
                 tags: ["Python", "Pandas", "VADER", "Matplotlib"],
-                metrics: [{ label: "Data", value: "2024 Charts" }, { label: "Method", value: "Hypothesis Testing" }],
+                metrics: [{ label: "Data", value: "<span class='counter' data-target='2024'>0</span> Charts" }, { label: "Method", value: "Hypothesis Testing" }],
                 details: ["Data cleaning & visualization.", "Applied VADER NLP on lyrics.", "Correlation: Explicit vs. Non-Explicit."]
             },
             {
                 id: 2,
                 title: "Digital Asset Integrity",
-                subtitle: "Aug–Oct 2025",
+                subtitle: "Aug–Oct <span class='counter' data-target='2025'>0</span>",
                 gradient: "library-gradient",
                 accentColor: "#6366f1",
                 icon: "database",
@@ -669,7 +719,7 @@ y = np.array([0, 1])
             {
                 id: 3,
                 title: "Mental Well-Being Study",
-                subtitle: "Jan–May 2025",
+                subtitle: "Jan–May <span class='counter' data-target='2025'>0</span>",
                 gradient: "mental-gradient",
                 accentColor: "#0ea5e9",
                 icon: "brain-circuit",
@@ -677,7 +727,7 @@ y = np.array([0, 1])
                 summary: "Workplace health data study.",
                 description: "Conducted EDA on mental-health survey data to uncover workplace patterns. Preprocessed data by handling missing values and normalization, then applied statistical tests (ANOVA, Chi-Square).",
                 tags: ["SciPy", "Stats", "EDA", "Seaborn"],
-                metrics: [{ label: "Stats", value: "ANOVA / Chi2" }, { label: "Features", value: "15+ Variables" }],
+                metrics: [{ label: "Stats", value: "ANOVA / Chi<span class='counter' data-target='2'>0</span>" }, { label: "Features", value: "<span class='counter' data-target='15'>0</span>+ Variables" }],
                 details: ["Feature normalization & encoding.", "Heatmap & distribution analysis.", "Identified work-pressure insights."]
             }
         ];
@@ -704,8 +754,8 @@ y = np.array([0, 1])
                 // Add tailored icon animations
                 if (proj.icon === 'music') iconClass += " animate-logo-pulse";
                 else if (proj.icon === 'cpu') iconClass += " animate-logo-rotate";
-                else if (proj.icon === 'database') iconClass += " animate-bounce";
-                else if (proj.icon === 'brain-circuit') iconClass += " animate-pulse";
+                else if (proj.icon === 'database') iconClass += " animate-float-subtle";
+                else if (proj.icon === 'brain-circuit') iconClass += " animate-pulse-soft";
 
                 let visualizerHtml = "";
                 if (proj.icon === 'music') {
@@ -809,7 +859,6 @@ y = np.array([0, 1])
             setTimeout(() => {
                 activeProjectIndex = idx;
                 const proj = projectData[idx];
-                const projectNumberFormatted = String(idx + 1).padStart(2, '0');
                 
                 // Setup specific visualizers inside the dropped card
                 let internalVisualizer = "";
@@ -829,16 +878,16 @@ y = np.array([0, 1])
                         <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10 mb-12">
                             <div class="flex-1 animate-hero" style="animation-delay: 100ms">
                                 <div class="flex items-center gap-4 mb-6">
-                                    <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8"></i></div>
+                                    <div class="p-4 bg-white/10 rounded-2xl"><i data-lucide="${proj.icon}" class="w-8 h-8 animate-pulse-soft"></i></div>
                                     <div>
-                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT ${projectNumberFormatted} • ${proj.subtitle}</span>
+                                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60">PROJECT <span class="counter" data-pad="2" data-target="${idx + 1}">00</span> • ${proj.subtitle}</span>
                                         <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight">${proj.title}</h3>
                                     </div>
                                 </div>
                                 ${internalVisualizer}
                                 <p class="text-xl text-zinc-300 max-w-xl leading-relaxed mb-8">${proj.summary}</p>
-                                <a href="https://github.com/Garvita260605/${proj.github}" target="_blank" class="inline-flex items-center gap-3 bg-white text-zinc-900 px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-all shadow-lg">
-                                    <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
+                                <a href="https://github.com/Garvita260605/${proj.github}" target="_blank" class="inline-flex items-center gap-3 bg-white text-zinc-900 px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-all shadow-lg group">
+                                    <i data-lucide="github" class="w-5 h-5 group-hover:animate-float-subtle"></i> View on GitHub
                                 </a>
                             </div>
                             <div class="flex-1 w-full lg:w-1/3 animate-hero" style="animation-delay: 200ms">
@@ -879,6 +928,14 @@ y = np.array([0, 1])
                 // Shift timelines based on active index
                 updateTimelines();
 
+                // Trigger counters inside the dynamically injected container
+                setTimeout(() => {
+                    container.querySelectorAll('.counter').forEach(el => {
+                        el.dataset.animated = ""; // reset state
+                        animateCounter(el);
+                    });
+                }, 50);
+
                 // Scroll view smoothly to the project title
                 setTimeout(() => {
                     container.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -889,12 +946,12 @@ y = np.array([0, 1])
         }
 
         const certs = [
-            { t: "Networking", p: "Coursera | Google", ds: "TCP/IP, security protocols, and infrastructure. Aug 31, 2025.", icon: "network", color: "bg-blue-600", pdf: "12317861.pdf" },
-            { t: "PL/SQL Bootcamp", p: "LPU | My Class", ds: "Oracle SQL & Data Science Masterclass. Obtained Grade 'O'. July 2025.", icon: "database", color: "bg-orange-600", pdf: "Summer Training.pdf" },
+            { t: "Networking", p: "Coursera | Google", ds: "TCP/IP, security protocols, and infrastructure. Aug <span class='counter' data-target='31'>0</span>, <span class='counter' data-target='2025'>0</span>.", icon: "network", color: "bg-blue-600", pdf: "12317861.pdf" },
+            { t: "PL/SQL Bootcamp", p: "LPU | My Class", ds: "Oracle SQL & Data Science Masterclass. Obtained Grade 'O'. July <span class='counter' data-target='2025'>0</span>.", icon: "database", color: "bg-orange-600", pdf: "Summer Training.pdf" },
             { t: "ML & Image Proc.", p: "thingQbator | Cisco", ds: "Machine Learning & Image Processing (Nasscom Foundation).", icon: "brain", color: "bg-indigo-600", pdf: "ML and Image Processing.pdf" },
-            { t: "Data Analytics", p: "LinkedIn Learning", ds: "Introduction to Career Skills in Data Analytics. June 2025.", icon: "bar-chart", color: "bg-blue-800", pdf: "Data Analytics .pdf" },
-            { t: "Python for DS/ML", p: "Udemy | Jose Portilla", ds: "Supervised & Unsupervised modeling Bootcamp. Feb 2024.", icon: "code", color: "bg-purple-600", pdf: "Python.pdf" },
-            { t: "WEB Hackathon", p: "Team 7 | BlockseBlock", ds: "24hr Hackathon Participation at LPU. March 2024.", icon: "terminal", color: "bg-zinc-800", pdf: "MOOC Certificate.pdf" }
+            { t: "Data Analytics", p: "LinkedIn Learning", ds: "Introduction to Career Skills in Data Analytics. June <span class='counter' data-target='2025'>0</span>.", icon: "bar-chart", color: "bg-blue-800", pdf: "Data Analytics .pdf" },
+            { t: "Python for DS/ML", p: "Udemy | Jose Portilla", ds: "Supervised & Unsupervised modeling Bootcamp. Feb <span class='counter' data-target='2024'>0</span>.", icon: "code", color: "bg-purple-600", pdf: "Python.pdf" },
+            { t: "WEB Hackathon", p: "Team <span class='counter' data-target='7'>0</span> | BlockseBlock", ds: "<span class='counter' data-target='24'>0</span>hr Hackathon Participation at LPU. March <span class='counter' data-target='2024'>0</span>.", icon: "terminal", color: "bg-zinc-800", pdf: "MOOC Certificate.pdf" }
         ];
 
         function renderCerts() {
@@ -908,7 +965,7 @@ y = np.array([0, 1])
                 card.innerHTML = `
                     <div class="relative z-10">
                         <div class="w-14 h-14 mb-6 rounded-2xl flex items-center justify-center ${cert.color} shadow-lg group-hover:scale-110 transition-transform relative">
-                            <i data-lucide="${cert.icon}" class="w-7 h-7 text-white"></i>
+                            <i data-lucide="${cert.icon}" class="w-7 h-7 text-white animate-float-subtle"></i>
                         </div>
                         <h5 class="font-bold text-lg mb-1 leading-tight text-[#1a1a1a]">${cert.t}</h5>
                         <p class="text-zinc-400 text-[10px] font-black uppercase tracking-widest">${cert.p.split('|')[0]}</p>
@@ -928,7 +985,7 @@ y = np.array([0, 1])
             
             const iconCont = document.getElementById('modal-icon-container');
             iconCont.className = `w-20 h-20 rounded-2xl flex items-center justify-center mb-8 relative ${data.color}`;
-            iconCont.innerHTML = `<i data-lucide="${data.icon}" class="w-10 h-10 text-white"></i>`;
+            iconCont.innerHTML = `<i data-lucide="${data.icon}" class="w-10 h-10 text-white animate-pulse-soft"></i>`;
             
             document.getElementById('cert-modal').classList.remove('hidden');
             setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95', 'opacity-0'), 10);
@@ -945,23 +1002,45 @@ y = np.array([0, 1])
         }
 
         function animateCounter(el) {
-            if(el.dataset.animated) return;
+            if(el.dataset.animated === "true") return;
             el.dataset.animated = "true";
-            const target = parseFloat(el.dataset.target);
+            
+            const targetStr = el.dataset.target;
+            const target = parseFloat(targetStr);
+            const isFloat = targetStr.includes('.');
+            const pad = el.dataset.pad ? parseInt(el.dataset.pad) : 0;
+            
             const duration = 2000;
-            const startTime = performance.now();
-            function update(now) {
-                const progress = Math.min((now - startTime) / duration, 1);
-                const eased = 1 - Math.pow(2, -10 * progress);
+            let startTimestamp = null;
+            
+            function step(timestamp) {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
                 const current = eased * target;
-                if (target % 1 === 0) {
-                    el.innerText = Math.floor(current);
+                
+                if (isFloat) {
+                    el.innerHTML = current.toFixed(1);
                 } else {
-                    el.innerText = current.toFixed(1);
+                    let val = Math.floor(current).toString();
+                    if (pad > 0) val = val.padStart(pad, '0');
+                    el.innerHTML = val;
                 }
-                if (progress < 1) requestAnimationFrame(update);
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    // Ensure exact final target value is set
+                    if (isFloat) {
+                        el.innerHTML = target.toFixed(1);
+                    } else {
+                        let val = target.toString();
+                        if (pad > 0) val = val.padStart(pad, '0');
+                        el.innerHTML = val;
+                    }
+                }
             }
-            requestAnimationFrame(update);
+            window.requestAnimationFrame(step);
         }
 
         window.addEventListener('scroll', () => {
@@ -1000,7 +1079,7 @@ y = np.array([0, 1])
                     titleEl.innerText = data.title;
                     textEl.innerText = data.text;
                     iconWrapEl.className = `p-2 lg:p-2.5 rounded-xl transition-all duration-500 ${data.bgClass} ${data.textClass}`;
-                    iconWrapEl.innerHTML = `<i data-lucide="${data.icon}" class="w-5 h-5 lg:w-6 lg:h-6"></i>`;
+                    iconWrapEl.innerHTML = `<i data-lucide="${data.icon}" class="w-5 h-5 lg:w-6 lg:h-6 animate-pulse-soft"></i>`;
                     
                     safeCreateIcons();
 
@@ -1031,17 +1110,13 @@ y = np.array([0, 1])
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         entry.target.querySelectorAll('.counter').forEach(animateCounter);
+                        // Optional: Stop observing once animated if you only want it to happen once
+                        // observer.unobserve(entry.target); 
                     }
                 });
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            
-            // Fallback: If page looks blank after 2 seconds, force visible
-            setTimeout(() => {
-                document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-                document.querySelectorAll('.counter').forEach(animateCounter);
-            }, 2000);
             
             safeCreateIcons();
         };
